@@ -1,0 +1,84 @@
+// YUI Slider see http://yuilibrary.com/yui/docs/slider/
+
+.yui3-skin-sam .yui3-slider-x .yui3-slider-rail,.yui3-skin-sam .yui3-slider-x .yui3-slider-rail-cap-left,.yui3-skin-sam .yui3-slider-x .yui3-slider-rail-cap-right {
+  background-image: url(../images/slider/rail-x.png)  !important;
+}
+
+#pager {
+  height: 28px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 999999;
+  background-color: $light-background;
+  @include embossed-gradient($slider-overlay, $slider-topbackground, $slider-bottombackground);
+  color:#333;
+  font-size:.853em;
+  padding:8px 0 0 0;
+  border-top:1px solid #ccc;
+  
+  .tooltip .yui3-widget-bd {
+    text-align: center;
+    max-width: 15em;
+    *width: 10em;
+    color:#fff;
+    background-color: $dark-background;
+    border: solid 1px $dark-background;
+    padding: 0.2em 0.5em 0.3em;
+    @include border-radius(5px);
+    @include box-shadow(1px 0px 2px rgba(0,0,0,0.5));
+  }  
+  
+  input#slider_value {
+	  font-weight:bold;
+	  background:#f1f1f1;
+    width:2.5em;
+    text-align:center;
+    padding: 0;
+    border: 1px solid;
+    border-color: #aaa  #fff #fff #aaa;
+    @include border-radius(3px);
+    cursor: text;
+    color:#444;
+    font-size:1em;
+   }
+   form {
+     display: inline;
+   }   
+   form  + span, form  + span + span {
+      @include  bv-text-shadow(embossed-text-shadow);
+      font-weight: bold;
+      color: #444;
+    }
+   #slider {
+     padding: 0px 20px;
+   }
+  .pages_count_total {
+    white-space: nowrap;
+    color: #777;
+    cursor: default;
+  }
+
+  #slider_value {
+    &.error {
+      border: 1px solid #8C2E0B;
+      background-color: #DF3A01;
+      opacity: 1;
+      color: #fff !important;
+    }
+
+    &.warning {
+      border: 1px solid #FEFFBF;
+      background-color: #B2B300;
+      color: #fff !important;
+      opacity: 1;
+    }
+
+  }
+}
+
+.yui3-carousel-content {
+  li {
+    width: 200px;
+  }  
+}

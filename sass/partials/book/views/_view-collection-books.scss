@@ -1,0 +1,143 @@
+@import "partials/book/defaults/_variables";
+@import "partials/themeable/_variables";
+
+body {
+  &.io-loading {
+    .view-collection-books {
+      .item-list {
+        width: 100%;
+        display: block;
+        visibility: visible;
+      }
+    }
+  }
+}  
+
+.list_view { 
+  .view-collection-books {
+    .views-g, 
+    .views-g-r  {
+      clear: both;
+      .views-u-1-6 {
+        width: 100%;
+      }
+    }
+    .views-field-field-representative-image {
+      float: left;
+      margin-right: 1em;    
+    }
+    .views-field-field-publisher,
+    .views-field-field-subject {
+      display: block;
+      visibility: visible;
+      div {
+        display: inline;
+      }
+    }
+    li a:before {
+      @include bv-font-faced($icon-font-name);
+      line-height:1em;
+      font-style: normal;
+      font-weight: normal;
+      padding:0;
+      margin:0 .25em;
+      text-decoration: none;
+      speak: none;
+      -webkit-font-smoothing: antialiased;
+    }
+    .grid {
+      &:before {
+        content: "\e00e";
+      }
+    }
+    .list {
+      &:before {
+        content: "\e00d";
+      }
+    }
+  }
+  a.link {
+    float: left;
+    margin-right: 1em;
+    display: block;
+  }    
+  .metadata {
+    height: 100%;
+    display: block;
+    visibility: visible;
+    span {
+      display: block;  
+    }
+  }
+}  
+
+.view-collection-books {
+  font-size:1em;
+  margin-left: 1em;
+  
+  .item-list {
+    display: none;
+    visibility: hidden;    
+  }
+  
+  .views-u-1-6 {
+    margin-bottom: 1em;
+    div {
+      &.field-content {
+        padding-right: 1em;
+      }      
+    }
+  }
+
+  .views-field-field-publisher,
+  .views-field-field-subject {
+    display: none;
+    visibility: hidden;  
+  }
+  
+  .view-header {
+    margin-top: 1em;
+    margin-bottom: 1em;    
+    
+    h2 {
+      font-size: 1.143em;    
+      display: inline;
+      margin-right: .5em;
+    }
+    
+    ul, li {
+      display: inline;
+    }
+    
+    li {
+      margin-left: 0;
+    }
+    
+    li a:before {
+      @include bv-font-faced($icon-font-name);
+      line-height:1em;
+      font-style: normal;
+      font-weight: normal;
+      padding:0;
+      margin:0 .25em;
+      text-decoration: none;
+      speak: none;
+      -webkit-font-smoothing: antialiased;
+    }
+    .grid {
+      &:before {
+        content: "\e00e";
+      }
+    }
+    .list {
+      &:before {
+        content: "\e00d";
+      }
+    }
+  }
+  .view-content {  
+    .vol-info {
+      visibility: visible;
+    }
+  }
+}

@@ -1,0 +1,204 @@
+@include bv-font-face($icon-font-name, $icon-font-woff, $icon-font-ttf, $inline-fonts, $font-weight, $font-style, $icon-font-eot);
+
+html, body, input {
+  font-family: $book-fonts;
+}
+
+html {
+  &.node-type-dlts-book-page, &.node-type-dlts-book-stitched-page {
+    body, 
+    #page, 
+    #main-wrapper,
+    #page-wrapper, 
+    #main, 
+    #content, 
+    #content .section, 
+    #content .section .region-content, 
+    #block-system-main, 
+    #block-system-main .content, 
+    .node-dlts-book-page, 
+    #book-leaf {
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  
+  .wrapper {
+    margin: 0 auto;
+    padding: 0;
+  }
+    
+  height: 100%;
+  width: 100%;
+  
+  body {
+  
+    a { 
+      @include set-link-colors($link-color);
+    }
+    
+    &.page-node {
+      .content {
+        position: relative;
+        color:#000;
+        margin: 15px 10px 15px 0;
+        z-index: 1;
+      }
+      .node-page {
+        margin-left: 10px;
+      }
+    }
+    
+    .footer {
+      margin-left: 10px;
+    }
+  
+  }
+  
+}
+
+/** Global elements */
+
+.element-invisible {
+  display: none;
+  visibility: hidden; 
+}
+
+.button.link {
+  border: 1px solid #E9E9E9;
+  @include border-radius(3px);
+  @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+  @include text-shadow(1px 1px 0 #fff);
+  display: inline-block;
+  font-weight: bold;
+  padding: 4px 12px 3px;
+  text-align: center;
+  white-space: nowrap;
+  background: #EFEFEF;
+  background: -moz-linear-gradient(top,whiteSmoke 0,#EFEFEF 50%,#E5E5E5 51%,#DFDFDF 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,whiteSmoke),color-stop(50%,#EFEFEF),color-stop(51%,#E5E5E5),color-stop(100%,#DFDFDF));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='whiteSmoke',endColorstr='#DFDFDF',GradientType=0);
+  &.bobcat-record,
+  &.browse-collection,
+  &.book-index {
+    min-width: 230px;
+    display: block;
+    font-size: 22px;
+    padding: 9px 0 10px;
+    background: -moz-linear-gradient(top,#F7F7F7 0,#DFDFDF 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#F7F7F7),color-stop(100%,#DFDFDF));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F7F7F7',endColorstr='#DFDFDF',GradientType=0);
+  }
+}
+
+body.page-node .node-page {
+  margin-left:0;
+}
+
+.thumb-image {
+  visibility:hidden;
+  background:none !important;
+}
+
+/** GB - April 10, 2013 */
+
+$lib-red:#952c2f;
+$lib-brown:#623e24;
+$teaser-color:#E0D7C9;
+$dkgrey:#333;
+
+@mixin gradient($start-color, $end-color){
+  background: $start-color; /* Old browsers */
+  background: -moz-linear-gradient(left, $start-color 0%, $end-color 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,$start-color), color-stop(100%,$end-color)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, $start-color 0%,$end-color 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, $start-color 0%,$end-color 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, $start-color 0%,$end-color 100%); /* IE10+ */
+  background: linear-gradient(to right, $start-color 0%,$end-color 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start-color', endColorstr='$end-color',GradientType=1 ); /* IE6-9 */
+}
+
+i, em {
+  font-style: italic;
+}
+
+#header {
+  padding:1em 1em .5em 1em;
+  @include gradient($lib-red,$lib-brown);
+  a {
+    color:white;
+    font-size:1.2em;
+  }
+}
+
+.front .content.body {
+  background-color: $teaser-color;
+  color:$dkgrey;
+  padding-top: 3em;
+}
+.front .description {
+  padding-bottom:0;
+  p {
+    width:90%;
+  }
+}
+
+.front .pane.right .links a:link, .front .pane.right .links a:visited {
+  color:$dkgrey;
+  margin-right:.5em;
+  &:hover {
+    color:$lib-red;
+  }
+}
+
+html.page-search-site form .form-text, html.front form .form-text {
+  height: 22px;
+  @include box-shadow(none);
+}
+
+.branding {
+  a{
+    text-decoration:none;
+    &:hover {
+      opacity:0.8;
+      filter:alpha(opacity=80); /* For IE8 and earlier */
+    }
+  }
+}
+
+.titlebar {
+  background-image:none;
+  @include gradient(darken($lib-red,20%),darken($lib-brown,10%));
+}
+
+.pane .navbar {
+  background-image:none;
+  padding:.25em 0;
+}
+
+.yui3-carousel-container .carousel-container .yui3-carousel-nav, #pager {
+  background-image:none;
+}
+
+#pager {
+  border-top: 1px solid gray;
+}
+
+#pagemeta {
+  border-right:none;
+  @include box-shadow(none);
+}
+
+.yui3-u-1 {
+  .field-name-body {
+    width:50%;
+    margin:2em 1em;
+    border-left:3px solid $teaser-color;
+    padding-left:1em;
+  }
+}
+
+.yui3-u-1.pane-page-body {
+  margin-left: 1em;
+}

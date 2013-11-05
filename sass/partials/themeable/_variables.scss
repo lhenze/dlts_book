@@ -1,0 +1,20 @@
+// Variables to change
+$light-background: #d6c5a9;
+$dark-background: #3a0f0f;
+$link-color:#6e1d1d;
+
+// Default values! change only if you need to
+$navbar-overlay: $light-background;
+$slider-overlay: $light-background;
+$navbar-border-color: darken($light-background, 15%);
+
+$page-background: lighten($light-background, 15%);
+$pane-background: desaturate(lighten($light-background, 8%), 5%);
+
+$navbar-icon-color: $dark-background;
+$paging-icon-color: #444;
+
+$titlebar-overlay: $dark-background;
+
+$loading-animation-start-color: $navbar-icon-color;
+$loading-animation-end-color: $page-background;

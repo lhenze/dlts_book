@@ -1,0 +1,21 @@
+name = DLTS Book
+description = DLTS Book is a sub theme of DLTS Books oEmbed. DLTS books provides a base theme for all of DLTS book publications.
+core = 7.x
+engine = phptemplate
+version = 2.0.1
+screenshot = screenshot.png
+
+stylesheets[all][] = css/dlts_book.css
+
+regions[header] = Header
+regions[search] = Search
+regions[content] = Content
+regions[footer] = Footer
+
+features[] = logo
+features[] = name
+features[] = search
+features[] = favicon
+
+settings[dlts_book_toggle_breadcrumb] = '0'
+settings[dlts_book_toggle_page_tabs] = '0'

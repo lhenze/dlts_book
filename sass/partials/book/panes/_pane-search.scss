@@ -1,0 +1,332 @@
+html {
+  &.page-search-site {
+    white-space: nowrap;
+    overflow-y: auto;
+    
+    body, #page {
+      overflow-y: auto;
+    }
+        
+    form {
+      .pane-search-header {
+        h4 {
+          display: none;
+          visibility: hidden;
+        }
+      }
+      .form-item-search-block-form {
+        width: 90%;
+        .form-text {
+          width: 100%;
+          max-width: 572px;
+        }
+      }
+    }
+  }
+}
+
+html {
+  &.page-search-site, 
+  &.front {
+    form {
+      .form-text {
+        color: #999;
+        font-size: 14px;
+        vertical-align: top;
+        margin: 0;
+        width: 210px;
+        display: inline-block;
+        height: 20px;
+        padding: 4px 6px;
+        color: #555;
+        @include border-radius(3px);
+        border-color: rgba(82, 168, 236, 0.8);
+        border: 1px solid #CCC;
+        @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075));
+        -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+        -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+        -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+        transition: border linear 0.2s, box-shadow linear 0.2s;
+        outline: 0;
+        outline: thin dotted 9;
+        @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6));
+      }
+      .form-submit {
+        padding: 8px;
+      }
+    }
+    
+    .titlebar {
+      height: 24px;
+      padding: 8px 0 12px 0;
+      
+      h1 {
+        margin-left: 16px;
+        line-height:.8em;
+      }
+      .icon {
+        display: none;
+        visibility: hidden;
+      }
+    }
+    
+    &.search-results-header {
+      margin-left: 16px;
+    }    
+    
+    .yui3-g {
+      &.search-result {
+        .book-result {
+          padding-left: .3em;
+          max-width: 520px;
+          max-height: 180px;
+          
+          div {
+            &.book-result-header {
+              .title {
+                margin-bottom: .3em;
+              }
+              p {
+                color: #388222;
+                font-style: normal;
+                word-wrap: break-word;
+                font-size: small;
+              }
+            }
+          
+            &.search-snippet-info {
+              p {
+                  max-width: 520px;
+                  max-height: 180px;
+                &.search-info {
+                  display: none;
+                  visibility: hidden;
+                }
+              }
+            }
+          }
+        }
+        .representative-image {
+          width: 144px;
+          padding: 0;
+          img {
+            width: 144px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.not-front {
+  #pane-search {
+    width: $pane-search-width - 1;
+    height: 100%;
+    background-color: $pane-background;
+    overflow: hidden;
+    word-wrap: break-word;
+    display: block;
+    z-index: 999999;
+    border-top:1px solid rgba(0,0,0,.5);
+	  border-left:1px solid rgba(0,0,0,.5);
+    right: 0px;
+    position: absolute;
+    text-align: left;
+
+    h4 {
+	    @include bv-text-shadow(embossed-text-shadow);
+	    letter-spacing:.05em;
+      color:#333;
+      line-height:1.4em;
+	  }
+	
+	  form {
+      padding-bottom: .8em;
+      margin: 0 10px;
+      border-bottom: 1px solid rgba(0,0,0,.25);  
+      .title-all-results {      
+        padding-top: .8em;
+        display: block;
+      }    
+    }
+  
+    .form-item, .form-actions {
+      margin: 0;
+      padding: 0;
+    }
+  
+    .resutls.empty {
+      padding: 0 .8em;
+      margin-left: 0em;
+    }
+
+    h2.title-results {
+      font-size: small;
+      @include bv-text-shadow(embossed-text-shadow);
+      margin-bottom: .5em;
+      display: inline;
+    }
+
+    .pane-search-content {
+      overflow-x: hidden;
+      height: 100%;
+      font-size: 1em;
+      margin: 0;
+      margin-right: .5em;
+      padding-top: .8em;
+      .search-resutls-content {
+        text-align: left;
+      }
+    }
+
+    .pane-search-footer {
+      background-color: #fff;
+      position: fixed;
+      z-index: 99999;
+      bottom: 28px;
+      width: $pane-search-width - 1;
+      height: 20px;
+      text-align: center;
+      margin: 0 auto;
+    }
+  
+    .search-results {
+      cursor: pointer;
+      padding: .5em 0;
+      border: solid white;
+      border-top: 1px solid #CCC;
+      border-width: 1px 0;
+      padding: .5em;
+    
+      &:hover {
+        background-color: #EBEFFF;
+      }
+    }
+  
+    #search-block-form {
+      margin: 0;
+      .form-text {
+        height: 100%;
+        width: 145px;
+        font-size: 13px;
+        border: 1px solid #CCC;
+        padding: 2px;
+        margin-right: 2px;
+      }
+    }
+  }
+  
+  .book-pane-options-search-result {
+    cursor: pointer;
+    padding: .5em 0;
+    border: solid white;
+    border-top: 1px solid #CCC;
+    border-width: 1px 0;
+    font-size: 0.929em;  
+  }
+    
+  .book-pane-options-search-result:first-child {
+    border-top: none;
+  }
+    
+  .book-pane-options-search-result-snippet-cell {
+    width: 100%;
+  }
+    
+  .book-pane-options-search-result-snippet {
+    padding: 0 .8em;
+    margin-left: 0em;
+  }
+    
+  .book-pane-options-search-result-page-cell {
+    color: #999;
+    padding-right: .8em;
+  }
+    
+  .book-pane-options-search-button {
+    font-family: Arial,sans-serif;
+    color: black;
+    list-style: none;
+    cursor: default;
+  }
+    
+  .book-pane-options-search-sort {
+    font-size: 0.929em;
+    margin-bottom: .3em;
+    margin-top: .8em;
+  }
+
+}
+
+.pane-search-header {
+  margin:0;
+  padding:0;
+  
+  h4 {
+    margin: 0;
+    padding-bottom: .5em;
+  }
+}
+
+#search-block-form {
+  .form-submit {
+    margin: 0;
+  }
+  
+  .form-type-textfield {
+    display: inline;
+  }
+  
+  #edit-actions {
+    display: inline;
+  }
+}
+
+#page .search-form {
+  /** For now */
+  display: none;
+  visibility: hidden;
+}
+
+.yui3-u.left {
+  width: 140px;
+}
+
+.yui-g {
+  &.search-results-header {
+    padding: 18px 0;
+    margin-left: 16px;
+    h2 {
+      margin-bottom: 0;
+    }  
+  }
+}
+
+.search-results-content {
+  border-top: 1px solid #ccc;
+  padding-top: 1em;
+}
+
+
+.spelling-suggestions {
+ dt, dd {
+   display: inline
+ }
+ dd {
+   padding-left: .3em;
+ }
+}
+
+.book-pane-options-search-result-page-cell {
+  vertical-align: top;
+}
+
+.results-found, .results-no-found  {
+  padding: 0 .8em;  
+}
+
+
+.body-head .title {
+  margin-left: 1em;
+  margin-top: 1em;
+}

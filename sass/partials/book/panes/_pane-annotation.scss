@@ -1,0 +1,19 @@
+#pane-annotations {
+  width: $pane-annotations-width - 1;
+  height: 100%;
+  background-color: $pane-background;
+  overflow: hidden;
+  word-wrap: break-word;
+  display: block;
+  z-index: 999999;
+  border-top: 1px solid rgba(0,0,0,.5);
+	border-left: 1px solid rgba(0,0,0,.5);
+  right: 0px;
+  position: absolute;
+  text-align: left;
+  overflow-y: scroll;
+  .annotation {
+    padding:5px;
+    z-index: 1;
+  }
+}

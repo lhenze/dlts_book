@@ -1,0 +1,128 @@
+@import "partials/book/defaults/_variables";
+@import "partials/themeable/_variables";
+
+html {
+  &.page-search {
+    
+    white-space: nowrap;
+    overflow-y: auto;
+    
+    body, 
+    #page {
+      overflow-y: auto;
+    }
+        
+    form {
+      
+      .title {
+        display: none;
+        visibility: hidden;
+      }
+      
+      .form-item-search-block-form {
+        width: 90%;
+        
+        .form-text {
+          width: 100%;
+          max-width: 572px;
+        }
+        
+      }
+      
+    }
+    
+    form {
+      .form-text {
+        color: #999;
+        font-size: 14px;
+        vertical-align: top;
+        margin: 0;
+        width: 210px;
+        display: inline-block;
+        height: 20px;
+        padding: 4px 6px;
+        color: #555;
+        @include border-radius($button-corner-radius);
+        border-color: rgba(82, 168, 236, 0.8);
+        border: 1px solid #CCC;
+        @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6));
+        -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+        -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+        -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+        transition: border linear 0.2s, box-shadow linear 0.2s;
+        outline: 0;
+        outline: thin dotted 9;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+        -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+      }
+      .form-submit {
+        padding: 8px;
+      }
+    }
+    
+    
+    
+    .titlebar {
+      padding: 18px 0;
+      h1 {
+        margin-left: 16px;
+      }
+      .icon {
+        display: none;
+        visibility: hidden;
+      }
+    }
+    
+    &.search-results-header {
+      margin-left: 16px;
+    }    
+    
+    .yui3-g {
+      &.search-result {
+        .book-result {
+          padding-left: .3em;
+          max-width: 520px;
+          max-height: 180px;
+          
+          div {
+            &.book-result-header {
+              .title {
+                margin-bottom: .3em;
+              }
+              p {
+                color: #388222;
+                font-style: normal;
+                word-wrap: break-word;
+                font-size: small;
+              }
+            }
+          
+            &.search-snippet-info {
+              p {
+                  max-width: 520px;
+                  max-height: 180px;
+                &.search-info {
+                  display: none;
+                  visibility: hidden;
+                }
+              }
+            }
+          }
+        }
+        .representative-image {
+          width: 144px;
+          padding: 0;
+          img {
+            width: 144px;
+          }
+        }
+      }
+    }
+    
+    .pane-search-header {
+      padding-top: 0;
+    }
+    
+  }
+}

@@ -1,0 +1,39 @@
+#pagemeta {
+  float: left;
+  width: $metadata-pane-width;
+  height: 100%;
+  z-index: 999999;
+  padding: 0;
+  position: relative;  
+  background-color: $pane-background;
+  word-wrap: break-word;
+  overflow:hidden;
+  display: block; 
+	border-top:1px solid rgba(0,0,0,.5);
+	border-right:1px solid rgba(0,0,0,.5);
+  @include bv-box-shadow($metadata-box-shadow); 
+  .view-book-description {
+    padding: 0;
+    margin-top: .5em;
+    margin-left: .7em;
+  } 
+  .field-name-field-representative-image {
+    img {
+      max-width:100%;
+    }
+  }  
+  .field-label-inline {
+    line-height: 1.5em; 
+    word-wrap: break-word;
+  }
+  .field-label {
+		display: inline;
+  }
+  .field-items {
+    display: inline;
+    word-wrap: break-word;
+  }
+  .field-item {
+    display: inline;
+  }
+}

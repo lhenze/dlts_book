@@ -1,0 +1,24 @@
+.pane.navbar {
+  .select {
+    z-index: 999999;
+    padding: 1.5em 0 0.5em;
+    text-indent: 0.5em;
+    background-color: #F7DBB2;
+  }
+}
+
+.tooltip .yui3-widget-bd {
+  z-index: 999999;
+  text-align: left;
+  max-width: 15em;
+  *width: 10em;
+  background-color: #FFF6D5;
+  border: solid 1px #aa8;
+  padding: 0.2em 0.5em 0.3em;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  
+  -moz-box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+
+}

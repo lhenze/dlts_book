@@ -1,0 +1,214 @@
+/* YUI ScrollView http://yuilibrary.com/yui/docs/scrollview/scrollview-paging.html */
+
+/* Avoid resource latency for these, since they hide unenhanced content */
+.yui3-js-enabled .yui3-scrollview-loading {
+  visibility:hidden;
+}
+
+.yui3-carousel-container {
+  width: 100%;
+  z-index: 999999999;
+  position: absolute;
+  bottom: 0;
+  background-color: $carousel-background;
+  border-top: 1px solid gray;
+  
+  &.hidden {
+    display: none;
+    visibility: hidden;
+  }
+  
+  .carousel-container {
+    background-color: $carousel-background;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    border: none !important;
+    
+    a {
+      text-decoration: none;
+      &:hover {
+      }     
+    }
+
+    li {
+      border: none !important;
+      img {
+        @include box-shadow( ( 0px 0px 10px rgba(#ff0,0)));
+        
+      }
+    } 
+    
+    .yui3-carousel-nav {
+      text-align: right;
+      background: $light-background;
+      @include embossed-gradient($navbar-overlay, $navbar-start-background-mix, $navbar-end-background-mix);
+      span, a, button, li {
+        &:before {
+          @include bv-font-faced($icon-font-name);
+          margin:0;
+          color:$navbar-icon-color;
+          text-decoration: none;
+          @include bv-text-shadow(icon-embossed-text-shadow);
+          line-height:1em;
+          font-size:1.5em;
+          font-style: normal;
+          font-weight: normal;
+          speak: none;
+          -webkit-font-smoothing: antialiased;
+        }
+      }
+      .yui3-carousel-button {
+        float: none;
+        display: inline-block;
+        background: none;
+        //border:solid;
+        margin:0; 
+        margin:0 5px;
+        button {
+          font-size:1.1em;
+          border:none;
+          background: none; 
+          //border:solid;
+          margin:0; 
+          padding:0;
+          width:60px;
+          overflow:hidden;
+        }
+        span {
+        }
+        a {
+          color:$navbar-icon-color;
+          width:0;
+        }
+      }
+      
+      ul {
+        text-align: right;
+        float: none;
+        display: inline-block;
+        margin:0;
+        padding:0;
+        height:20px;
+        li {
+          background-image: none;
+          float: none;
+          width: 20px;
+          display: inline;
+          height: 24px;
+          padding: 0;
+          margin: 0;
+          //cursor: default;
+          position: relative;
+          &:before {
+            content: "\e001";
+          }
+          &.yui3-carousel-nav-item-selected {
+            &:before {
+              content: "\e015";
+            }
+          }
+          a {
+            text-align:right;
+            position:relative;
+            width:20px;
+            height:24px;
+            top:-5px;
+            left:-22px;
+            margin: 0;
+            padding: 0;
+            display: inline;
+            text-indent:-1000em;
+            em {
+              color:transparent;
+              text-indent:-1000em;
+              overflow:hidden;
+              display:inline-block;
+              width:20px;
+              height:24px;
+            }
+            
+          }
+        }
+      }      
+      .yui3-carousel-first-button-disabled, .yui3-carousel-button-disabled {
+         button {
+          opacity:$dimmed-opacity;
+        }
+      }  
+      .yui3-carousel-first-button button {
+        width:40px;
+        &:before {
+           content: "\e013";
+           margin:0 99em 0 .2em;
+           
+         }
+      }
+      .yui3-carousel-next-button button {
+        &:before {
+           content: "\e012";
+           margin:0 9999em 0 .2em;
+         }
+      }
+      
+      .yui3-carousel-close {
+
+       a {
+         display:block;
+          &:before {
+             content: "\e000";
+           }
+       }
+        em {
+          @include hide-text;
+          display:none;
+        }
+      }
+      
+    }
+
+    ol.yui3-carousel-content {
+      list-style: none;
+      height: 250px;
+
+      li {
+        margin: 0 7px;
+        padding: 0 3px;
+        &.selected-thumb { 
+          img {
+           @include box-shadow( ( 0px 0px 7px rgba($link-color,1)));
+           margin: 0;
+          }
+          
+          .page-number {
+            background: rgba($link-color, 0.5);
+          }
+        }
+        
+        div {
+          width: 100%;
+          min-height: 230px;
+          padding: 2px 0px;
+          img {
+            min-width: 70px;
+            max-width: 181px;
+            max-height: 230px;
+            margin: 0;
+            border: 1px solid rgba($link-color ,0);
+          }
+          
+          .page-number {
+            top: 73%;
+            left: 12px;
+            font-weight: bold;
+            @include border-top-right-radius(10px);
+            background: rgba(0, 0, 0, 0.33);
+            z-index: 99999999;
+            position: absolute;
+            display: inline;
+          }
+        }
+      }
+    }    
+  }
+}

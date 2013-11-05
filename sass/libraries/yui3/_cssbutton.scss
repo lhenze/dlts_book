@@ -1,0 +1,127 @@
+/*
+YUI 3.7.3 (build 5687)
+Copyright 2012 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+http://yuilibrary.com/license/
+*/
+.yui3-button, .form-submit {
+    /* Structure */
+    display: inline-block;
+    *display: inline; /*IE 6/7*/
+    zoom: 1;
+    font-size: 100%; 
+    *font-size: 90%; /*IE 6/7 - To reduce IE's oversized button text*/
+    *overflow: visible; /*IE 6/7 - Because of IE's overly large left/right padding on buttons */
+    padding: 0.4em 1em 0.45em;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: baseline;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    /* Presentation */
+    color: #444; /* rgba not supported (IE 8) */
+    color: rgba(0, 0, 0, 0.80); /* rgba supported */
+    *color: #444; /* IE 6 & 7 */
+    border: 1px solid #999;  /*IE 6/7/8*/
+    border: none rgba(0, 0, 0, 0);  /*IE9 + everything else*/
+    background-color: #E6E6E6;
+    @include background-image(linear-gradient(rgba(255,255,255, 0.30), rgba(255,255,255, 0.15) 40%, transparent));
+    text-decoration: none;
+    @include border-radius(4px);
+    @include box-shadow(0 0 0 1px rgba(0,0,0, 0.25) inset, 0 2px 0 rgba(255,255,255, 0.30) inset, 0 1px 2px rgba(0,0,0, 0.15));
+
+    /* Transitions */
+    @include single-transition(box-shadow, 0.1s, linear);
+}
+
+a.yui3-button, .form-submit  {
+    color: rgba(0,0,0, 0.80);
+    color: #444;
+    text-decoration:none;
+}
+
+.yui3-button-hover,
+.yui3-button:hover,
+.form-submit-hover,
+.form-submit:hover
+ {
+    @include background-image(linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.15)));
+}
+
+.yui3-button-active,
+.yui3-button:active,
+.form-submit-active,
+.form-submit:active
+ {
+    border: inset 1px solid #999;  /*IE 6/7/8*/
+    border: none rgba(0, 0, 0, 0);  /*IE9 + everything else*/
+    @include background-image(linear-gradient(rgba(0,0,0, 0.10), rgba(0,0,0, 0.15)));
+    @include box-shadow(0 0 0 1px rgba(0,0,0, 0.25) inset, 0 2px 4px rgba(0,0,0, 0.30) inset);
+}
+
+.yui3-button[disabled],
+.yui3-button-disabled,
+.yui3-button-disabled:hover,
+.yui3-button-disabled:active
+
+.form-submit[disabled]
+.form-submit-disabled,
+.form-submit-disabled:hover,
+.form-submit-disabled:active
+ {
+    cursor: default;
+    background-image: none;
+    @include opacity(0.55);
+    @include box-shadow(0 0 0 1px rgba(0,0,0, 0.25) inset);
+}
+
+/* Firefox: Get rid of the inner focus border */
+.yui3-button::-moz-focus-inner,
+.form-submit::-moz-focus-inner
+{
+    padding: 0;
+    border: 0;
+}
+
+/* Firefox: Add a border around a focused button */
+.yui3-button:-moz-focusring,
+.form-submit:-moz-focusring
+ {
+    outline: thin dotted;
+}
+
+/* Sam */
+.yui3-skin-sam .yui3-button-primary,
+.yui3-skin-sam .yui3-button-selected {
+    background-color: #345FCB;
+    color: #fff;
+    @include box-shadow(0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 0 rgba(255, 255, 255, 0.17) inset, 0 1px 2px rgba(0, 0, 0, 0.15));
+}
+.yui3-skin-sam .yui3-button:-moz-focusring {
+    outline-color: rgba(0, 0, 0, 0.85);
+}
+
+/* Night */
+.yui3-skin-night .yui3-button {
+    border: 0px;
+    background-color: #343536;
+    color: #DCDCDC;
+    @include box-shadow(0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.15));
+}
+.yui3-skin-night .yui3-button-primary,
+.yui3-skin-night .yui3-button-selected {
+    background-color: #747576;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.yui3-skin-night .yui3-button:-moz-focusring {
+    outline-color: rgba(255, 255, 255, 0.85);
+}
+
+/* YUI CSS Detection Stamp */
+#yui3-css-stamp.cssbutton { display: none; }
