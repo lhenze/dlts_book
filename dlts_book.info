@@ -2,7 +2,7 @@ name = DLTS Book
 description = DLTS Book is a sub theme of DLTS Books oEmbed. DLTS books provides a base theme for all of DLTS book publications.
 core = 7.x
 engine = phptemplate
-version = 2.0.1
+version = 2.0.2
 screenshot = screenshot.png
 
 stylesheets[all][] = css/dlts_book.css
