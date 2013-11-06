@@ -721,13 +721,13 @@ Y.use('node', 'event', 'event-custom', 'transition', 'slider', 'pjax', 'gallery-
     }, '.dlts_image_map');
     
     Y.delegate('click', function(e) {
-    	e.halt();
-    	window.location.href = window.location.href.replace(/\/$/, '') + '/edit'
-    }, 'body', '.tabs li.edit a');
-    
+        e.halt();
+        window.location.href = window.location.href.replace(/\/$/, '') + '/edit'
+    }, '.node-type-dlts-book-page', '.tabs li.edit a');
+
     Y.delegate('click', function(e) {
-    	e.halt();
-    	window.location.href = window.location.href.replace(/\/$/, '')
-    }, 'body', '.tabs li.view a');    
+        e.halt();
+        window.location.href = window.location.href.replace(/\/$/, '')
+    }, '.node-type-dlts-book-page', '.tabs li.view a');
 
 });
