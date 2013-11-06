@@ -339,8 +339,9 @@ function dlts_book_preprocess_node(&$vars) {
            ),
         ),
       );
-
-      dlts_book_add_search($vars, $js_data);
+	  
+	  // add search box if this dlts_book_page are selected as searchable in Apache Solr configuration 
+	  in_array('dlts_book_page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node')) ? dlts_book_add_search($vars, $js_data) : next; 
 
       drupal_add_js($js_data, 'setting');
 
