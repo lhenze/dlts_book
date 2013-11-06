@@ -605,36 +605,36 @@ function dlts_book_dlts_book_pager_button($arguments) {
   
   switch ($arguments['id']) {
     case 'next-page':
-		case 'last-page':
-		    if ($pjax) {
-		      return '<span class="pjax button ' . $status . ' ' . $arguments['id'] . '">' . l( '<span>' .$arguments['text'] . '</span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'class' => array('next', 'paging', $status)), 'html' => TRUE)) . '</span>';		      
-		    }
-		    else {
-          return l( '<span>' . $arguments['text'] . '<span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'class' => array('paging', 'next', $status)), 'html' => TRUE ));
-		    }
-      break;
+	case 'last-page':
+      if ($pjax) {
+        return '<span class="pjax button ' . $status . ' ' . $arguments['id'] . '">' . l( '<span>' .$arguments['text'] . '</span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array('next', 'paging', $status)), 'html' => TRUE)) . '</span>';		      
+      }
+      else {
+        return l( '<span>' . $arguments['text'] . '<span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array('paging', 'next', $status)), 'html' => TRUE));
+      }
+    break;
 
     case 'previous-page':
     case 'first-page':
       if ($pjax) {
-        return '<span class="pjax button ' . $status . ' ' . $arguments['id'] . '">' . l( '<span>' .  $arguments['text'] . '<span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'class' => array('previous', 'paging', $status)), 'html' => TRUE)) . '</span>';        
+        return '<span class="pjax button ' . $status . ' ' . $arguments['id'] . '">' . l( '<span>' .  $arguments['text'] . '<span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array('previous', 'paging', $status)), 'html' => TRUE)) . '</span>';        
       }
       else {
-        return l( '<span>' . $arguments['text'] . '<span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'class' => array('paging', 'previous', $status)), 'html' => TRUE));
+        return l( '<span>' . $arguments['text'] . '<span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array('paging', 'previous', $status)), 'html' => TRUE));
       }
       break;
 
     case 'toggle-page':
       if ($pjax) {
-        return '<span class="pjax button ' . $status . ' ' . $arguments['id'] . '">' . l( '<span>' . $arguments['text'] . '<span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'class' => array($icon, $status, 'toogle button')), 'html' => TRUE)) . '</span>';
+        return '<span class="pjax button ' . $status . ' ' . $arguments['id'] . '">' . l( '<span>' . $arguments['text'] . '<span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array($icon, $status, 'toogle button')), 'html' => TRUE)) . '</span>';
       }
       else {
-        return '<li class="navbar-item">' . l( '<span class="test">' . $arguments['text'] . '</span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'class' => array($icon, $status, 'toogle button')), 'html' => TRUE)) . '</li>';
+        return '<li class="navbar-item">' . l( '<span class="test">' . $arguments['text'] . '</span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array($icon, $status, 'toogle button')), 'html' => TRUE)) . '</li>';
       }
       break;
         
     default: //includes toggle button
-      return '<li class="navbar-item">' . l( '<span>' .$arguments['text'] . '<span>', $arguments['url'], $arguments) . '</li>';
+      return '<li class="navbar-item">' . l( '<span>' . $arguments['text'] . '<span>', $arguments['url'], $arguments) . '</li>';
       break;
   }
 
