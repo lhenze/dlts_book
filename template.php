@@ -115,9 +115,7 @@ function dlts_book_css_alter(&$css) {
   );
   
   $css = array_diff_key($css, $exclude);
-  
   }
-  
 }
 
 /**
@@ -143,13 +141,15 @@ function dlts_book_process_page(&$vars) {
     $vars['classes_array'][] = $vars['node']->type;
   }
   
-  // we need to do something about this, not sure is the right place to have it or the best way to do this
+  // we need to do something about this, not sure is the right place to have it or the best way to do this or if we need this
   if (!dlts_utilities_is_pjax()) {
     $vars['breadcrumb'] = theme_get_setting('dlts_book_toggle_breadcrumb') ? $vars['breadcrumb'] : NULL;
-    $search = module_invoke('search', 'block_view', 'search');
-    $search['content']['search_block_form']['#attributes']['value'] = '';
-    $search['content']['search_block_form']['#attributes']['placeholder'] = t('Find in collection');
-    $vars['search'] = $search;
+	if (in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))) {
+      $search = module_invoke('search', 'block_view', 'search');
+      $search['content']['search_block_form']['#attributes']['value'] = '';
+      $search['content']['search_block_form']['#attributes']['placeholder'] = t('Find in collection');
+      $vars['search'] = $search;
+	}
   }
   
 }
@@ -222,7 +222,10 @@ function dlts_book_preprocess_node(&$vars) {
       /** Use node--dlts-book-page.tpl.php for both dlts_book_page and dlts_book_stitched_page content types */
       $vars['theme_hook_suggestions'][] = 'node__dlts_page';
       
-      $vars['search'] = module_invoke('search', 'block_view', 'search');
+	  // add search box if this page are selected as searchable in Apache Solr configuration 
+	  if (in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))) {
+        $vars['search'] = module_invoke('search', 'block_view', 'search');
+	  }
       
       $vars['browse'] = array( '#markup' => l(t('Browse collection'), 'books', array('attributes' => array('class' => array('browse-collection', 'button', 'link')))) );
       
