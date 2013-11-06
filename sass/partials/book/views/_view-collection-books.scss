@@ -3,7 +3,7 @@
 
 body {
   &.io-loading {
-    .view-collection-books {
+    .view-books {
       .item-list {
         width: 100%;
         display: block;
@@ -14,7 +14,7 @@ body {
 }  
 
 .list_view { 
-  .view-collection-books {
+  .view-books {
     .views-g, 
     .views-g-r  {
       clear: both;
@@ -71,7 +71,7 @@ body {
   }
 }  
 
-.view-collection-books {
+.view-books {
   font-size:1em;
   margin-left: 1em;
   

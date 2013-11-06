@@ -1,4 +1,4 @@
-/* line 17, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,45 +20,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -831,23 +831,23 @@ html body a {
   text-decoration: none;
   color: #6e1d1d;
 }
-/* line 4, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_hover-link.scss */
+/* line 4, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_hover-link.scss */
 html body a:hover {
   text-decoration: underline;
 }
-/* line 18, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 18, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 html body a:visited {
   color: #602b2b;
 }
-/* line 21, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 21, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 html body a:focus {
   color: #751616;
 }
-/* line 24, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 24, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 html body a:hover {
   color: #751616;
 }
-/* line 27, ../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 27, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 html body a:active {
   color: #751616;
 }
@@ -1725,28 +1725,6 @@ body.pagemeta-hidden .pane .display a.previous {
   text-align: left;
 }
 
-/* line 1, ../sass/partials/book/panes/_pane-annotation.scss */
-#pane-annotations {
-  width: 239px;
-  height: 100%;
-  background-color: #e1d7c7;
-  overflow: hidden;
-  word-wrap: break-word;
-  display: block;
-  z-index: 999999;
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
-  border-left: 1px solid rgba(0, 0, 0, 0.5);
-  right: 0px;
-  position: absolute;
-  text-align: left;
-  overflow-y: scroll;
-}
-/* line 15, ../sass/partials/book/panes/_pane-annotation.scss */
-#pane-annotations .annotation {
-  padding: 5px;
-  z-index: 1;
-}
-
 /* line 2, ../sass/partials/book/panes/_pane-search.scss */
 html.page-search-site {
   white-space: nowrap;
@@ -2590,24 +2568,24 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   }
 }
 
-/* line 12, ../sass/partials/book/views/_views-pager.scss */
+/* line 3, ../sass/partials/book/views/_views-pager.scss */
 #book-navbar .item-list {
   display: block;
   height: 100%;
   text-align: center;
 }
-/* line 16, ../sass/partials/book/views/_views-pager.scss */
+/* line 7, ../sass/partials/book/views/_views-pager.scss */
 #book-navbar .item-list .pager li {
   padding: 0;
   margin: 0;
 }
 
-/* line 23, ../sass/partials/book/views/_views-pager.scss */
+/* line 14, ../sass/partials/book/views/_views-pager.scss */
 .pager {
   background: #3a0f0f;
   display: inline;
 }
-/* line 26, ../sass/partials/book/views/_views-pager.scss */
+/* line 17, ../sass/partials/book/views/_views-pager.scss */
 .pager li {
   display: inline;
   float: left;
@@ -2616,7 +2594,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   min-width: 48px;
   opacity: 0.8;
 }
-/* line 34, ../sass/partials/book/views/_views-pager.scss */
+/* line 25, ../sass/partials/book/views/_views-pager.scss */
 .pager li.pager-current, .pager li.pager-ellipsis {
   float: left;
   display: block;
@@ -2627,7 +2605,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   border: none;
   line-height: 2em;
 }
-/* line 44, ../sass/partials/book/views/_views-pager.scss */
+/* line 35, ../sass/partials/book/views/_views-pager.scss */
 .pager li a {
   display: block;
   text-align: center;
@@ -2639,12 +2617,12 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   border: none;
   opacity: 0.8;
 }
-/* line 54, ../sass/partials/book/views/_views-pager.scss */
+/* line 45, ../sass/partials/book/views/_views-pager.scss */
 .pager li a:hover {
   opacity: 1;
   text-decoration: none;
 }
-/* line 58, ../sass/partials/book/views/_views-pager.scss */
+/* line 49, ../sass/partials/book/views/_views-pager.scss */
 .pager li a:before {
   font-family: "book-viewer";
   margin: 0 99em 0 .2em;
@@ -2655,35 +2633,35 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   speak: none;
   -webkit-font-smoothing: antialiased;
 }
-/* line 69, ../sass/partials/book/views/_views-pager.scss */
+/* line 60, ../sass/partials/book/views/_views-pager.scss */
 .pager li.pager-previous a {
   overflow: hidden;
 }
-/* line 71, ../sass/partials/book/views/_views-pager.scss */
+/* line 62, ../sass/partials/book/views/_views-pager.scss */
 .pager li.pager-previous a:before {
   content: "\e013";
 }
-/* line 75, ../sass/partials/book/views/_views-pager.scss */
+/* line 66, ../sass/partials/book/views/_views-pager.scss */
 .pager li.pager-next a {
   overflow: hidden;
 }
-/* line 77, ../sass/partials/book/views/_views-pager.scss */
+/* line 68, ../sass/partials/book/views/_views-pager.scss */
 .pager li.pager-next a:before {
   content: "\e012";
 }
-/* line 81, ../sass/partials/book/views/_views-pager.scss */
+/* line 72, ../sass/partials/book/views/_views-pager.scss */
 .pager li.pager-first a {
   overflow: hidden;
 }
-/* line 83, ../sass/partials/book/views/_views-pager.scss */
+/* line 74, ../sass/partials/book/views/_views-pager.scss */
 .pager li.pager-first a:before {
   content: "\e010";
 }
-/* line 87, ../sass/partials/book/views/_views-pager.scss */
+/* line 78, ../sass/partials/book/views/_views-pager.scss */
 .pager li.pager-last a {
   overflow: hidden;
 }
-/* line 89, ../sass/partials/book/views/_views-pager.scss */
+/* line 80, ../sass/partials/book/views/_views-pager.scss */
 .pager li.pager-last a:before {
   content: "\e011";
 }
@@ -2871,40 +2849,40 @@ body.page-books .view-books .pager li {
 }
 
 /* line 7, ../sass/partials/book/views/_view-collection-books.scss */
-body.io-loading .view-collection-books .item-list {
+body.io-loading .view-books .item-list {
   width: 100%;
   display: block;
   visibility: visible;
 }
 
 /* line 19, ../sass/partials/book/views/_view-collection-books.scss */
-.list_view .view-collection-books .views-g,
-.list_view .view-collection-books .views-g-r {
+.list_view .view-books .views-g,
+.list_view .view-books .views-g-r {
   clear: both;
 }
 /* line 21, ../sass/partials/book/views/_view-collection-books.scss */
-.list_view .view-collection-books .views-g .views-u-1-6,
-.list_view .view-collection-books .views-g-r .views-u-1-6 {
+.list_view .view-books .views-g .views-u-1-6,
+.list_view .view-books .views-g-r .views-u-1-6 {
   width: 100%;
 }
 /* line 25, ../sass/partials/book/views/_view-collection-books.scss */
-.list_view .view-collection-books .views-field-field-representative-image {
+.list_view .view-books .views-field-field-representative-image {
   float: left;
   margin-right: 1em;
 }
 /* line 30, ../sass/partials/book/views/_view-collection-books.scss */
-.list_view .view-collection-books .views-field-field-publisher,
-.list_view .view-collection-books .views-field-field-subject {
+.list_view .view-books .views-field-field-publisher,
+.list_view .view-books .views-field-field-subject {
   display: block;
   visibility: visible;
 }
 /* line 33, ../sass/partials/book/views/_view-collection-books.scss */
-.list_view .view-collection-books .views-field-field-publisher div,
-.list_view .view-collection-books .views-field-field-subject div {
+.list_view .view-books .views-field-field-publisher div,
+.list_view .view-books .views-field-field-subject div {
   display: inline;
 }
 /* line 37, ../sass/partials/book/views/_view-collection-books.scss */
-.list_view .view-collection-books li a:before {
+.list_view .view-books li a:before {
   font-family: "book-viewer";
   line-height: 1em;
   font-style: normal;
@@ -2916,11 +2894,11 @@ body.io-loading .view-collection-books .item-list {
   -webkit-font-smoothing: antialiased;
 }
 /* line 49, ../sass/partials/book/views/_view-collection-books.scss */
-.list_view .view-collection-books .grid:before {
+.list_view .view-books .grid:before {
   content: "\e00e";
 }
 /* line 54, ../sass/partials/book/views/_view-collection-books.scss */
-.list_view .view-collection-books .list:before {
+.list_view .view-books .list:before {
   content: "\e00d";
 }
 /* line 59, ../sass/partials/book/views/_view-collection-books.scss */
@@ -2941,50 +2919,50 @@ body.io-loading .view-collection-books .item-list {
 }
 
 /* line 74, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books {
+.view-books {
   font-size: 1em;
   margin-left: 1em;
 }
 /* line 78, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books .item-list {
+.view-books .item-list {
   display: none;
   visibility: hidden;
 }
 /* line 83, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books .views-u-1-6 {
+.view-books .views-u-1-6 {
   margin-bottom: 1em;
 }
 /* line 86, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books .views-u-1-6 div.field-content {
+.view-books .views-u-1-6 div.field-content {
   padding-right: 1em;
 }
 /* line 93, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books .views-field-field-publisher,
-.view-collection-books .views-field-field-subject {
+.view-books .views-field-field-publisher,
+.view-books .views-field-field-subject {
   display: none;
   visibility: hidden;
 }
 /* line 98, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books .view-header {
+.view-books .view-header {
   margin-top: 1em;
   margin-bottom: 1em;
 }
 /* line 102, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books .view-header h2 {
+.view-books .view-header h2 {
   font-size: 1.143em;
   display: inline;
   margin-right: .5em;
 }
 /* line 108, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books .view-header ul, .view-collection-books .view-header li {
+.view-books .view-header ul, .view-books .view-header li {
   display: inline;
 }
 /* line 112, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books .view-header li {
+.view-books .view-header li {
   margin-left: 0;
 }
 /* line 116, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books .view-header li a:before {
+.view-books .view-header li a:before {
   font-family: "book-viewer";
   line-height: 1em;
   font-style: normal;
@@ -2996,14 +2974,14 @@ body.io-loading .view-collection-books .item-list {
   -webkit-font-smoothing: antialiased;
 }
 /* line 128, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books .view-header .grid:before {
+.view-books .view-header .grid:before {
   content: "\e00e";
 }
 /* line 133, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books .view-header .list:before {
+.view-books .view-header .list:before {
   content: "\e00d";
 }
 /* line 139, ../sass/partials/book/views/_view-collection-books.scss */
-.view-collection-books .view-content .vol-info {
+.view-books .view-content .vol-info {
   visibility: visible;
 }
