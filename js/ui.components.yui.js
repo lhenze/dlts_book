@@ -598,10 +598,10 @@ Y.use('node', 'event', 'event-custom', 'transition', 'slider', 'pjax', 'gallery-
     };
     
     /** tooltip object */    
-    tooltip = new Y.Overlay({
-        srcNode: ".tooltip",
-        visible: false
-    });
+    //tooltip = new Y.Overlay({
+    //    srcNode: ".tooltip",
+    //    visible: false
+    //});
     
     /** pjax object */    
     pjax = new Y.Pjax({ container: '.pane.display' });
@@ -621,13 +621,13 @@ Y.use('node', 'event', 'event-custom', 'transition', 'slider', 'pjax', 'gallery-
     
     slider.render('#slider');
     
-    tooltip.plug(Y.Plugin.WidgetAnim);
+    // tooltip.plug(Y.Plugin.WidgetAnim);
           
-    tooltip.anim.get('animHide').set('duration', 0.01);
+    // tooltip.anim.get('animHide').set('duration', 0.01);
         
-    tooltip.anim.get('animShow').set('duration', 0.3);
+    // tooltip.anim.get('animShow').set('duration', 0.3);
         
-    tooltip.render('#slider');
+    // tooltip.render('#slider');
 
     /** events listeners */
    
