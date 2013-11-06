@@ -634,7 +634,10 @@ function dlts_book_dlts_book_pager_button($arguments) {
       break;
         
     default: //includes toggle button
-      return '<li class="navbar-item">' . l( '<span>' . $arguments['text'] . '<span>', $arguments['url'], $arguments) . '</li>';
+      
+      print_r($arguments);
+      
+      return '<li class="navbar-item">' . l('<span>' . $arguments['text'] . '<span>', $arguments['url'], $arguments) . '</li>';
       break;
   }
 
