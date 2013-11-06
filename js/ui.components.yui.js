@@ -719,5 +719,10 @@ Y.use('node', 'event', 'event-custom', 'transition', 'slider', 'pjax', 'gallery-
             this.hide();
         });
     }, '.dlts_image_map');
+    
+    
+    Y.delegate('click', function(e) {
+    	Y.log('Estamos aqui')
+    }, 'body', '.tabs li.edit a, .tabs li.view a');
 
 });
