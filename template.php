@@ -143,7 +143,7 @@ function dlts_book_process_page(&$vars) {
     $vars['classes_array'][] = $vars['node']->type;
   }
   
-  // we need to do something about this, not sure is the right palce to have it or the best way to do this
+  // we need to do something about this, not sure is the right place to have it or the best way to do this
   if (!dlts_utilities_is_pjax()) {
     $vars['breadcrumb'] = theme_get_setting('dlts_book_toggle_breadcrumb') ? $vars['breadcrumb'] : NULL;
     $search = module_invoke('search', 'block_view', 'search');
@@ -219,24 +219,15 @@ function dlts_book_preprocess_node(&$vars) {
 
     case 'page' :
       
-      /** Use node--dlts-book-page.tpl.php for both dlts_book_page and dlts_book_stitched_page contetn types */
+      /** Use node--dlts-book-page.tpl.php for both dlts_book_page and dlts_book_stitched_page content types */
       $vars['theme_hook_suggestions'][] = 'node__dlts_page';
+      
       $vars['search'] = module_invoke('search', 'block_view', 'search');
+      
       $vars['browse'] = array( '#markup' => l(t('Browse collection'), 'books', array('attributes' => array('class' => array('browse-collection', 'button', 'link')))) );
+      
       $vars['bobcat'] = array( '#markup' => l(t('BobCat record'), dlts_utilities_collection_bobcat_record(), array('attributes' => array('class' => array('link')))));
-      
-      /** we need to remove this from here */
-      $vars['book_index'] = array('#markup' => l(t('Collection index'), file_create_url(file_build_uri('the_masses_index.pdf')), array('attributes' => array('class' => array('link')))));
 
-      // we need this?
-      $js_data = array(
-        'book' => array(
-          'theme_path' => $absolute_theme_path,
-        ),
-      );
-
-      drupal_add_js($js_data, 'setting');      
-      
       break;
 
     case 'dlts_book' :
@@ -278,7 +269,8 @@ function dlts_book_preprocess_node(&$vars) {
       
       /** Load book */
       $book = dlts_utilities_book_page_load_book($node);
-	  
+      
+	  // just for now
 	  if (
 	    !isset($vars['field_cropped_master']) || 
 	    (isset($vars['field_cropped_master']) && empty($vars['field_cropped_master']) )
@@ -320,9 +312,6 @@ function dlts_book_preprocess_node(&$vars) {
       /** Use node--dlts-book-page.tpl.php for both dlts_book_page and dlts_book_stitched_page contetn types */
       $vars['theme_hook_suggestions'][] = (dlts_utilities_is_pjax()) ? 'node__dlts_book_pjax_page' : 'node__dlts_book_page';
       
-      /** Remove tabs from book page and stitched page. This is working? */      
-      $vars['tabs'] = theme_get_setting('dlts_book_toggle_page_tabs') ? $vars['tabs'] : NULL;      
-
       /** Add UI YUI */
       $js_yui_files_conf = array('type' => 'file', 'scope' => 'footer', 'weight' => 5);
       
@@ -366,7 +355,7 @@ function dlts_book_preprocess_node(&$vars) {
         array(
           'title' => t('Metadata'),
           'path' => 'node/' . $node->nid,
-          'attributes' => array('data-title' => t('Metadata'), 'class' => array('button', 'metadata', 'on'), 'id' => array('button-metadata')),
+          'attributes' => array('data-title' => t('Metadata'), 'title' => t('Metadata'), 'class' => array('button', 'metadata', 'on'), 'id' => array('button-metadata')),
           'fragment' => 'metadata',
         )
       );
@@ -376,7 +365,7 @@ function dlts_book_preprocess_node(&$vars) {
         array(
           'title' => t('Fullscreen'),
           'path' => 'node/' . $node->nid,
-          'attributes' => array('data-title' => t('Fullscreen'), 'class' => array('button', 'fullscreen'), 'id' => array('button-fullscreen')),
+          'attributes' => array('data-title' => t('Fullscreen'), 'title' => t('Fullscreen'), 'class' => array('button', 'fullscreen'), 'id' => array('button-fullscreen')),
           'fragment' => 'fullscreen',
         )
       );
@@ -398,40 +387,6 @@ function dlts_book_preprocess_node(&$vars) {
 
       break;
   }
-}
-
-/*
- * Take control over DLTS Shapes theme function.
- */
-function dlts_book_dlts_shapes_ocr_coordinates_openlayers_js($variables) {
-
-  $coord = array();
-
-  if (isset($variables['terms']) && !empty($variables['terms'])) {
-    foreach ($variables['terms'] as $term) {
-      $coord[] = explode(' ', $term['coordinates']);
-    }
-  }
-  
-  $data = array(
-    'shapes' => array(
-      'ocr' => $coord,
-    ),
-  );
-    
-  $options = array(
-    'type' => 'setting',
-    'scope' => JS_THEME,
-  );
-  
-  if (dlts_utilities_is_pjax()) {
-    dlts_utilities_add_script(json_encode($data), array('id' => 'shapes', 'script_type' => 'application/json', 'type' => 'inline', 'scope' => 'header', 'group' => SCRIPT_THEME));
-  }
-  else {
-    drupal_add_js($data, $options);
-  }
-    
-  return;
 }
 
 function dlts_book_menu_local_task($variables) {
@@ -634,8 +589,6 @@ function dlts_book_dlts_book_pager_button($arguments) {
       break;
         
     default: //includes toggle button
-      
-      print_r($arguments);
       
       return '<li class="navbar-item">' . l('<span>' . $arguments['text'] . '<span>', $arguments['url'], $arguments) . '</li>';
       break;
