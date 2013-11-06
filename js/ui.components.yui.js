@@ -635,11 +635,11 @@ Y.use('node', 'event', 'event-custom', 'transition', 'slider', 'pjax', 'gallery-
 
     slider.after('slideEnd', slide_end, slider);
     
-    slider.rail.on('mousemove', on_mousemove_over_slider_rail, { slider: slider, tooltip: tooltip });
+    // slider.rail.on('mousemove', on_mousemove_over_slider_rail, { slider: slider, tooltip: tooltip });
     
-    slider.rail.on('mouseleave', on_mouseleave_slider_rail, tooltip);
+    // slider.rail.on('mouseleave', on_mouseleave_slider_rail, tooltip);
     
-    slider.after('thumbMove', function(e) {});
+    // slider.after('thumbMove', function(e) {});
     
     Y.on('openlayers:next', pjax_callback, Y.one('.paging.next'));
     
