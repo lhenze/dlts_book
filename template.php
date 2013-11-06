@@ -436,10 +436,9 @@ function dlts_book_dlts_shapes_ocr_coordinates_openlayers_js($variables) {
 
 function dlts_book_menu_local_task($variables) {
   
-  print __FUNCTION__;
- 
   $link = $variables['element']['#link'];
   $link_text = $link['title'];
+  $link_class = strtolower($link_text);
 
   if (!empty($variables['element']['#active'])) {
     // Add text to indicate active tab for non-visual users.
@@ -450,11 +449,13 @@ function dlts_book_menu_local_task($variables) {
     if (empty($link['localized_options']['html'])) {
       $link['title'] = check_plain($link['title']);
     }
+	
     $link['localized_options']['html'] = TRUE;
     $link_text = t('!local-task-title!active', array('!local-task-title' => $link['title'], '!active' => $active));
   }
 
-  return '<li' . (!empty($variables['element']['#active']) ? ' class="active"' : '') . '>' . l($link_text, $link['href'], $link['localized_options']) . "</li>\n";
+  return '<li class="' . $link_class . (!empty($variables['element']['#active']) ? ' active' : '') . '">' . l($link_text, $link['href'], $link['localized_options']) . "</li>";
+  
 }
 
 function dlts_book_dlts_image_hires($variables) {
