@@ -355,7 +355,7 @@ function dlts_book_preprocess_node(&$vars) {
         array(
           'title' => t('Metadata'),
           'path' => 'node/' . $node->nid,
-          'attributes' => array('data-title' => t('Metadata'), 'title' => t('Metadata'), 'class' => array('button', 'metadata', 'on'), 'id' => array('button-metadata')),
+          'attributes' => array('data-title' => t('Metadata'), 'title' => t('Show/hide metadata'), 'class' => array('button', 'metadata', 'on'), 'id' => array('button-metadata')),
           'fragment' => 'metadata',
         )
       );
