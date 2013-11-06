@@ -5,6 +5,10 @@ html, body, input {
 }
 
 html {
+  
+  height: 100%;
+  width: 100%;
+  
   &.node-type-dlts-book-page, &.node-type-dlts-book-stitched-page {
     body, 
     #page, 
@@ -28,16 +32,11 @@ html {
     margin: 0 auto;
     padding: 0;
   }
-    
-  height: 100%;
-  width: 100%;
-  
+
   body {
-  
-    a { 
+    a {
       @include set-link-colors($link-color);
     }
-    
     &.page-node {
       .content {
         position: relative;
@@ -49,13 +48,10 @@ html {
         margin-left: 10px;
       }
     }
-    
     .footer {
       margin-left: 10px;
     }
-  
   }
-  
 }
 
 /** Global elements */
