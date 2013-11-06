@@ -376,8 +376,8 @@ function dlts_book_preprocess_node(&$vars) {
       /** Zoom in and out buttons */
       $vars['control_panel'] = '
         <div id="control-zoom">
-          <div id="control-zoom-in" class="navbar-item" data-title="Zoom in"></div>
-          <div id="control-zoom-out" class="navbar-item" data-title="Zoom out"></div>
+          <div id="control-zoom-in" class="navbar-item" data-title="' . t('Zoom in') . '" title="' . t('Zoom in') . '"></div>
+          <div id="control-zoom-out" class="navbar-item" data-title="' . t('Zoom out') . '" title="' . t('Zoom out') . '"></div>
         </div>';
       
       $vars['pane_metadata_hidden'] = FALSE;
