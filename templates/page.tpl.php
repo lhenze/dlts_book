@@ -20,12 +20,12 @@
       <?php endif; ?>
     </div>
   </div>
-  <?php print render($page['content']); ?>	
+  <?php print render($page['content']); ?>
   <?php if (isset($page['footer']) && !empty($page['footer'])) : ?>
     <div class="footer yui3-g">
       <div class="yui3-u-1">  
         <?php print render($page['footer']); ?>
       </div>
     </div>
-  <?php endif; ?>    
+  <?php endif; ?>
 </div>
