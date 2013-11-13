@@ -20,20 +20,20 @@ $icon-font-name: 'book-viewer';
 $icon-font-ttf: 'book-viewer.ttf';
 $icon-font-woff: 'book-viewer.woff';
 $icon-font-eot: 'book-viewer.eot';
-$icon-font-svg: false; // 
+$icon-font-svg: false;
 $inline-fonts: false;
 $font-weight: normal;
 $font-style: normal;
 
 $link-color:#cc341f;
 
-$light-background: #e5e5e5; // default light gray
-$dark-background: #515151; // default dark gray
+$light-background: #D3D3D3; // default light gray
+$dark-background: #A9A9A9; // default dark gray
 
 $navbar-icon-color: #444444;
 $paging-icon-color: $navbar-icon-color;
 
-$page-background: lighten(#e5e5e5, 15%); // default light gray
+$page-background: lighten($light-background, 15%); // default light gray
 
 // Box shadows
 $pane-box-shadow: (1px 1px 3px rgba(0,0,0,.5));

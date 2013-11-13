@@ -27,8 +27,6 @@
     
     a {
       text-decoration: none;
-      &:hover {
-      }     
     }
 
     li {
@@ -62,14 +60,12 @@
         float: none;
         display: inline-block;
         background: none;
-        //border:solid;
         margin:0; 
         margin:0 5px;
         button {
           font-size:1.1em;
           border:none;
-          background: none; 
-          //border:solid;
+          background: none;
           margin:0; 
           padding:0;
           width:60px;
@@ -98,7 +94,6 @@
           height: 24px;
           padding: 0;
           margin: 0;
-          //cursor: default;
           position: relative;
           &:before {
             content: "\e001";

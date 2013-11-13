@@ -1,10 +1,3 @@
-<?php
-
- /** Hide content */
- hide($content['comments']);
- hide($content['links']);
- 
-?>
 <?php if ($page) : ?>
   <div class="tooltip"></div>
   <div id="navbar" class="pane navbar">
@@ -55,7 +48,7 @@
         <span id="squaresWaveG_7" class="squaresWaveG"></span>
         <span id="squaresWaveG_8" class="squaresWaveG"></span>
       </div>
-      <p>Loading Page <span class="current_page"><?php print $book_page_sequence_number ?></span></p>
+      <p><?php print t('Loading Page') ?> <span class="current_page"><?php print $book_page_sequence_number ?></span></p>
     </div>
   </div>
   <div id="pager" class="pane pager">

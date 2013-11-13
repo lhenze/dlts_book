@@ -1,19 +1,14 @@
 @import "compass/reset";
 @import "compass/typography";
 @import "compass/css3";
-
 @import "libraries/compass-animate/_animations";
 @import "libraries/compass-animate/_keyframes";
 @import "libraries/scss-blend-modes/_blend-mode";
-
 @import "partials/book/defaults/_variables";
 @import "partials/book/defaults/_mixins";
-
 @import "partials/themeable/_variables";
-
 @import "partials/base/_views-grid";
 @import "partials/base/_base-typography"; 
-
 @import "partials/book/pages/_base";
 @import "partials/book/pages/_frontpage";
 @import "partials/book/pages/_searchpage";
@@ -30,10 +25,6 @@
 @import "partials/book/panes/_pane-slider";
 @import "partials/book/panes/_pane-scrollview";
 @import "partials/book/panes/_loading";
-
 @import "partials/book/views/_views-pager";
 @import "partials/book/views/_views-book-thumbnails";
 @import "partials/book/views/_view-collection-books";
-
-/** @import "libraries/yui3/_cssbutton"; */
-/** @import "partials/base/_base-grid"; */

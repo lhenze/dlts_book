@@ -1,32 +1,42 @@
-Y.use('node', 'node-scroll-info', 'io-queue', 'gallery-idletimer', function (Y) {
+Y.use(
+    'node'
+  , 'node-scroll-info'
+  , 'io-queue'
+  , 'gallery-idletimer'
+  , function (Y) {
 
-  'use strict';
+    'use strict';
+
+    var body = Y.one('body')
+      , pager = Y.one('ul.pager')
+      , fold = 200
+      , requestURI = 'collection-items?page='
+      , transactions = [];
   
-  var body = Y.one('body'), pager = Y.one('ul.pager'), fold = 200, requestURI = 'collection-items?page=', transactions = [];
-  
-  function onStart(id, response, args) {
-    body.addClass('io-loading');
-    Y.one('.view .item-list .pager-current').set('text', 'loading more');
-  }
-  
-  function onSuccess(id, response, transaction) {
-    var pager, next;
-    
-    body.removeClass('io-loading');
-    
-    transaction.push(response.getResponseHeader('uri'));
-    
-    Y.one('.view .item-list').remove(true);
-    
-    Y.one('.page').append(response.response);
-    
-    next = Y.one('.view .item-list .pager-next a');
-    
-    if (!next) {
-      Y.one('.view .item-list').remove(true);
+    function onStart(id, response, args) {
+        body.addClass('io-loading');
+        Y.one('.view .item-list .pager-current').set('text', 'loading more');
     }
+
+    function onSuccess(id, response, transaction) {
+    	
+        var pager
+          , next;
     
-  }
+        body.removeClass('io-loading');
+    
+        transaction.push(response.getResponseHeader('uri'));
+    
+        Y.one('.view .item-list').remove(true);
+    
+        Y.one('.page').append(response.response);
+    
+        next = Y.one('.view .item-list .pager-next a');
+    
+        if (!next) {
+            Y.one('.view .item-list').remove(true);
+        }
+    }
   
   function onScroll(e) {
     var next = Y.one('.pager-next a'), page, href;

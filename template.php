@@ -185,7 +185,7 @@ function dlts_book_preprocess_page(&$vars) {
   $vars['logo'] = NULL;
   
   /** Add YUI Library from YUI Open CDN; should we add this as a setting in the theme form? */
-  drupal_add_js('http://yui.yahooapis.com/3.11.0/build/yui/yui-min.js', 'external', array('group' => JS_LIBRARY, 'weight' => -100 ));
+  drupal_add_js('http://yui.yahooapis.com/3.13.0/build/yui/yui-min.js', 'external', array('group' => JS_LIBRARY, 'weight' => -100 ));
 
   /** Take a close look and see if we need this. This used to be part of 1.x (aof1 Jul 23, 2013) */ 
   $js_data = array(
@@ -272,34 +272,6 @@ function dlts_book_preprocess_node(&$vars) {
       
       /** Load book */
       $book = dlts_utilities_book_page_load_book($node);
-      
-	  // just for now
-	  if (
-	    !isset($vars['field_cropped_master']) || 
-	    (isset($vars['field_cropped_master']) && empty($vars['field_cropped_master']) )
-	  ) {
-	  	
-        $vars['field_cropped_master'] = array( array(
-            'fid' => 3,
-            'djakota_width' => 5684,
-            'djakota_height' => 4226,
-            'djakota_levels' => 6,
-            'djakota_dwtLevels' => 0, 
-            'djakota_compositingLayerCount' => 0, 
-            'width' => 5684,
-            'height' => 4226,
-            'uid' => 1,
-            'filename' => 'fighting.tif',
-            'uri' => 'public://fighting.tif',
-            'filemime' => 'image/tiff',
-            'filesize' => 72086840,
-            'status' => 0,
-            'timestamp' => 1383597646,
-            'uuid' => 'ca361ff7-6645-4a50-a416-ed8ba6a5eee1',
-            'rdf_mapping' => array(),
-          )
-		);
-      }
       
       /** Book sequence count */
       $vars['sequence_count'] = $sequence_count = dlts_utilities_book_get_sequence_count($book);
@@ -797,15 +769,12 @@ function theme_mustache_thumbnail() {
   return $output;
 }
 
-// OK
 function theme_yui3_thumbnails() {
   $output = '
-    <div class="yui3-g yui3-pagging yui3-carousel-container unrendered hidden">
+    <div class="yui3-g pane thumbnails hidden">
       <div class="yui3-u-1">
         <div class="yui3-g">
-          <div id="carousel-container" class="carousel-container yui3-u-1 yui3-carousel-loading">
-            <ol class="modal-item"></ol>
-          </div>
+          <div class="thumbnails-container yui3-u-1 yui3-thumbnails-loading"></div>
         </div>
       </div>
     </div>';

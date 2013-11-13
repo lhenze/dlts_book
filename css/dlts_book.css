@@ -1,4 +1,4 @@
-/* line 17, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,440 +20,47 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
-}
-
-/*
-YUI 3.7.3 (build 5687)
-Copyright 2012 Yahoo! Inc. All rights reserved.
-Licensed under the BSD License.
-http://yuilibrary.com/license/
-*/
-/* line 7, ../sass/libraries/yui3/_cssbutton.scss */
-.yui3-button, .form-submit {
-  /* Structure */
-  display: inline-block;
-  *display: inline;
-  /*IE 6/7*/
-  zoom: 1;
-  font-size: 100%;
-  *font-size: 90%;
-  /*IE 6/7 - To reduce IE's oversized button text*/
-  *overflow: visible;
-  /*IE 6/7 - Because of IE's overly large left/right padding on buttons */
-  padding: 0.4em 1em 0.45em;
-  line-height: normal;
-  white-space: nowrap;
-  vertical-align: baseline;
-  text-align: center;
-  cursor: pointer;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  /* Presentation */
-  color: #444;
-  /* rgba not supported (IE 8) */
-  color: rgba(0, 0, 0, 0.8);
-  /* rgba supported */
-  *color: #444;
-  /* IE 6 & 7 */
-  border: 1px solid #999;
-  /*IE 6/7/8*/
-  border: none rgba(0, 0, 0, 0);
-  /*IE9 + everything else*/
-  background-color: #E6E6E6;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0.3)), color-stop(40%, rgba(255, 255, 255, 0.15)), color-stop(100%, transparent));
-  background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15) 40%, transparent);
-  background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15) 40%, transparent);
-  background-image: -o-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15) 40%, transparent);
-  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15) 40%, transparent);
-  text-decoration: none;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
-  /* Transitions */
-  -webkit-transition: box-shadow 0.1s linear;
-  -moz-transition: box-shadow 0.1s linear;
-  -o-transition: box-shadow 0.1s linear;
-  transition: box-shadow 0.1s linear;
-}
-
-/* line 42, ../sass/libraries/yui3/_cssbutton.scss */
-a.yui3-button, .form-submit {
-  color: rgba(0, 0, 0, 0.8);
-  color: #444;
-  text-decoration: none;
-}
-
-/* line 52, ../sass/libraries/yui3/_cssbutton.scss */
-.yui3-button-hover,
-.yui3-button:hover,
-.form-submit-hover,
-.form-submit:hover {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, transparent), color-stop(40%, rgba(0, 0, 0, 0.05)), color-stop(100%, rgba(0, 0, 0, 0.15)));
-  background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.15));
-  background-image: -moz-linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.15));
-  background-image: -o-linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.15));
-  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.15));
-}
-
-/* line 60, ../sass/libraries/yui3/_cssbutton.scss */
-.yui3-button-active,
-.yui3-button:active,
-.form-submit-active,
-.form-submit:active {
-  border: inset 1px solid #999;
-  /*IE 6/7/8*/
-  border: none rgba(0, 0, 0, 0);
-  /*IE9 + everything else*/
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0.1)), color-stop(100%, rgba(0, 0, 0, 0.15)));
-  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.15));
-  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.15));
-  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.15));
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.15));
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 4px rgba(0, 0, 0, 0.3) inset;
-  -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 4px rgba(0, 0, 0, 0.3) inset;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 4px rgba(0, 0, 0, 0.3) inset;
-}
-
-/* line 76, ../sass/libraries/yui3/_cssbutton.scss */
-.yui3-button[disabled],
-.yui3-button-disabled,
-.yui3-button-disabled:hover,
-.yui3-button-disabled:active
-.form-submit[disabled]
-.form-submit-disabled,
-.form-submit-disabled:hover,
-.form-submit-disabled:active {
-  cursor: default;
-  background-image: none;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=55);
-  opacity: 0.55;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset;
-  -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset;
-}
-
-/* Firefox: Get rid of the inner focus border */
-/* line 86, ../sass/libraries/yui3/_cssbutton.scss */
-.yui3-button::-moz-focus-inner,
-.form-submit::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
-/* Firefox: Add a border around a focused button */
-/* line 94, ../sass/libraries/yui3/_cssbutton.scss */
-.yui3-button:-moz-focusring,
-.form-submit:-moz-focusring {
-  outline: thin dotted;
-}
-
-/* Sam */
-/* line 100, ../sass/libraries/yui3/_cssbutton.scss */
-.yui3-skin-sam .yui3-button-primary,
-.yui3-skin-sam .yui3-button-selected {
-  background-color: #345FCB;
-  color: #fff;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 0 rgba(255, 255, 255, 0.17) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 0 rgba(255, 255, 255, 0.17) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 0 rgba(255, 255, 255, 0.17) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-/* line 105, ../sass/libraries/yui3/_cssbutton.scss */
-.yui3-skin-sam .yui3-button:-moz-focusring {
-  outline-color: rgba(0, 0, 0, 0.85);
-}
-
-/* Night */
-/* line 110, ../sass/libraries/yui3/_cssbutton.scss */
-.yui3-skin-night .yui3-button {
-  border: 0px;
-  background-color: #343536;
-  color: #DCDCDC;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-/* line 117, ../sass/libraries/yui3/_cssbutton.scss */
-.yui3-skin-night .yui3-button-primary,
-.yui3-skin-night .yui3-button-selected {
-  background-color: #747576;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
-}
-
-/* line 122, ../sass/libraries/yui3/_cssbutton.scss */
-.yui3-skin-night .yui3-button:-moz-focusring {
-  outline-color: rgba(255, 255, 255, 0.85);
-}
-
-/* YUI CSS Detection Stamp */
-/* line 127, ../sass/libraries/yui3/_cssbutton.scss */
-#yui3-css-stamp.cssbutton {
-  display: none;
-}
-
-/*
-YUI 3.5.1 (build 22)
-Copyright 2012 Yahoo! Inc. All rights reserved.
-Licensed under the BSD License.
-http://yuilibrary.com/license/
-*/
-/* line 7, ../sass/partials/base/_base-grid.scss */
-.yui3-g {
-  letter-spacing: -0.31em;
-  /* webkit: collapse white-space between units */
-  *letter-spacing: normal;
-  /* reset IE < 8 */
-  word-spacing: -0.43em;
-  /* IE < 8 && gecko: collapse white-space between units */
-}
-
-/* line 13, ../sass/partials/base/_base-grid.scss */
-.yui3-u {
-  display: inline-block;
-  zoom: 1;
-  *display: inline;
-  /* IE < 8: fake inline-block */
-  letter-spacing: normal;
-  word-spacing: normal;
-  vertical-align: top;
-}
-
-/* line 48, ../sass/partials/base/_base-grid.scss */
-.yui3-u-1,
-.yui3-u-1-2,
-.yui3-u-1-3,
-.yui3-u-2-3,
-.yui3-u-1-4,
-.yui3-u-3-4,
-.yui3-u-1-5,
-.yui3-u-2-5,
-.yui3-u-3-5,
-.yui3-u-4-5,
-.yui3-u-1-6,
-.yui3-u-5-6,
-.yui3-u-1-8,
-.yui3-u-3-8,
-.yui3-u-5-8,
-.yui3-u-7-8,
-.yui3-u-1-12,
-.yui3-u-5-12,
-.yui3-u-7-12,
-.yui3-u-11-12,
-.yui3-u-1-24,
-.yui3-u-5-24,
-.yui3-u-7-24,
-.yui3-u-11-24,
-.yui3-u-13-24,
-.yui3-u-17-24,
-.yui3-u-19-24,
-.yui3-u-23-24 {
-  display: inline-block;
-  zoom: 1;
-  *display: inline;
-  /* IE < 8: fake inline-block */
-  letter-spacing: normal;
-  word-spacing: normal;
-  vertical-align: top;
-}
-
-/* line 56, ../sass/partials/base/_base-grid.scss */
-.yui3-u-1 {
-  display: block;
-}
-
-/* line 60, ../sass/partials/base/_base-grid.scss */
-.yui3-u-1-2 {
-  width: 50%;
-}
-
-/* line 64, ../sass/partials/base/_base-grid.scss */
-.yui3-u-1-3 {
-  width: 33.33333%;
-}
-
-/* line 68, ../sass/partials/base/_base-grid.scss */
-.yui3-u-2-3 {
-  width: 66.66666%;
-}
-
-/* line 72, ../sass/partials/base/_base-grid.scss */
-.yui3-u-1-4 {
-  width: 25%;
-}
-
-/* line 76, ../sass/partials/base/_base-grid.scss */
-.yui3-u-3-4 {
-  width: 75%;
-}
-
-/* line 80, ../sass/partials/base/_base-grid.scss */
-.yui3-u-1-5 {
-  width: 20%;
-}
-
-/* line 84, ../sass/partials/base/_base-grid.scss */
-.yui3-u-2-5 {
-  width: 40%;
-}
-
-/* line 88, ../sass/partials/base/_base-grid.scss */
-.yui3-u-3-5 {
-  width: 60%;
-}
-
-/* line 92, ../sass/partials/base/_base-grid.scss */
-.yui3-u-4-5 {
-  width: 80%;
-}
-
-/* line 96, ../sass/partials/base/_base-grid.scss */
-.yui3-u-1-6 {
-  width: 16.656%;
-}
-
-/* line 100, ../sass/partials/base/_base-grid.scss */
-.yui3-u-5-6 {
-  width: 83.33%;
-}
-
-/* line 104, ../sass/partials/base/_base-grid.scss */
-.yui3-u-1-8 {
-  width: 12.5%;
-}
-
-/* line 108, ../sass/partials/base/_base-grid.scss */
-.yui3-u-3-8 {
-  width: 37.5%;
-}
-
-/* line 112, ../sass/partials/base/_base-grid.scss */
-.yui3-u-5-8 {
-  width: 62.5%;
-}
-
-/* line 116, ../sass/partials/base/_base-grid.scss */
-.yui3-u-7-8 {
-  width: 87.5%;
-}
-
-/* line 120, ../sass/partials/base/_base-grid.scss */
-.yui3-u-1-12 {
-  width: 8.3333%;
-}
-
-/* line 124, ../sass/partials/base/_base-grid.scss */
-.yui3-u-5-12 {
-  width: 41.6666%;
-}
-
-/* line 128, ../sass/partials/base/_base-grid.scss */
-.yui3-u-7-12 {
-  width: 58.3333%;
-}
-
-/* line 132, ../sass/partials/base/_base-grid.scss */
-.yui3-u-11-12 {
-  width: 91.6666%;
-}
-
-/* line 136, ../sass/partials/base/_base-grid.scss */
-.yui3-u-1-24 {
-  width: 4.1666%;
-}
-
-/* line 140, ../sass/partials/base/_base-grid.scss */
-.yui3-u-5-24 {
-  width: 20.8333%;
-}
-
-/* line 144, ../sass/partials/base/_base-grid.scss */
-.yui3-u-7-24 {
-  width: 29.1666%;
-}
-
-/* line 148, ../sass/partials/base/_base-grid.scss */
-.yui3-u-11-24 {
-  width: 45.8333%;
-}
-
-/* line 152, ../sass/partials/base/_base-grid.scss */
-.yui3-u-13-24 {
-  width: 54.1666%;
-}
-
-/* line 156, ../sass/partials/base/_base-grid.scss */
-.yui3-u-17-24 {
-  width: 70.8333%;
-}
-
-/* line 160, ../sass/partials/base/_base-grid.scss */
-.yui3-u-19-24 {
-  width: 79.1666%;
-}
-
-/* line 164, ../sass/partials/base/_base-grid.scss */
-.yui3-u-23-24 {
-  width: 95.8333%;
-}
-
-/* YUI CSS Detection Stamp */
-/* line 169, ../sass/partials/base/_base-grid.scss */
-#yui3-css-stamp.cssgrids {
-  display: none;
-}
-
-/* line 171, ../sass/partials/base/_base-grid.scss */
-.yui3-h-100 {
-  height: 100%;
 }
 
 /* line 1, ../sass/partials/base/_views-grid.scss */
@@ -464,13 +71,12 @@ http://yuilibrary.com/license/
   text-rendering: optimizespeed;
 }
 
-/* line 9, ../sass/partials/base/_views-grid.scss */
-.opera-only :-o-prefocus,
-.views-g {
+/* line 8, ../sass/partials/base/_views-grid.scss */
+.opera-only :-o-prefocus, .views-g {
   word-spacing: -0.43em;
 }
 
-/* line 13, ../sass/partials/base/_views-grid.scss */
+/* line 12, ../sass/partials/base/_views-grid.scss */
 .views-u {
   display: inline-block;
   zoom: 1;
@@ -481,7 +87,7 @@ http://yuilibrary.com/license/
   text-rendering: auto;
 }
 
-/* line 22, ../sass/partials/base/_views-grid.scss */
+/* line 21, ../sass/partials/base/_views-grid.scss */
 .views-u-1, .views-u-1-2, .views-u-1-3, .views-u-2-3, .views-u-1-4, .views-u-3-4, .views-u-1-5, .views-u-2-5, .views-u-3-5, .views-u-4-5, .views-u-1-6, .views-u-5-6 {
   display: inline-block;
   zoom: 1;
@@ -492,184 +98,184 @@ http://yuilibrary.com/license/
   text-rendering: auto;
 }
 
-/* line 31, ../sass/partials/base/_views-grid.scss */
+/* line 30, ../sass/partials/base/_views-grid.scss */
 .views-u-1 {
   display: block;
 }
 
-/* line 35, ../sass/partials/base/_views-grid.scss */
+/* line 34, ../sass/partials/base/_views-grid.scss */
 .views-u-1-2 {
   width: 50%;
 }
 
-/* line 39, ../sass/partials/base/_views-grid.scss */
+/* line 38, ../sass/partials/base/_views-grid.scss */
 .views-offset-1-2 {
   margin-left: 50%;
 }
 
-/* line 43, ../sass/partials/base/_views-grid.scss */
+/* line 42, ../sass/partials/base/_views-grid.scss */
 .views-u-1-3 {
   width: 33.33333%;
 }
 
-/* line 47, ../sass/partials/base/_views-grid.scss */
+/* line 46, ../sass/partials/base/_views-grid.scss */
 .views-offset-1-3 {
   margin-left: 33.33333%;
 }
 
-/* line 51, ../sass/partials/base/_views-grid.scss */
+/* line 50, ../sass/partials/base/_views-grid.scss */
 .views-u-2-3 {
   width: 66.66667%;
 }
 
-/* line 55, ../sass/partials/base/_views-grid.scss */
+/* line 54, ../sass/partials/base/_views-grid.scss */
 .views-offset-2-3 {
   margin-left: 66.66667%;
 }
 
-/* line 59, ../sass/partials/base/_views-grid.scss */
+/* line 58, ../sass/partials/base/_views-grid.scss */
 .views-u-1-4 {
   width: 25%;
 }
 
-/* line 63, ../sass/partials/base/_views-grid.scss */
+/* line 62, ../sass/partials/base/_views-grid.scss */
 .views-offset-1-4 {
   margin-left: 25%;
 }
 
-/* line 67, ../sass/partials/base/_views-grid.scss */
+/* line 66, ../sass/partials/base/_views-grid.scss */
 .views-u-3-4 {
   width: 75%;
 }
 
-/* line 71, ../sass/partials/base/_views-grid.scss */
+/* line 70, ../sass/partials/base/_views-grid.scss */
 .views-offset-3-4 {
   margin-left: 75%;
 }
 
-/* line 75, ../sass/partials/base/_views-grid.scss */
+/* line 74, ../sass/partials/base/_views-grid.scss */
 .views-u-1-5 {
   width: 20%;
 }
 
-/* line 79, ../sass/partials/base/_views-grid.scss */
+/* line 78, ../sass/partials/base/_views-grid.scss */
 .views-offset-1-5 {
   margin-left: 20%;
 }
 
-/* line 83, ../sass/partials/base/_views-grid.scss */
+/* line 82, ../sass/partials/base/_views-grid.scss */
 .views-u-2-5 {
   width: 40%;
 }
 
-/* line 87, ../sass/partials/base/_views-grid.scss */
+/* line 86, ../sass/partials/base/_views-grid.scss */
 .views-offset-2-5 {
   margin-left: 40%;
 }
 
-/* line 91, ../sass/partials/base/_views-grid.scss */
+/* line 90, ../sass/partials/base/_views-grid.scss */
 .views-u-3-5 {
   width: 60%;
 }
 
-/* line 95, ../sass/partials/base/_views-grid.scss */
+/* line 94, ../sass/partials/base/_views-grid.scss */
 .views-offset-3-5 {
   margin-left: 60%;
 }
 
-/* line 99, ../sass/partials/base/_views-grid.scss */
+/* line 98, ../sass/partials/base/_views-grid.scss */
 .views-u-4-5 {
   width: 80%;
 }
 
-/* line 103, ../sass/partials/base/_views-grid.scss */
+/* line 102, ../sass/partials/base/_views-grid.scss */
 .views-offset-4-5 {
   margin-left: 80%;
 }
 
-/* line 107, ../sass/partials/base/_views-grid.scss */
+/* line 106, ../sass/partials/base/_views-grid.scss */
 .views-u-1-6 {
   width: 16.66667%;
 }
 
-/* line 111, ../sass/partials/base/_views-grid.scss */
+/* line 110, ../sass/partials/base/_views-grid.scss */
 .views-offset-1-6 {
   margin-left: 16.66667%;
 }
 
-/* line 115, ../sass/partials/base/_views-grid.scss */
+/* line 114, ../sass/partials/base/_views-grid.scss */
 .views-u-5-6 {
   width: 83.33333%;
 }
 
-/* line 119, ../sass/partials/base/_views-grid.scss */
+/* line 118, ../sass/partials/base/_views-grid.scss */
 .views-offset-5-6 {
   margin-left: 83.33333%;
 }
 
-/* line 123, ../sass/partials/base/_views-grid.scss */
+/* line 122, ../sass/partials/base/_views-grid.scss */
 .views-g-r {
   letter-spacing: -0.31em;
   *letter-spacing: normal;
   word-spacing: -0.43em;
 }
 
-/* line 130, ../sass/partials/base/_views-grid.scss */
+/* line 129, ../sass/partials/base/_views-grid.scss */
 .opera-only :-o-prefocus,
 .views-g-r {
   word-spacing: -0.43em;
 }
 
-/* line 135, ../sass/partials/base/_views-grid.scss */
+/* line 134, ../sass/partials/base/_views-grid.scss */
 .views-g-r img {
   max-width: 100%;
 }
 
 @media (min-width: 980px) {
-  /* line 141, ../sass/partials/base/_views-grid.scss */
+  /* line 140, ../sass/partials/base/_views-grid.scss */
   .views-visible-phone {
     display: none;
   }
 
-  /* line 142, ../sass/partials/base/_views-grid.scss */
+  /* line 141, ../sass/partials/base/_views-grid.scss */
   .views-visible-tablet {
     display: none;
   }
 
-  /* line 146, ../sass/partials/base/_views-grid.scss */
+  /* line 145, ../sass/partials/base/_views-grid.scss */
   .views-hidden-desktop {
     display: none;
   }
 }
 @media (max-width: 480px) {
-  /* line 150, ../sass/partials/base/_views-grid.scss */
+  /* line 149, ../sass/partials/base/_views-grid.scss */
   .views-g-r > [class^="views-u"] {
     width: 100%;
   }
 }
 @media (max-width: 767px) {
-  /* line 157, ../sass/partials/base/_views-grid.scss */
+  /* line 156, ../sass/partials/base/_views-grid.scss */
   .views-g-r > [class^="views-u"] {
     width: 100%;
   }
 
-  /* line 161, ../sass/partials/base/_views-grid.scss */
+  /* line 160, ../sass/partials/base/_views-grid.scss */
   .views-hidden-phone {
     display: none;
   }
 
-  /* line 163, ../sass/partials/base/_views-grid.scss */
+  /* line 162, ../sass/partials/base/_views-grid.scss */
   .views-visible-desktop {
     display: none;
   }
 }
 @media (min-width: 768px) and (max-width: 979px) {
-  /* line 168, ../sass/partials/base/_views-grid.scss */
+  /* line 167, ../sass/partials/base/_views-grid.scss */
   .views-hidden-tablet {
     display: none;
   }
 
-  /* line 170, ../sass/partials/base/_views-grid.scss */
+  /* line 169, ../sass/partials/base/_views-grid.scss */
   .views-visible-desktop {
     display: none;
   }
@@ -793,7 +399,7 @@ html {
   height: 100%;
   width: 100%;
 }
-/* line 20, ../sass/partials/book/pages/_base.scss */
+/* line 24, ../sass/partials/book/pages/_base.scss */
 html.node-type-dlts-book-page body,
 html.node-type-dlts-book-page #page,
 html.node-type-dlts-book-page #main-wrapper,
@@ -821,7 +427,7 @@ html.node-type-dlts-book-stitched-page #book-leaf {
   height: 100%;
   width: 100%;
 }
-/* line 27, ../sass/partials/book/pages/_base.scss */
+/* line 31, ../sass/partials/book/pages/_base.scss */
 html .wrapper {
   margin: 0 auto;
   padding: 0;
@@ -831,50 +437,50 @@ html body a {
   text-decoration: none;
   color: #6e1d1d;
 }
-/* line 4, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_hover-link.scss */
+/* line 4, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_hover-link.scss */
 html body a:hover {
   text-decoration: underline;
 }
-/* line 18, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 18, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 html body a:visited {
   color: #602b2b;
 }
-/* line 21, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 21, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 html body a:focus {
   color: #751616;
 }
-/* line 24, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 24, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 html body a:hover {
   color: #751616;
 }
-/* line 27, ../../../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 27, ../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 html body a:active {
   color: #751616;
 }
-/* line 42, ../sass/partials/book/pages/_base.scss */
+/* line 41, ../sass/partials/book/pages/_base.scss */
 html body.page-node .content {
   position: relative;
   color: #000;
   margin: 15px 10px 15px 0;
   z-index: 1;
 }
-/* line 48, ../sass/partials/book/pages/_base.scss */
+/* line 47, ../sass/partials/book/pages/_base.scss */
 html body.page-node .node-page {
   margin-left: 10px;
 }
-/* line 53, ../sass/partials/book/pages/_base.scss */
+/* line 51, ../sass/partials/book/pages/_base.scss */
 html body .footer {
   margin-left: 10px;
 }
 
 /** Global elements */
-/* line 63, ../sass/partials/book/pages/_base.scss */
+/* line 59, ../sass/partials/book/pages/_base.scss */
 .element-invisible {
   display: none;
   visibility: hidden;
 }
 
-/* line 68, ../sass/partials/book/pages/_base.scss */
+/* line 64, ../sass/partials/book/pages/_base.scss */
 .button.link {
   border: 1px solid #E9E9E9;
   -webkit-border-radius: 3px;
@@ -896,7 +502,7 @@ html body .footer {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whitesmoke), color-stop(50%, #efefef), color-stop(51%, #e5e5e5), color-stop(100%, #dfdfdf));
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='whiteSmoke',endColorstr='#DFDFDF',GradientType=0);
 }
-/* line 84, ../sass/partials/book/pages/_base.scss */
+/* line 80, ../sass/partials/book/pages/_base.scss */
 .button.link.bobcat-record, .button.link.browse-collection, .button.link.book-index {
   min-width: 230px;
   display: block;
@@ -907,24 +513,24 @@ html body .footer {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F7F7F7',endColorstr='#DFDFDF',GradientType=0);
 }
 
-/* line 95, ../sass/partials/book/pages/_base.scss */
+/* line 91, ../sass/partials/book/pages/_base.scss */
 body.page-node .node-page {
   margin-left: 0;
 }
 
-/* line 99, ../sass/partials/book/pages/_base.scss */
+/* line 95, ../sass/partials/book/pages/_base.scss */
 .thumb-image {
   visibility: hidden;
   background: none !important;
 }
 
 /** GB - April 10, 2013 */
-/* line 122, ../sass/partials/book/pages/_base.scss */
+/* line 118, ../sass/partials/book/pages/_base.scss */
 i, em {
   font-style: italic;
 }
 
-/* line 126, ../sass/partials/book/pages/_base.scss */
+/* line 122, ../sass/partials/book/pages/_base.scss */
 #header {
   padding: 1em 1em .5em 1em;
   background: #952c2f;
@@ -944,39 +550,39 @@ i, em {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$start-color', endColorstr='$end-color',GradientType=1 );
   /* IE6-9 */
 }
-/* line 129, ../sass/partials/book/pages/_base.scss */
+/* line 125, ../sass/partials/book/pages/_base.scss */
 #header a {
   color: white;
   font-size: 1.2em;
 }
 
-/* line 135, ../sass/partials/book/pages/_base.scss */
+/* line 131, ../sass/partials/book/pages/_base.scss */
 .front .content.body {
   background-color: #e0d7c9;
   color: #333333;
   padding-top: 3em;
 }
 
-/* line 140, ../sass/partials/book/pages/_base.scss */
+/* line 136, ../sass/partials/book/pages/_base.scss */
 .front .description {
   padding-bottom: 0;
 }
-/* line 142, ../sass/partials/book/pages/_base.scss */
+/* line 138, ../sass/partials/book/pages/_base.scss */
 .front .description p {
   width: 90%;
 }
 
-/* line 147, ../sass/partials/book/pages/_base.scss */
+/* line 143, ../sass/partials/book/pages/_base.scss */
 .front .pane.right .links a:link, .front .pane.right .links a:visited {
   color: #333333;
   margin-right: .5em;
 }
-/* line 150, ../sass/partials/book/pages/_base.scss */
+/* line 146, ../sass/partials/book/pages/_base.scss */
 .front .pane.right .links a:link:hover, .front .pane.right .links a:visited:hover {
   color: #952c2f;
 }
 
-/* line 155, ../sass/partials/book/pages/_base.scss */
+/* line 151, ../sass/partials/book/pages/_base.scss */
 html.page-search-site form .form-text, html.front form .form-text {
   height: 22px;
   -webkit-box-shadow: none;
@@ -984,18 +590,18 @@ html.page-search-site form .form-text, html.front form .form-text {
   box-shadow: none;
 }
 
-/* line 161, ../sass/partials/book/pages/_base.scss */
+/* line 157, ../sass/partials/book/pages/_base.scss */
 .branding a {
   text-decoration: none;
 }
-/* line 163, ../sass/partials/book/pages/_base.scss */
+/* line 159, ../sass/partials/book/pages/_base.scss */
 .branding a:hover {
   opacity: 0.8;
   filter: alpha(opacity=80);
   /* For IE8 and earlier */
 }
 
-/* line 170, ../sass/partials/book/pages/_base.scss */
+/* line 166, ../sass/partials/book/pages/_base.scss */
 .titlebar {
   background-image: none;
   background: #461516;
@@ -1016,23 +622,23 @@ html.page-search-site form .form-text, html.front form .form-text {
   /* IE6-9 */
 }
 
-/* line 175, ../sass/partials/book/pages/_base.scss */
+/* line 171, ../sass/partials/book/pages/_base.scss */
 .pane .navbar {
   background-image: none;
   padding: .25em 0;
 }
 
-/* line 180, ../sass/partials/book/pages/_base.scss */
+/* line 176, ../sass/partials/book/pages/_base.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav, #pager {
   background-image: none;
 }
 
-/* line 184, ../sass/partials/book/pages/_base.scss */
+/* line 180, ../sass/partials/book/pages/_base.scss */
 #pager {
   border-top: 1px solid gray;
 }
 
-/* line 188, ../sass/partials/book/pages/_base.scss */
+/* line 184, ../sass/partials/book/pages/_base.scss */
 #pagemeta {
   border-right: none;
   -webkit-box-shadow: none;
@@ -1040,7 +646,7 @@ html.page-search-site form .form-text, html.front form .form-text {
   box-shadow: none;
 }
 
-/* line 194, ../sass/partials/book/pages/_base.scss */
+/* line 190, ../sass/partials/book/pages/_base.scss */
 .yui3-u-1 .field-name-body {
   width: 50%;
   margin: 2em 1em;
@@ -1048,7 +654,7 @@ html.page-search-site form .form-text, html.front form .form-text {
   padding-left: 1em;
 }
 
-/* line 202, ../sass/partials/book/pages/_base.scss */
+/* line 198, ../sass/partials/book/pages/_base.scss */
 .yui3-u-1.pane-page-body {
   margin-left: 1em;
 }
@@ -1276,12 +882,12 @@ html.page-search .pane-search-header {
 /* line 1, ../sass/partials/book/panes/_top.scss */
 #header, .footer {
   padding: .5em 1em;
-  background: #d6c5a9;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(25%, rgba(214, 197, 169, 0)), color-stop(75%, rgba(235, 233, 229, 0)), color-stop(100%, rgba(235, 233, 229, 0.5)));
-  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(235, 233, 229, 0) 75%, rgba(235, 233, 229, 0.5) 100%);
-  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(235, 233, 229, 0) 75%, rgba(235, 233, 229, 0.5) 100%);
-  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(235, 233, 229, 0) 75%, rgba(235, 233, 229, 0.5) 100%);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(235, 233, 229, 0) 75%, rgba(235, 233, 229, 0.5) 100%);
+  background: #e5e5e5;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(25%, rgba(229, 229, 229, 0)), color-stop(75%, rgba(237, 237, 237, 0)), color-stop(100%, rgba(237, 237, 237, 0.5)));
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(237, 237, 237, 0) 75%, rgba(237, 237, 237, 0.5) 100%);
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(237, 237, 237, 0) 75%, rgba(237, 237, 237, 0.5) 100%);
+  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(237, 237, 237, 0) 75%, rgba(237, 237, 237, 0.5) 100%);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(237, 237, 237, 0) 75%, rgba(237, 237, 237, 0.5) 100%);
 }
 /* line 4, ../sass/partials/book/panes/_top.scss */
 #header h1, #header h2, .footer h1, .footer h2 {
@@ -1307,15 +913,15 @@ html.page-search .pane-search-header {
 .titlebar {
   margin: 0;
   padding: 0 .25em;
-  background: #3a0f0f;
+  background: #666666;
   height: 36px;
   overflow: hidden;
-  background: #3a0f0f;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(216, 211, 211, 0.5)), color-stop(25%, rgba(58, 15, 15, 0)), color-stop(75%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
-  background-image: -webkit-linear-gradient(rgba(216, 211, 211, 0.5) 0%, rgba(58, 15, 15, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: -moz-linear-gradient(rgba(216, 211, 211, 0.5) 0%, rgba(58, 15, 15, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: -o-linear-gradient(rgba(216, 211, 211, 0.5) 0%, rgba(58, 15, 15, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: linear-gradient(rgba(216, 211, 211, 0.5) 0%, rgba(58, 15, 15, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background: #666666;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(222, 222, 222, 0.5)), color-stop(25%, rgba(102, 102, 102, 0)), color-stop(75%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
+  background-image: -webkit-linear-gradient(rgba(222, 222, 222, 0.5) 0%, rgba(102, 102, 102, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -moz-linear-gradient(rgba(222, 222, 222, 0.5) 0%, rgba(102, 102, 102, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -o-linear-gradient(rgba(222, 222, 222, 0.5) 0%, rgba(102, 102, 102, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: linear-gradient(rgba(222, 222, 222, 0.5) 0%, rgba(102, 102, 102, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
 }
 /* line 31, ../sass/partials/book/panes/_top.scss */
 .titlebar .book {
@@ -1352,12 +958,12 @@ html.page-search .pane-search-header {
   display: block;
   width: 100%;
   height: 50px;
-  background: #d6c5a9;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(235, 233, 229, 0.5)), color-stop(25%, rgba(214, 197, 169, 0)), color-stop(75%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
-  background-image: -webkit-linear-gradient(rgba(235, 233, 229, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: -moz-linear-gradient(rgba(235, 233, 229, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: -o-linear-gradient(rgba(235, 233, 229, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: linear-gradient(rgba(235, 233, 229, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background: #e5e5e5;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(237, 237, 237, 0.5)), color-stop(25%, rgba(229, 229, 229, 0)), color-stop(75%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
+  background-image: -webkit-linear-gradient(rgba(237, 237, 237, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -moz-linear-gradient(rgba(237, 237, 237, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -o-linear-gradient(rgba(237, 237, 237, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: linear-gradient(rgba(237, 237, 237, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
   overflow: hidden;
 }
 
@@ -1400,11 +1006,11 @@ html.page-search .pane-search-header {
   margin: 0 auto;
   width: 44px;
   height: 44px;
-  color: #3a0f0f;
+  color: #666666;
   text-decoration: none;
   text-shadow: icon-embossed-text-shadow;
   opacity: 0.8;
-  border: 1px #bda275 solid;
+  border: 1px #bfbfbf solid;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
@@ -1538,7 +1144,7 @@ html.page-search .pane-search-header {
 
 /* line 1, ../sass/partials/book/panes/_pane.scss */
 .pane-shadow {
-  background-color: #e1d7c7;
+  background-color: #f9f9f9;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
@@ -1558,7 +1164,7 @@ html.page-search .pane-search-header {
   z-index: 999999;
   padding: 0;
   position: relative;
-  background-color: #e1d7c7;
+  background-color: #f9f9f9;
   word-wrap: break-word;
   overflow: hidden;
   display: block;
@@ -1568,38 +1174,38 @@ html.page-search .pane-search-header {
   -moz-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
 }
-/* line 15, ../sass/partials/book/panes/_pane-metadata.scss */
+/* line 17, ../sass/partials/book/panes/_pane-metadata.scss */
 #pagemeta .view-book-description {
   padding: 0;
   margin-top: .5em;
   margin-left: .7em;
 }
-/* line 21, ../sass/partials/book/panes/_pane-metadata.scss */
+/* line 24, ../sass/partials/book/panes/_pane-metadata.scss */
 #pagemeta .field-name-field-representative-image img {
   max-width: 100%;
 }
-/* line 25, ../sass/partials/book/panes/_pane-metadata.scss */
+/* line 29, ../sass/partials/book/panes/_pane-metadata.scss */
 #pagemeta .field-label-inline {
   line-height: 1.5em;
   word-wrap: break-word;
 }
-/* line 29, ../sass/partials/book/panes/_pane-metadata.scss */
+/* line 34, ../sass/partials/book/panes/_pane-metadata.scss */
 #pagemeta .field-label {
   display: inline;
 }
-/* line 32, ../sass/partials/book/panes/_pane-metadata.scss */
+/* line 38, ../sass/partials/book/panes/_pane-metadata.scss */
 #pagemeta .field-items {
   display: inline;
   word-wrap: break-word;
 }
-/* line 36, ../sass/partials/book/panes/_pane-metadata.scss */
+/* line 43, ../sass/partials/book/panes/_pane-metadata.scss */
 #pagemeta .field-item {
   display: inline;
 }
 
 /* line 3, ../sass/partials/book/panes/_pane-display.scss */
 .pane.display {
-  background-color: #efe8dd;
+  background-color: white;
   margin-left: -240px;
   margin-right: -240px;
   width: 100%;
@@ -1844,7 +1450,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
 .not-front #pane-search {
   width: 239px;
   height: 100%;
-  background-color: #e1d7c7;
+  background-color: #f9f9f9;
   overflow: hidden;
   word-wrap: break-word;
   display: block;
@@ -2070,13 +1676,13 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   position: fixed;
   bottom: 0;
   z-index: 999999;
-  background-color: #d6c5a9;
-  background: #d6c5a9;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(235, 233, 229, 0.5)), color-stop(25%, rgba(214, 197, 169, 0)), color-stop(75%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
-  background-image: -webkit-linear-gradient(rgba(235, 233, 229, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: -moz-linear-gradient(rgba(235, 233, 229, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: -o-linear-gradient(rgba(235, 233, 229, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: linear-gradient(rgba(235, 233, 229, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-color: #e5e5e5;
+  background: #e5e5e5;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(237, 237, 237, 0.5)), color-stop(25%, rgba(229, 229, 229, 0)), color-stop(75%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
+  background-image: -webkit-linear-gradient(rgba(237, 237, 237, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -moz-linear-gradient(rgba(237, 237, 237, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -o-linear-gradient(rgba(237, 237, 237, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: linear-gradient(rgba(237, 237, 237, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
   color: #333;
   font-size: .853em;
   padding: 8px 0 0 0;
@@ -2088,8 +1694,8 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   max-width: 15em;
   *width: 10em;
   color: #fff;
-  background-color: #3a0f0f;
-  border: solid 1px #3a0f0f;
+  background-color: #666666;
+  border: solid 1px #666666;
   padding: 0.2em 0.5em 0.3em;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -2153,11 +1759,6 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   opacity: 1;
 }
 
-/* line 81, ../sass/partials/book/panes/_pane-slider.scss */
-.yui3-carousel-content li {
-  width: 200px;
-}
-
 /* YUI ScrollView http://yuilibrary.com/yui/docs/scrollview/scrollview-paging.html */
 /* Avoid resource latency for these, since they hide unenhanced content */
 /* line 4, ../sass/partials/book/panes/_pane-scrollview.scss */
@@ -2171,7 +1772,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   z-index: 999999999;
   position: absolute;
   bottom: 0;
-  background-color: #515151;
+  background-color: darkgrey;
   border-top: 1px solid gray;
 }
 /* line 16, ../sass/partials/book/panes/_pane-scrollview.scss */
@@ -2181,7 +1782,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
 }
 /* line 21, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container {
-  background-color: #515151;
+  background-color: darkgrey;
   width: 100%;
   margin: 0 auto;
   padding: 0;
@@ -2191,32 +1792,32 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
 .yui3-carousel-container .carousel-container a {
   text-decoration: none;
 }
-/* line 34, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 32, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container li {
   border: none !important;
 }
-/* line 36, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 34, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container li img {
   -webkit-box-shadow: 0px 0px 10px rgba(255, 255, 0, 0);
   -moz-box-shadow: 0px 0px 10px rgba(255, 255, 0, 0);
   box-shadow: 0px 0px 10px rgba(255, 255, 0, 0);
 }
-/* line 42, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 40, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav {
   text-align: right;
-  background: #d6c5a9;
-  background: #d6c5a9;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(235, 233, 229, 0.5)), color-stop(25%, rgba(214, 197, 169, 0)), color-stop(75%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
-  background-image: -webkit-linear-gradient(rgba(235, 233, 229, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: -moz-linear-gradient(rgba(235, 233, 229, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: -o-linear-gradient(rgba(235, 233, 229, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
-  background-image: linear-gradient(rgba(235, 233, 229, 0.5) 0%, rgba(214, 197, 169, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background: #e5e5e5;
+  background: #e5e5e5;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(237, 237, 237, 0.5)), color-stop(25%, rgba(229, 229, 229, 0)), color-stop(75%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
+  background-image: -webkit-linear-gradient(rgba(237, 237, 237, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -moz-linear-gradient(rgba(237, 237, 237, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -o-linear-gradient(rgba(237, 237, 237, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: linear-gradient(rgba(237, 237, 237, 0.5) 0%, rgba(229, 229, 229, 0) 25%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
 }
-/* line 47, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 45, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav span:before, .yui3-carousel-container .carousel-container .yui3-carousel-nav a:before, .yui3-carousel-container .carousel-container .yui3-carousel-nav button:before, .yui3-carousel-container .carousel-container .yui3-carousel-nav li:before {
   font-family: "book-viewer";
   margin: 0;
-  color: #3a0f0f;
+  color: #666666;
   text-decoration: none;
   text-shadow: icon-embossed-text-shadow;
   line-height: 1em;
@@ -2226,7 +1827,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   speak: none;
   -webkit-font-smoothing: antialiased;
 }
-/* line 61, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 59, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav .yui3-carousel-button {
   float: none;
   display: inline-block;
@@ -2234,7 +1835,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   margin: 0;
   margin: 0 5px;
 }
-/* line 68, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 65, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav .yui3-carousel-button button {
   font-size: 1.1em;
   border: none;
@@ -2244,12 +1845,12 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   width: 60px;
   overflow: hidden;
 }
-/* line 80, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 76, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav .yui3-carousel-button a {
-  color: #3a0f0f;
+  color: #666666;
   width: 0;
 }
-/* line 86, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 82, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav ul {
   text-align: right;
   float: none;
@@ -2258,7 +1859,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   padding: 0;
   height: 20px;
 }
-/* line 93, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 89, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav ul li {
   background-image: none;
   float: none;
@@ -2269,15 +1870,15 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   margin: 0;
   position: relative;
 }
-/* line 103, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 98, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav ul li:before {
   content: "\e001";
 }
-/* line 107, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 102, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav ul li.yui3-carousel-nav-item-selected:before {
   content: "\e015";
 }
-/* line 111, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 106, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav ul li a {
   text-align: right;
   position: relative;
@@ -2290,7 +1891,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   display: inline;
   text-indent: -1000em;
 }
-/* line 122, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 117, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav ul li a em {
   color: transparent;
   text-indent: -1000em;
@@ -2299,67 +1900,67 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   width: 20px;
   height: 24px;
 }
-/* line 135, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 130, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav .yui3-carousel-first-button-disabled button, .yui3-carousel-container .carousel-container .yui3-carousel-nav .yui3-carousel-button-disabled button {
   opacity: 0.33;
 }
-/* line 139, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 134, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav .yui3-carousel-first-button button {
   width: 40px;
 }
-/* line 141, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 136, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav .yui3-carousel-first-button button:before {
   content: "\e013";
   margin: 0 99em 0 .2em;
 }
-/* line 148, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 143, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav .yui3-carousel-next-button button:before {
   content: "\e012";
   margin: 0 9999em 0 .2em;
 }
-/* line 156, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 151, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav .yui3-carousel-close a {
   display: block;
 }
-/* line 158, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 153, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav .yui3-carousel-close a:before {
   content: "\e000";
 }
-/* line 162, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 157, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container .yui3-carousel-nav .yui3-carousel-close em {
   text-indent: -119988px;
   overflow: hidden;
   text-align: left;
   display: none;
 }
-/* line 170, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 165, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container ol.yui3-carousel-content {
   list-style: none;
   height: 250px;
 }
-/* line 174, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 169, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container ol.yui3-carousel-content li {
   margin: 0 7px;
   padding: 0 3px;
 }
-/* line 178, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 173, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container ol.yui3-carousel-content li.selected-thumb img {
   -webkit-box-shadow: 0px 0px 7px #6e1d1d;
   -moz-box-shadow: 0px 0px 7px #6e1d1d;
   box-shadow: 0px 0px 7px #6e1d1d;
   margin: 0;
 }
-/* line 183, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 178, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container ol.yui3-carousel-content li.selected-thumb .page-number {
   background: rgba(110, 29, 29, 0.5);
 }
-/* line 188, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 183, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container ol.yui3-carousel-content li div {
   width: 100%;
   min-height: 230px;
   padding: 2px 0px;
 }
-/* line 192, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 187, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container ol.yui3-carousel-content li div img {
   min-width: 70px;
   max-width: 181px;
@@ -2367,7 +1968,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
   margin: 0;
   border: 1px solid rgba(110, 29, 29, 0);
 }
-/* line 200, ../sass/partials/book/panes/_pane-scrollview.scss */
+/* line 195, ../sass/partials/book/panes/_pane-scrollview.scss */
 .yui3-carousel-container .carousel-container ol.yui3-carousel-content li div .page-number {
   top: 73%;
   left: 12px;
@@ -2392,7 +1993,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
 }
 /* line 8, ../sass/partials/book/panes/_loading.scss */
 .pane.load p {
-  color: #3a0f0f;
+  color: #666666;
   text-shadow: icon-embossed-text-shadow;
 }
 
@@ -2413,7 +2014,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
 .squaresWaveG {
   position: absolute;
   top: 0;
-  background-color: #3a0f0f;
+  background-color: #666666;
   width: 19px;
   height: 19px;
   -webkit-border-radius: 3px;
@@ -2511,60 +2112,60 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
 @-moz-keyframes bounce_squaresWaveG {
   /* line 50, ../sass/partials/book/panes/_loading.scss */
   0% {
-    background-color: #3a0f0f;
+    background-color: #666666;
   }
 
   /* line 53, ../sass/partials/book/panes/_loading.scss */
   100% {
-    background-color: #efe8dd;
+    background-color: white;
   }
 }
 
 @-webkit-keyframes bounce_squaresWaveG {
   /* line 50, ../sass/partials/book/panes/_loading.scss */
   0% {
-    background-color: #3a0f0f;
+    background-color: #666666;
   }
 
   /* line 53, ../sass/partials/book/panes/_loading.scss */
   100% {
-    background-color: #efe8dd;
+    background-color: white;
   }
 }
 
 @-o-keyframes bounce_squaresWaveG {
   /* line 50, ../sass/partials/book/panes/_loading.scss */
   0% {
-    background-color: #3a0f0f;
+    background-color: #666666;
   }
 
   /* line 53, ../sass/partials/book/panes/_loading.scss */
   100% {
-    background-color: #efe8dd;
+    background-color: white;
   }
 }
 
 @-ms-keyframes bounce_squaresWaveG {
   /* line 50, ../sass/partials/book/panes/_loading.scss */
   0% {
-    background-color: #3a0f0f;
+    background-color: #666666;
   }
 
   /* line 53, ../sass/partials/book/panes/_loading.scss */
   100% {
-    background-color: #efe8dd;
+    background-color: white;
   }
 }
 
 @keyframes bounce_squaresWaveG {
   /* line 50, ../sass/partials/book/panes/_loading.scss */
   0% {
-    background-color: #3a0f0f;
+    background-color: #666666;
   }
 
   /* line 53, ../sass/partials/book/panes/_loading.scss */
   100% {
-    background-color: #efe8dd;
+    background-color: white;
   }
 }
 
@@ -2582,7 +2183,7 @@ html.page-search-site .yui3-g.search-result .representative-image img, html.fron
 
 /* line 14, ../sass/partials/book/views/_views-pager.scss */
 .pager {
-  background: #3a0f0f;
+  background: #666666;
   display: inline;
 }
 /* line 17, ../sass/partials/book/views/_views-pager.scss */
@@ -2696,63 +2297,85 @@ body.page-books .view-books ul.pager {
   position: absolute;
   bottom: 0;
   z-index: 9999;
-  background-color: #d6c5a9;
+  background-color: #e5e5e5;
 }
 /* line 32, ../sass/partials/book/views/_views-book-thumbnails.scss */
 body.page-books .view-books .pager li {
   margin: 0;
 }
 
-/* line 38, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8, .view-books .views-view-grid.cols-8, .pane-page-body {
+/* line 40, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8,
+.view-books .views-view-grid.cols-8,
+.pane-page-body {
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
   width: 100%;
 }
-/* line 41, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .center, .view-books .views-view-grid.cols-8 .center, .pane-page-body .center {
+/* line 43, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 .center,
+.view-books .views-view-grid.cols-8 .center,
+.pane-page-body .center {
   text-align: center;
-}
-/* line 45, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .buttons, .view-books .views-view-grid.cols-8 .buttons, .pane-page-body .buttons {
-  padding: 0%;
 }
 /* line 47, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .buttons .button, .view-books .views-view-grid.cols-8 .buttons .button, .pane-page-body .buttons .button {
+.view-book-thumbnails .views-view-grid.cols-8 .buttons,
+.view-books .views-view-grid.cols-8 .buttons,
+.pane-page-body .buttons {
+  padding: 0%;
+}
+/* line 49, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 .buttons .button,
+.view-books .views-view-grid.cols-8 .buttons .button,
+.pane-page-body .buttons .button {
   text-align: center;
 }
-/* line 52, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .vol-info, .view-books .views-view-grid.cols-8 .vol-info, .pane-page-body .vol-info {
+/* line 54, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 .vol-info,
+.view-books .views-view-grid.cols-8 .vol-info,
+.pane-page-body .vol-info {
   text-align: left;
 }
-/* line 56, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group, .view-books .views-view-grid.cols-8 .thumb-group, .pane-page-body .thumb-group {
+/* line 58, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group,
+.view-books .views-view-grid.cols-8 .thumb-group,
+.pane-page-body .thumb-group {
   margin-bottom: 1.5em;
 }
-/* line 60, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .thumb-item, .view-books .views-view-grid.cols-8 .thumb-group .thumb-item, .pane-page-body .thumb-group .thumb-item {
+/* line 62, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .thumb-item,
+.view-books .views-view-grid.cols-8 .thumb-group .thumb-item,
+.pane-page-body .thumb-group .thumb-item {
   height: 100%;
 }
-/* line 64, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group img, .view-books .views-view-grid.cols-8 .thumb-group img, .pane-page-body .thumb-group img {
+/* line 66, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group img,
+.view-books .views-view-grid.cols-8 .thumb-group img,
+.pane-page-body .thumb-group img {
   min-width: 70px;
   max-width: 200px;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
-/* line 70, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group span, .view-books .views-view-grid.cols-8 .thumb-group span, .pane-page-body .thumb-group span {
+/* line 72, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group span,
+.view-books .views-view-grid.cols-8 .thumb-group span,
+.pane-page-body .thumb-group span {
   font-size: 1em;
   position: relative;
   letter-spacing: .05em;
 }
-/* line 76, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .vol-info, .view-books .views-view-grid.cols-8 .thumb-group .vol-info, .pane-page-body .thumb-group .vol-info {
+/* line 78, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .vol-info,
+.view-books .views-view-grid.cols-8 .thumb-group .vol-info,
+.pane-page-body .thumb-group .vol-info {
   padding: 0;
   display: block;
 }
-/* line 81, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .page-number, .view-books .views-view-grid.cols-8 .thumb-group .page-number, .pane-page-body .thumb-group .page-number {
+/* line 83, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .page-number,
+.view-books .views-view-grid.cols-8 .thumb-group .page-number,
+.pane-page-body .thumb-group .page-number {
   bottom: 32%;
   left: 0%;
   padding: 3% 6%;
@@ -2763,19 +2386,25 @@ body.page-books .view-books .pager li {
   border-top-right-radius: 10px;
   background: rgba(0, 0, 0, 0.33);
 }
-/* line 91, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .page-number:hover, .view-books .views-view-grid.cols-8 .thumb-group .page-number:hover, .pane-page-body .thumb-group .page-number:hover {
+/* line 93, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .page-number:hover,
+.view-books .views-view-grid.cols-8 .thumb-group .page-number:hover,
+.pane-page-body .thumb-group .page-number:hover {
   background: rgba(0, 0, 0, 0.5);
 }
-/* line 97, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 td, .view-books .views-view-grid.cols-8 td, .pane-page-body td {
+/* line 99, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 td,
+.view-books .views-view-grid.cols-8 td,
+.pane-page-body td {
   width: 12.5%;
   padding: .25%;
   vertical-align: top;
   height: 100px;
 }
-/* line 104, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 td img, .view-books .views-view-grid.cols-8 td img, .pane-page-body td img {
+/* line 105, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 td img,
+.view-books .views-view-grid.cols-8 td img,
+.pane-page-body td img {
   width: 100%;
   min-width: 70px;
   max-width: 200px;
@@ -2783,8 +2412,10 @@ body.page-books .view-books .pager li {
   -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
-/* line 111, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 td span, .view-books .views-view-grid.cols-8 td span, .pane-page-body td span {
+/* line 112, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 td span,
+.view-books .views-view-grid.cols-8 td span,
+.pane-page-body td span {
   z-index: 100;
   font-size: 1.1em;
   position: relative;
@@ -2792,8 +2423,10 @@ body.page-books .view-books .pager li {
   letter-spacing: .05em;
   text-shadow: raised-text-shadow-dark-background;
 }
-/* line 120, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 td .page-number, .view-books .views-view-grid.cols-8 td .page-number, .pane-page-body td .page-number {
+/* line 121, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 td .page-number,
+.view-books .views-view-grid.cols-8 td .page-number,
+.pane-page-body td .page-number {
   bottom: 32%;
   left: 0%;
   padding: 3% 6%;
@@ -2804,16 +2437,31 @@ body.page-books .view-books .pager li {
   border-top-right-radius: 10px;
   background: rgba(0, 0, 0, 0.33);
 }
-/* line 130, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 td .page-number:hover, .view-books .views-view-grid.cols-8 td .page-number:hover, .pane-page-body td .page-number:hover {
+/* line 131, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8 td .page-number:hover,
+.view-books .views-view-grid.cols-8 td .page-number:hover,
+.pane-page-body td .page-number:hover {
   background: rgba(0, 0, 0, 0.5);
 }
 
-/* line 136, ../sass/partials/book/views/_views-book-thumbnails.scss */
+/* line 138, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.pane.thumbnails {
+  position: fixed;
+  bottom: 0;
+  z-index: 999999;
+  height: 300px;
+  background-color: #fff;
+}
+/* line 145, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.pane.thumbnails .thumbnails-container li {
+  width: 200px;
+}
+
+/* line 155, ../sass/partials/book/views/_views-book-thumbnails.scss */
 .carousel-li-item {
   vertical-align: top;
 }
-/* line 140, ../sass/partials/book/views/_views-book-thumbnails.scss */
+/* line 158, ../sass/partials/book/views/_views-book-thumbnails.scss */
 .carousel-li-item img {
   width: 100%;
   min-width: 70px;
@@ -2822,7 +2470,7 @@ body.page-books .view-books .pager li {
   -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
-/* line 147, ../sass/partials/book/views/_views-book-thumbnails.scss */
+/* line 165, ../sass/partials/book/views/_views-book-thumbnails.scss */
 .carousel-li-item span {
   z-index: 100;
   font-size: 1.1em;
@@ -2831,7 +2479,7 @@ body.page-books .view-books .pager li {
   letter-spacing: .05em;
   text-shadow: raised-text-shadow-dark-background;
 }
-/* line 156, ../sass/partials/book/views/_views-book-thumbnails.scss */
+/* line 174, ../sass/partials/book/views/_views-book-thumbnails.scss */
 .carousel-li-item .page-number {
   bottom: 32%;
   left: 0%;
@@ -2843,7 +2491,7 @@ body.page-books .view-books .pager li {
   border-top-right-radius: 10px;
   background: rgba(0, 0, 0, 0.33);
 }
-/* line 166, ../sass/partials/book/views/_views-book-thumbnails.scss */
+/* line 184, ../sass/partials/book/views/_views-book-thumbnails.scss */
 .carousel-li-item .page-number:hover {
   background: rgba(0, 0, 0, 0.5);
 }
