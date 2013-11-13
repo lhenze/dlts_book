@@ -6,8 +6,6 @@ Y.use(
   , 'slider'
   , 'pjax'
   , 'gallery-soon'
-  , 'imageloader'
-  , 'template'
   , 'widget-anim'
   , 'overlay'
   , 'io-queue'
@@ -266,8 +264,8 @@ Y.use(
 
         // test if the target is not active
         if (e.currentTarget.hasClass('inactive')) {
-        	e.preventDefault();
-        	return false;
+            e.preventDefault();
+            return false;
         }
 
         /** if this has referenceTarget, then this event was trigger by reference */
@@ -402,8 +400,6 @@ Y.use(
           , requestURI = location.href
           , match = requestURI.match(/\/[\d]\/?$/);
         
-        // Y.log(match[0].match(/[\d]$/)[0])
-
         if (match) {
             Y.io.queue(requestURI.slice(0, match.index) + '/pages?page=' + page + '&pager_count=' + pager_count);
         }
@@ -416,10 +412,7 @@ Y.use(
     
     // Subscribe to "io.success".
     Y.on('io:success', onThumbnailsRequestSuccess);
-  
-    // Subscribe to "io:start".
-    // Y.on('io:start', onStart, Y, transactions);    
-    
+      
     Y.on('button:button-thumbnails:off', function(e) {
         this.addClass('hidden');
     }, Y.one('.pane.thumbnails'));
