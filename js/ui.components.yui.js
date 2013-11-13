@@ -353,20 +353,20 @@ Y.use(
     Y.one('#page').delegate('click', pjax_callback, 'a.paging, a.toogle');
 
     Y.on('button:button-metadata:on', function(e) {
-          this.removeClass('hidden');
-          this.ancestor('.pane-body').removeClass('pagemeta-hidden');
+        this.removeClass('hidden');
+        this.ancestor('.pane-body').removeClass('pagemeta-hidden');
     }, pane_pagemeta);
     
     Y.on('button:button-metadata:off', function(e) {
-          this.addClass('hidden');
-          this.ancestor('.pane-body').addClass('pagemeta-hidden');
+        this.addClass('hidden');
+        this.ancestor('.pane-body').addClass('pagemeta-hidden');
     }, pane_pagemeta);
 
     Y.on('button:button-fullscreen:on', function(e) {
         Y.fire('button:' + this.button.get('id') + ':off', this.pagemeta);
         this.button.removeClass('on');
         this.top.addClass('hidden');
-    }, {  
+    }, {
         top: pane_top,
         pagemeta: pane_pagemeta,
         button: Y.one('a.metadata')
@@ -377,11 +377,11 @@ Y.use(
     }, pane_top);
 
     Y.on('openlayers:change', function(config) {
-        
+
         var sequence = config.sequence
           , slider = this.slider
           , datasource = this.datasource;
-        
+
         slider.triggerBy = 'openlayers:change';
         
         datasource.set('value', sequence);
@@ -397,22 +397,21 @@ Y.use(
 
         this.removeClass('hidden');
         
-        var page = 0;
-        
-  	    var requestURI = location.href;
-
-        var match = requestURI.match(/\/[\d]\/?$/);
+        var page = 0
+          , pager_count = 5
+          , requestURI = location.href
+          , match = requestURI.match(/\/[\d]\/?$/);
         
         // Y.log(match[0].match(/[\d]$/)[0])
-        
+
         if (match) {
-            Y.io.queue(requestURI.slice(0, match.index) + '/pages?page=' + page);
+            Y.io.queue(requestURI.slice(0, match.index) + '/pages?page=' + page + '&pager_count=' + pager_count);
         }
-                
+
     }, Y.one('.pane.thumbnails'));
 
     function onThumbnailsRequestSuccess(id, response, transaction) {
-        this.one('.thumbnails-container').append(response.response)
+        this.one('.thumbnails-container').set('innerHTML', response.response);   
     }
     
     // Subscribe to "io.success".
@@ -423,13 +422,23 @@ Y.use(
     
     Y.on('button:button-thumbnails:off', function(e) {
         this.addClass('hidden');
-    }, Y.one('.yui3-carousel-container'));
+    }, Y.one('.pane.thumbnails'));
     
     Y.once('contentready', function() {
         Y.later(1000, Y.one('.pane.load'), function() {
             this.hide();
         });
     }, '.dlts_image_map');
+    
+    Y.delegate('click', function(e) {
+        var currentTarget = e.currentTarget;
+        
+        e.preventDefault();
+        
+        Y.io.queue(currentTarget.get('href'));
+
+    }, 'body', '.thumbnails-container .pager a');
+    
     
     Y.delegate('click', function(e) {
         e.halt();

@@ -158,7 +158,7 @@ function dlts_book_process_page(&$vars) {
 function dlts_book_preprocess_page(&$vars) {
   
   $browser = dlts_utilities_browser_info();
-  
+
   if (dlts_utilities_is_pjax()) {  
     $vars['theme_hook_suggestions'][] = 'page__pjax__book__page';    
     if (isset($vars['node']) ) {
@@ -249,7 +249,11 @@ function dlts_book_preprocess_node(&$vars) {
       
       /** Node object */
       $node = $vars['node'];
-      
+	  
+	   // lets give this a try; we can go back to asking for a specific count of items
+	   // $view = views_get_view('book_thumbnails');
+	   // dpm($view);
+	   
       /** Page title */
       $vars['page_title'] = $node->title;
       
@@ -885,20 +889,4 @@ function dlts_book_process_views_view(&$vars) {
       drupal_add_js($theme_path . '/js/ui.items.view.js', array('type' => 'file', 'scope' => 'footer', 'weight' => 7));
     }
   }
-}
-
-function dlts_book_preprocess_views_view(&$vars) {
-  
-  /** Theme absolute-path */
-  $theme_path = drupal_get_path('theme', 'dlts_book');
-
-  /** View */
-  $view = $vars['view'];
-  
-  if ($view->name == 'book_thumbnails') {
-    dlts_utilities_add_script(theme_mustache_thumbnail_sequence(), array('id' => 'thumbnail-sequence', 'script_type' => 'text/x-handlebars-template', 'type' => 'inline', 'scope' => 'header', 'group' => SCRIPT_THEME));
-    dlts_utilities_add_script(theme_mustache_thumbnail(), array('id' => 'thumbnail', 'script_type' => 'text/x-handlebars-template', 'type' => 'inline', 'scope' => 'header', 'group' => SCRIPT_THEME));
-    drupal_add_js($theme_path . '/js/ui.pages.view.js', array('type' => 'file', 'scope' => 'footer', 'weight' => 7));
-  }
-  
 }

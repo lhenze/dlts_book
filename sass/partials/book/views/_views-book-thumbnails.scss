@@ -136,53 +136,50 @@ body.page-books .view-books {
 
 .pane {
   &.thumbnails {
+    background: $dark-background;
     position: fixed;
     bottom: 0;
     z-index: 999999;
-    height: 300px;
-    background-color: #fff;
     .thumbnails-container {
-      li {
-        width: 200px;
+      
+      #book-navbar {
+        width: 100%;
+        height: 40px;
+        background-color: $light-background;
       }
+      
+      li {
+        vertical-align:top;        
+      }
+      
+      img {
+        width:100%;
+        min-width:70px;
+        max-width:200px;
+        @include bv-box-shadow($pane-box-shadow);
+      }
+      
+      .page-number {
+        bottom:32%;
+        left:0%;
+        padding:3% 6% ; 
+        margin-bottom:-68%;
+        font-weight:bold;
+        @include border-top-right-radius(10px);
+        background:rgba(0,0,0,.33);
+      }
+    
+      .page-number:hover {
+        background:rgba(0,0,0,.5);
+      }
+
     }
   }
 }
 
-
-
-
 .carousel-li-item {
-  vertical-align:top;
 
-  img {
-    width:100%;
-    min-width:70px;
-    max-width:200px;
-    @include bv-box-shadow($pane-box-shadow);
-  }
     
-  span {
-    z-index:100;
-    font-size:1.1em;  
-    position:relative;
-    color:#eee;
-    letter-spacing:.05em;
-    @include bv-text-shadow(raised-text-shadow-dark-background);
-  }
 
-  .page-number {
-    bottom:32%;
-    left:0%;
-    padding:3% 6% ; 
-    margin-bottom:-68%;
-    font-weight:bold;
-    @include border-top-right-radius(10px);
-    background:rgba(0,0,0,.33);
-  }
-    
-  .page-number:hover {
-    background:rgba(0,0,0,.5);
-  }
   
 }
