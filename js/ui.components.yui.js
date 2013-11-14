@@ -394,7 +394,7 @@ Y.use(
         var page = 0
           , pager_count = 5
           , requestURI = location.href
-          , match = requestURI.match(/\/[\d]\/?$/); // match: / || /number/ || /1
+          , match = requestURI.match(/\/?[\d]+\/?$/); // match: / || /number/ || /1
         
         if (match) {
             Y.io.queue(requestURI.slice(0, match.index) + '/pages?page=' + page + '&pager_count=' + pager_count);
