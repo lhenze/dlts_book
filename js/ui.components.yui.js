@@ -259,14 +259,13 @@ Y.use(
     
     /** pjax callback can be call by clicking a pjax enable link or by reference with data-url */  
     pjax_callback = function(e) {
-
+    
         var url;
 
+        e.preventDefault();
+      
         // test if the target is not active
-        if (e.currentTarget.hasClass('inactive')) {
-            e.preventDefault();
-            return false;
-        }
+        if (e.currentTarget.hasClass('inactive')) return false;
 
         /** if this has referenceTarget, then this event was trigger by reference */
         if (Y.Lang.isObject(e.referenceTarget, true)) {
@@ -277,7 +276,9 @@ Y.use(
             url = this.get('href');
         }
       
+        // Request URL
         pjax.navigate(url);
+
     };
     
     pjax_load = function(e) {
@@ -339,6 +340,12 @@ Y.use(
     slider.after('valueChange', slide_value_change, { datasource: slider_datasource, slider: slider });
 
     slider.after('slideEnd', slide_end, slider);
+
+    Y.on('openlayers:next', pjax_callback, Y.one('.paging.next'));
+    
+    Y.on('pjax:change', pjax_callback);
+    
+    Y.on('openlayers:previous', pjax_callback, Y.one('.paging.previous'));    
     
     Y.one('.pane.pager').delegate('submit', pager_form, 'form', slider_datasource);
 
@@ -406,12 +413,10 @@ Y.use(
 
     }, Y.one('.pane.thumbnails'));
 
-    function onThumbnailsRequestSuccess(id, response, transaction) {
-        this.one('.thumbnails-container').set('innerHTML', response.response);   
-    }
-    
-    // Subscribe to "io.success".
-    Y.on('io:success', onThumbnailsRequestSuccess);
+    // Thumbnails; subscribe to "io.success".
+    Y.on('io:success', function (id, response, arg) {
+        if (arg === 'thumbnails') this.one('.thumbnails-container').set('innerHTML', response.response);
+    },  Y, 'thumbnails');
       
     Y.on('button:button-thumbnails:off', function(e) {
         this.addClass('hidden');

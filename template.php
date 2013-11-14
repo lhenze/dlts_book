@@ -113,7 +113,7 @@ function dlts_book_css_alter(&$css) {
     $site_path . 'modules/field_group/field_group.css' => FALSE,
     $site_path . 'modules/date/date_api/date.css' => FALSE,
   );
-  
+
   $css = array_diff_key($css, $exclude);
   }
 }
@@ -136,11 +136,9 @@ function dlts_book_process_html(&$vars) {
  * See: http://api.drupal.org/api/drupal/includes%21theme.inc/function/template_process_page/7 
  */
 function dlts_book_process_page(&$vars) {
-
   if (isset($vars['node'])) {
     $vars['classes_array'][] = $vars['node']->type;
   }
-  
   // we need to do something about this, not sure is the right place to have it or the best way to do this or if we need this
   if (!dlts_utilities_is_pjax()) {
     $vars['breadcrumb'] = theme_get_setting('dlts_book_toggle_breadcrumb') ? $vars['breadcrumb'] : NULL;
@@ -151,7 +149,6 @@ function dlts_book_process_page(&$vars) {
       $vars['search'] = $search;
 	}
   }
-  
 }
 
 /** See: http://api.drupal.org/api/drupal/includes%21theme.inc/function/template_process_page/7 */
@@ -250,10 +247,6 @@ function dlts_book_preprocess_node(&$vars) {
       /** Node object */
       $node = $vars['node'];
 	  
-	   // lets give this a try; we can go back to asking for a specific count of items
-	   // $view = views_get_view('book_thumbnails');
-	   // dpm($view);
-	   
       /** Page title */
       $vars['page_title'] = $node->title;
       
@@ -293,9 +286,9 @@ function dlts_book_preprocess_node(&$vars) {
       
       /** Add UI YUI */
       $js_yui_files_conf = array('type' => 'file', 'scope' => 'footer', 'weight' => 5);
-      
-      drupal_add_js($theme_path . '/js/ui.datasource.yui.js', $js_yui_files_conf);
+
       drupal_add_js($theme_path . '/js/ui.keyboard.yui.js', $js_yui_files_conf);
+	  
       drupal_add_js($theme_path . '/js/ui.components.yui.js', $js_yui_files_conf);
       
       /** Collection type */
@@ -311,11 +304,6 @@ function dlts_book_preprocess_node(&$vars) {
           'sequence_number' => $vars['book_page_sequence_number'],
           'pages_in_view' => $pages_in_view,
           'components' => array (),
-          'templates' => array(
-          	'thumbnail' => theme_micro_thumbnail_sequence(),
-          	'thumbnail_sequence' => theme_micro_thumbnail(),
-          	'scrollview' => theme_micro_pages_carousel(),
-           ),
         ),
       );
 	  
@@ -680,97 +668,6 @@ function theme_micro_search_result() {
       </div>
     </div>';
 	return $output;
-}
-
-function theme_mustache_annotation() {
-  /** Theme absolute-path */
-  // $theme_path = path_to_theme();
-  $theme_path = drupal_get_path('theme', 'dlts_book');  
-  
-  $output = '
-    <div id="annotation-{{type}}-{{id}}" class="annotation annotation-{type}">
-      <div class="annotation-content">
-        <img class="annotation-avatar" src="'.  file_create_url( $theme_path . '/images/user.png') .'" height="24" width="24"/>
-        <div class="annotation-creator">{{creator}}</div>
-        <div class="annotation-timestamp">{{modification_date_utc}}</div>
-        <div class="annotation-body">{{text}}</div>
-        <div class="annotation-footer"></div>
-      </div>
-    </div>';
-  return $output;
-}
-
-// OK
-function theme_micro_pages_carousel() {
-	$output = '
-    <li class="carousel-li-item carousel-item-<%= data.sequence %>" data-group="<%= data.group %>" data-sequence="<%= data.sequence %>" data-title="<%= data.title %>">
-      <div>
-        <a class="carousel-item-link yui3-pjax" href="'. base_path() .'books/<%= data.identifier %>/<%= data.sequence %>"><div class="yui3-carousel-item-container"><img id="thumb-<%= data.sequence %>" /></div></a> 
-        <span class="sequence page-number"><%= data.sequence %></span>
-      </div>
-    </li>';
-	return $output;
-}
-
-// OK
-function theme_mustache_container_sequence() {
-  return '<div id="g<%= data.id %>" class="yui3-g thumb-group"></div>'; 
-}
-
-// OK
-function theme_mustache_thumbnail_sequence() {
-	return '<div id="g{{id}}" class="yui3-g thumb-group pages"></div>';
-}
-
-// OK
-function theme_micro_thumbnail_sequence() {
-    return '<div id="g<%= data.id %>" class="yui3-g thumb-group pages"></div>';
-}
-
-// OK
-function theme_mustache_books_sequence() {
-  $output = '
-    <div class="yui3-u-1-<%= data.rows %> thumb-item hidden">
-      <div class="yui3-g">
-        <div class="yui3-u-1">
-          <a class="link" href="<%= data.path %>"><img id="thumb-<%= data.identifier %>" width="<%= data.width %>" class="thumb-image" /></a>
-          <div class="metadata">
-            <span class="vol-info"><%= data.label %></span>
-            <span class="publisher"><%= data.publisher %></span>
-            <span class="subject"><%= data.subject %></span>
-            <span class="sequence_count"><%= data.sequence_count %></span>
-            <span class="page_count"><%= data.page_count %></span>
-          </div>
-        </div>
-      </div>
-    </div>';
-  return $output;
-}
-
-// OK
-function theme_micro_thumbnail() {
-	$output = '
-  	<div class="yui3-u-1-<%= data.rows %> thumb-item hidden">
-  	  <div class="yui3-g">
-  	    <div class="yui3-u-1">
-  	      <a class="link" href="books/<%= data.sequence %>"><img id="thumb-<%= data.sequence %>" src="<%= data.thumbnail.image %>" width="<%= data.width %>">" /></a><span class="vol-info">Vol. <%= data.volume %>">, No. <%= data.number %>">, <span class="date-display-single"><%= data.date %>"></span></span>
-  	    </div>
-  	  </div>
-  	</div>';
-	return $output;
-}
-
-// OK
-function theme_mustache_thumbnail() {
-  $output = '
-  	<div class="yui3-u-1-{{rows}} thumb-item hidden">
-  	  <div class="yui3-g">
-  	    <div class="yui3-u-1">
-  	      <a class="link" href="books/{{sequence}}"><img id="thumb-{{sequence}}" src="{{#thumbnail}}{{image}}{{/thumbnail}}" width="{{width}}" /></a><span class="vol-info">Vol. {{volume}}, No. {{number}}, <span class="date-display-single">{{date}}</span></span>
-  	    </div>
-  	  </div>
-  	</div>';
-  return $output;
 }
 
 function theme_yui3_thumbnails() {
