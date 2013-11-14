@@ -17,9 +17,9 @@ Y.use(
     var 
 
     /** nodes */
-    slider_datasource
-  , pane_pagemeta
-  , pane_top
+    slider_datasource = Y.one('#slider_value')
+  , pane_pagemeta = Y.one('.pane.pagemeta')
+  , pane_top = Y.one('#top')
 
     /** callbacks */
    , slide_value_change
@@ -37,30 +37,18 @@ Y.use(
    , pjax
    , slider
 
-    /** the object that represent the current book and settings */
-   , book
+    /** book global settings; the object that represent the current book and settings */
+   , book = Y.DLTS.settings.book
    
-   , requestURI;
-   
+    ; /** definition list end */
+    
     // Set a X-PJAX HTTP header.
     Y.io.header('X-PJAX', 'true');
-
-    /** definition list end */
-
-    /** book global settings */
-    book = Y.DLTS.settings.book;
-
-    pane_top = Y.one('#top');
-
-    pane_pagemeta = Y.one('.pane.pagemeta');
-
-    slider_datasource = Y.one('#slider_value');
+    
 
     /** add view port information to global setting */
     book.viewport = Y.DOM.viewportRegion();
     
-    requestURI = 'collection-items?page='
-
     /** callbacks */
     on_button_click = function(e) {
 
@@ -264,44 +252,42 @@ Y.use(
 
         e.preventDefault();
       
-        // test if the target is not active
+        /** test if the target is not active */
         if (e.currentTarget.hasClass('inactive')) return false;
 
         /** if this has referenceTarget, then this event was trigger by reference */
         if (Y.Lang.isObject(e.referenceTarget, true)) {
             url = e.referenceTarget.getAttribute('data-url');
         }
+
         /** trigger by a pjax enable link */
         else {
             url = this.get('href');
         }
       
-        // Request URL
+        /** request URL */
         pjax.navigate(url);
 
     };
     
     pjax_load = function(e) {
         
-        var node = e.content.node
-          , map = node.one('.dlts_image_map')
-          , next = node.one('.next')
-          , prev = node.one('.previous')
-          , toogle = node.one('.toogle')
-          , config;
+        var config
+          , node = e.content.node
+          , map = node.one('.dlts_image_map');
         
-        /** At this point we assume the new toogle / next / previous buttons are part of the response DOM, replace the old ones */ 
+        /** At this point we assume the new toogle / next / previous buttons are part 
+            of the response DOM, replace the old ones */ 
         
-        Y.one('.paging.previous').replace(prev.cloneNode(true));
-        Y.one('.paging.next').replace(next.cloneNode(true));	
-        Y.one('a.toogle').replace(toogle.cloneNode(true));	
+        Y.one('.paging.previous').replace(node.one('.previous').cloneNode(true));
+        Y.one('.paging.next').replace(node.one('.next').cloneNode(true));	
+        Y.one('a.toogle').replace(node.one('.toogle').cloneNode(true));	
         
         /** Configuration for the new book page */
         config = {
             id: map.get('id'),
             title: node.getAttribute('data-title'),
             node: map,
-            boxes: [],
             sequence: node.getAttribute('data-sequence'),
             uri: map.getAttribute('data-uri'),
             metadata: {
@@ -356,6 +342,9 @@ Y.use(
     Y.one('#page').delegate('click', on_button_click, 'a.button');
 
     Y.one('#page').delegate('click', pjax_callback, 'a.paging, a.toogle');
+    
+    /** delegate click on book pages thumbnails links */
+    Y.one('#page').delegate('click', pjax_callback, '.view-book-thumbnails a');    
 
     Y.on('button:button-metadata:on', function(e) {
         this.removeClass('hidden');
@@ -397,7 +386,7 @@ Y.use(
         datasource: slider_datasource,
         slider: slider
     });
-    
+
     Y.on('button:button-thumbnails:on', function(e) {
 
         this.removeClass('hidden');
@@ -405,7 +394,7 @@ Y.use(
         var page = 0
           , pager_count = 5
           , requestURI = location.href
-          , match = requestURI.match(/\/[\d]\/?$/);
+          , match = requestURI.match(/\/[\d]\/?$/); // match: / || /number/ || /1
         
         if (match) {
             Y.io.queue(requestURI.slice(0, match.index) + '/pages?page=' + page + '&pager_count=' + pager_count);
@@ -413,7 +402,7 @@ Y.use(
 
     }, Y.one('.pane.thumbnails'));
 
-    // Thumbnails; subscribe to "io.success".
+    // Subscribe to "io.success" for thumbnails page requests.
     Y.on('io:success', function (id, response, arg) {
         if (arg === 'thumbnails') this.one('.thumbnails-container').set('innerHTML', response.response);
     },  Y, 'thumbnails');
@@ -436,7 +425,6 @@ Y.use(
         Y.io.queue(currentTarget.get('href'));
 
     }, 'body', '.thumbnails-container .pager a');
-    
     
     Y.delegate('click', function(e) {
         e.halt();
