@@ -390,42 +390,51 @@ Y.use(
 
     Y.on('button:button-thumbnails:on', function(e) {
 
-        this.removeClass('hidden');
+        var current_book_page = Y.one('#slider_value').get('value')
         
-        var book_path = Y.DLTS.settings.book.path
-        
-          , current_book_page = Y.one('#slider_value').get('value')
-          
-            /** how many pages this book have */
-          , book_sequence_count = Y.one('.sequence_count').get('text')
-          
+          , pane = Y.one('.view-book-thumbnails')
+
             /** maximum width of each column */
           , columns_max_width = 200
-          
+
             /** minimum width of each column */
           , columns_min_width = 180
-          
+
             /** columns per pager page; the weird looking math is a fancy/faster way to achieve Math.floor() */
           , pager_count = (book.viewport.width / columns_max_width)|0
-          
-            /** given the client viewport try to calculate the "optimal" width of each column */
-          , columns_width = (book.viewport.width/pager_count)|0 - 10 * pager_count          
-          
-          , book_thumbnails_current_page = Math.ceil(current_book_page / pager_count) - 1
-          
-          ;
 
+            /** given the client viewport try to calculate the "optimal" width of each column */
+          , columns_width = (book.viewport.width/pager_count)|0 - 10 * pager_count
+
+            /** thumbnail page  */
+          , book_thumbnails_page = Math.ceil(current_book_page / pager_count) - 1;
+
+        this.removeClass('hidden');
+        
+        if (!pane || pane && (current_book_page / pager_count) > 1) {
+            Y.io.queue(Y.DLTS.settings.book.path + '/pages?page=' + book_thumbnails_page + '&pager_count=' + pager_count);
+        }
+        
         /** @TODO: this is ugly and syntactically uglier because we need a better solution */
         // if (columns_width > columns_max_width || columns_width < columns_min_width ) ( ( columns_width = columns_max_width ) && ( pager_count = pager_count - 1 ) );
-
-        Y.io.queue(book_path + '/pages?page=' + book_thumbnails_current_page + '&pager_count=' + pager_count);
 
     }, Y.one('.pane.thumbnails'));
 
     // Subscribe to "io.success" for thumbnails page requests.
     Y.on('io:success', function (id, response, arg) {
-        if (arg === 'thumbnails') this.one('.thumbnails-container').set('innerHTML', response.response);
-    },  Y, 'thumbnails');
+
+        /** current book page */
+        var current_book_page = Y.one('#slider_value').get('value');
+
+        if (arg === 'thumbnails') {
+
+            this.one('.thumbnails-container').set('innerHTML', response.response);
+
+        	// this.one('.sequence-number-' + current_book_page).addClass('active');
+
+        }
+
+    }, Y, 'thumbnails');
 
     Y.on('button:button-thumbnails:off', function(e) {
         this.addClass('hidden');
