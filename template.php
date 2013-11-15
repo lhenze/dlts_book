@@ -136,6 +136,7 @@ function dlts_book_process_html(&$vars) {
  * See: http://api.drupal.org/api/drupal/includes%21theme.inc/function/template_process_page/7 
  */
 function dlts_book_process_page(&$vars) {
+
   if (isset($vars['node'])) {
     $vars['classes_array'][] = $vars['node']->type;
   }
@@ -188,7 +189,6 @@ function dlts_book_preprocess_page(&$vars) {
   $js_data = array(
     'book' => array(
       'theme_path' => $absolute_theme_path,
-      'retrieve' => (isset($_COOKIE['dlts_retrieve_pages']) ? ($_COOKIE['dlts_retrieve_pages'] == $vars['identifier'] ? TRUE : FALSE) : FALSE),
     ),
   );
 
@@ -223,7 +223,7 @@ function dlts_book_preprocess_node(&$vars) {
 	  if (in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))) {
         $vars['search'] = module_invoke('search', 'block_view', 'search');
 	  }
-      
+
       $vars['browse'] = array( '#markup' => l(t('Browse collection'), 'books', array('attributes' => array('class' => array('browse-collection', 'button', 'link')))) );
       
       $vars['bobcat'] = array( '#markup' => l(t('BobCat record'), dlts_utilities_collection_bobcat_record(), array('attributes' => array('class' => array('link')))));
@@ -231,14 +231,32 @@ function dlts_book_preprocess_node(&$vars) {
       break;
 
     case 'dlts_book' :
-    
+		
+	  /** Node object */
+      $node = $vars['node'];
+
       switch ($vars['view_mode']) {
+
         case 'metadata':
            // Remove Book title from metadata pane
           unset($vars['title']);
           break;
+
+		case 'teaser' :
+
+		  $vars['theme_hook_suggestions'][] = 'node__dlts_book_teaser';
+		  
+          // this is here because not all the times the the book have a representative image and we need to assume the first page of the book i the cover
+          $vars['representative_image'] = dlts_utilities_book_get_representative_image($node);
+		  
+		  /** use book_title instead of node->title because our titles length can be longer than the length permitted by default in Drupal node->title*/
+		  $vars['book_title'] = dlts_utilities_book_get_title($node);
+		  
+		  $vars['book_first_page'] = dlts_utilities_book_get_first_page($node);
+		  
+		  break;
       }    
-    
+
       break;
 
     case 'dlts_book_page' :

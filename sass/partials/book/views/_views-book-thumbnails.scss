@@ -35,11 +35,11 @@ body.page-books .view-books {
   
 }
 
-.view-book-thumbnails .views-view-grid.cols-8, 
-.view-books .views-view-grid.cols-8,
-.pane-page-body {
+.view-book-thumbnails .views-view-grid.cols-8, .view-books .views-view-grid.cols-8, .pane-page-body {
+  
   font-family: $pager-fonts;
   width: 100%;
+  
   .center {
     text-align: center;
   }
@@ -173,7 +173,7 @@ body.page-books .view-books {
       }
       
       li {
-        vertical-align:top;        
+        vertical-align: top;        
       }
       
       img {

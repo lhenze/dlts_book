@@ -879,6 +879,24 @@ html.page-search .pane-search-header {
   padding-top: 0;
 }
 
+/* line 8, ../sass/partials/book/pages/_taxonomy.scss */
+.page-taxonomy-term .node-teaser .views-u {
+  margin-left: 1em;
+}
+/* line 12, ../sass/partials/book/pages/_taxonomy.scss */
+.page-taxonomy-term .node-teaser h2.title {
+  margin-bottom: 0;
+}
+/* line 16, ../sass/partials/book/pages/_taxonomy.scss */
+.page-taxonomy-term .node-teaser .field-name-field-subtitle .field-item {
+  margin-bottom: 1em;
+}
+/* line 22, ../sass/partials/book/pages/_taxonomy.scss */
+.page-taxonomy-term .btn {
+  margin-top: 1em;
+  display: block;
+}
+
 /* line 1, ../sass/partials/book/panes/_top.scss */
 #header, .footer {
   padding: .5em 1em;
@@ -2304,53 +2322,37 @@ body.page-books .view-books .pager li {
   margin: 0;
 }
 
-/* line 40, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8,
-.view-books .views-view-grid.cols-8,
-.pane-page-body {
+/* line 38, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.view-book-thumbnails .views-view-grid.cols-8, .view-books .views-view-grid.cols-8, .pane-page-body {
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
   width: 100%;
 }
 /* line 43, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .center,
-.view-books .views-view-grid.cols-8 .center,
-.pane-page-body .center {
+.view-book-thumbnails .views-view-grid.cols-8 .center, .view-books .views-view-grid.cols-8 .center, .pane-page-body .center {
   text-align: center;
 }
 /* line 47, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .buttons,
-.view-books .views-view-grid.cols-8 .buttons,
-.pane-page-body .buttons {
+.view-book-thumbnails .views-view-grid.cols-8 .buttons, .view-books .views-view-grid.cols-8 .buttons, .pane-page-body .buttons {
   padding: 0%;
 }
 /* line 49, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .buttons .button,
-.view-books .views-view-grid.cols-8 .buttons .button,
-.pane-page-body .buttons .button {
+.view-book-thumbnails .views-view-grid.cols-8 .buttons .button, .view-books .views-view-grid.cols-8 .buttons .button, .pane-page-body .buttons .button {
   text-align: center;
 }
 /* line 54, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .vol-info,
-.view-books .views-view-grid.cols-8 .vol-info,
-.pane-page-body .vol-info {
+.view-book-thumbnails .views-view-grid.cols-8 .vol-info, .view-books .views-view-grid.cols-8 .vol-info, .pane-page-body .vol-info {
   text-align: left;
 }
 /* line 58, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group,
-.view-books .views-view-grid.cols-8 .thumb-group,
-.pane-page-body .thumb-group {
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group, .view-books .views-view-grid.cols-8 .thumb-group, .pane-page-body .thumb-group {
   margin-bottom: 1.5em;
 }
 /* line 62, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .thumb-item,
-.view-books .views-view-grid.cols-8 .thumb-group .thumb-item,
-.pane-page-body .thumb-group .thumb-item {
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .thumb-item, .view-books .views-view-grid.cols-8 .thumb-group .thumb-item, .pane-page-body .thumb-group .thumb-item {
   height: 100%;
 }
 /* line 66, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group img,
-.view-books .views-view-grid.cols-8 .thumb-group img,
-.pane-page-body .thumb-group img {
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group img, .view-books .views-view-grid.cols-8 .thumb-group img, .pane-page-body .thumb-group img {
   min-width: 70px;
   max-width: 200px;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
@@ -2358,24 +2360,18 @@ body.page-books .view-books .pager li {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 /* line 72, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group span,
-.view-books .views-view-grid.cols-8 .thumb-group span,
-.pane-page-body .thumb-group span {
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group span, .view-books .views-view-grid.cols-8 .thumb-group span, .pane-page-body .thumb-group span {
   font-size: 1em;
   position: relative;
   letter-spacing: .05em;
 }
 /* line 78, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .vol-info,
-.view-books .views-view-grid.cols-8 .thumb-group .vol-info,
-.pane-page-body .thumb-group .vol-info {
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .vol-info, .view-books .views-view-grid.cols-8 .thumb-group .vol-info, .pane-page-body .thumb-group .vol-info {
   padding: 0;
   display: block;
 }
 /* line 83, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .page-number,
-.view-books .views-view-grid.cols-8 .thumb-group .page-number,
-.pane-page-body .thumb-group .page-number {
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .page-number, .view-books .views-view-grid.cols-8 .thumb-group .page-number, .pane-page-body .thumb-group .page-number {
   bottom: 32%;
   left: 0%;
   padding: 3% 6%;
@@ -2387,24 +2383,18 @@ body.page-books .view-books .pager li {
   background: rgba(0, 0, 0, 0.33);
 }
 /* line 93, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .page-number:hover,
-.view-books .views-view-grid.cols-8 .thumb-group .page-number:hover,
-.pane-page-body .thumb-group .page-number:hover {
+.view-book-thumbnails .views-view-grid.cols-8 .thumb-group .page-number:hover, .view-books .views-view-grid.cols-8 .thumb-group .page-number:hover, .pane-page-body .thumb-group .page-number:hover {
   background: rgba(0, 0, 0, 0.5);
 }
 /* line 99, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 td,
-.view-books .views-view-grid.cols-8 td,
-.pane-page-body td {
+.view-book-thumbnails .views-view-grid.cols-8 td, .view-books .views-view-grid.cols-8 td, .pane-page-body td {
   width: 12.5%;
   padding: .25%;
   vertical-align: top;
   height: 100px;
 }
 /* line 105, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 td img,
-.view-books .views-view-grid.cols-8 td img,
-.pane-page-body td img {
+.view-book-thumbnails .views-view-grid.cols-8 td img, .view-books .views-view-grid.cols-8 td img, .pane-page-body td img {
   width: 100%;
   min-width: 70px;
   max-width: 200px;
@@ -2413,9 +2403,7 @@ body.page-books .view-books .pager li {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 /* line 112, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 td span,
-.view-books .views-view-grid.cols-8 td span,
-.pane-page-body td span {
+.view-book-thumbnails .views-view-grid.cols-8 td span, .view-books .views-view-grid.cols-8 td span, .pane-page-body td span {
   z-index: 100;
   font-size: 1.1em;
   position: relative;
@@ -2424,9 +2412,7 @@ body.page-books .view-books .pager li {
   text-shadow: raised-text-shadow-dark-background;
 }
 /* line 121, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 td .page-number,
-.view-books .views-view-grid.cols-8 td .page-number,
-.pane-page-body td .page-number {
+.view-book-thumbnails .views-view-grid.cols-8 td .page-number, .view-books .views-view-grid.cols-8 td .page-number, .pane-page-body td .page-number {
   bottom: 32%;
   left: 0%;
   padding: 3% 6%;
@@ -2438,9 +2424,7 @@ body.page-books .view-books .pager li {
   background: rgba(0, 0, 0, 0.33);
 }
 /* line 131, ../sass/partials/book/views/_views-book-thumbnails.scss */
-.view-book-thumbnails .views-view-grid.cols-8 td .page-number:hover,
-.view-books .views-view-grid.cols-8 td .page-number:hover,
-.pane-page-body td .page-number:hover {
+.view-book-thumbnails .views-view-grid.cols-8 td .page-number:hover, .view-books .views-view-grid.cols-8 td .page-number:hover, .pane-page-body td .page-number:hover {
   background: rgba(0, 0, 0, 0.5);
 }
 

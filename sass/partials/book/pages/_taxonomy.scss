@@ -1,0 +1,27 @@
+@import "partials/book/defaults/_variables";
+@import "partials/themeable/_variables";
+
+.page-taxonomy-term {
+  
+  .node-teaser {
+    
+    .views-u {
+      margin-left: 1em;  
+    }
+    
+    h2.title {
+      margin-bottom: 0;
+    }
+    .field-name-field-subtitle {
+      .field-item {
+        margin-bottom: 1em;  
+      }
+    }
+  }
+  
+  .btn {
+    margin-top: 1em;
+    display: block;
+  }
+  
+}
