@@ -2474,20 +2474,25 @@ body.page-books .view-books .pager li {
   display: none;
   visibility: hidden;
 }
-/* line 170, ../sass/partials/book/views/_views-book-thumbnails.scss */
+/* line 166, ../sass/partials/book/views/_views-book-thumbnails.scss */
+.pane.thumbnails .thumbnails-container #book-navbar .item-list .pager-current {
+  display: none;
+  visibility: hidden;
+}
+/* line 175, ../sass/partials/book/views/_views-book-thumbnails.scss */
 .pane.thumbnails .thumbnails-container li {
   vertical-align: top;
 }
-/* line 174, ../sass/partials/book/views/_views-book-thumbnails.scss */
+/* line 179, ../sass/partials/book/views/_views-book-thumbnails.scss */
 .pane.thumbnails .thumbnails-container img {
   width: 100%;
   min-width: 70px;
-  max-width: 200px;
+  max-width: 150px;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
-/* line 181, ../sass/partials/book/views/_views-book-thumbnails.scss */
+/* line 186, ../sass/partials/book/views/_views-book-thumbnails.scss */
 .pane.thumbnails .thumbnails-container .page-number {
   bottom: 32%;
   left: 0%;
@@ -2499,7 +2504,7 @@ body.page-books .view-books .pager li {
   border-top-right-radius: 10px;
   background: rgba(0, 0, 0, 0.33);
 }
-/* line 191, ../sass/partials/book/views/_views-book-thumbnails.scss */
+/* line 196, ../sass/partials/book/views/_views-book-thumbnails.scss */
 .pane.thumbnails .thumbnails-container .page-number:hover {
   background: rgba(0, 0, 0, 0.5);
 }

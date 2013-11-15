@@ -163,6 +163,11 @@ body.page-books .view-books {
             visibility: hidden;
           }
           
+          .pager-current {
+            display: none;
+            visibility: hidden;
+          }
+          
         }
         
       }
@@ -174,7 +179,7 @@ body.page-books .view-books {
       img {
         width:100%;
         min-width:70px;
-        max-width:200px;
+        max-width:150px;
         @include bv-box-shadow($pane-box-shadow);
       }
       
