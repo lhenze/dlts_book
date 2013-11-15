@@ -879,19 +879,24 @@ html.page-search .pane-search-header {
   padding-top: 0;
 }
 
-/* line 8, ../sass/partials/book/pages/_taxonomy.scss */
+/* line 6, ../sass/partials/book/pages/_taxonomy.scss */
+.page-taxonomy-term .node-teaser {
+  margin-bottom: 1em;
+}
+/* line 10, ../sass/partials/book/pages/_taxonomy.scss */
 .page-taxonomy-term .node-teaser .views-u {
   margin-left: 1em;
 }
-/* line 12, ../sass/partials/book/pages/_taxonomy.scss */
+/* line 14, ../sass/partials/book/pages/_taxonomy.scss */
 .page-taxonomy-term .node-teaser h2.title {
-  margin-bottom: 0;
+  margin-bottom: .5;
+  font-size: 1.2em;
 }
-/* line 16, ../sass/partials/book/pages/_taxonomy.scss */
+/* line 19, ../sass/partials/book/pages/_taxonomy.scss */
 .page-taxonomy-term .node-teaser .field-name-field-subtitle .field-item {
   margin-bottom: 1em;
 }
-/* line 22, ../sass/partials/book/pages/_taxonomy.scss */
+/* line 25, ../sass/partials/book/pages/_taxonomy.scss */
 .page-taxonomy-term .btn {
   margin-top: 1em;
   display: block;
