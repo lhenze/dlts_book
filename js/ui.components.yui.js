@@ -20,8 +20,16 @@ Y.use(
     slider_datasource = Y.one('#slider_value')
   , pane_pagemeta = Y.one('.pane.pagemeta')
   , pane_top = Y.one('#top')
+  
+     /** widgets */
+   , slider
+   
+     /* utilities */
+   
+     /** Pjax object to request new book pages; the content from successful requests will be appended to "display" pane */
+   , pjax = new Y.Pjax({ container: '.pane.display' })
 
-    /** callbacks */
+     /** callbacks */
    , slide_value_change
    , pager_form
    , on_button_click
@@ -33,23 +41,18 @@ Y.use(
    , on_mousemove_over_slider_rail
    , on_mouseleave_slider_rail
 
-    /** widgets and others */
-   , pjax
-   , slider
 
-    /** book global settings; the object that represent the current book and settings */
+     /** book global settings; the object that represent the current book and settings */
    , book = Y.DLTS.settings.book
    
-    ; /** definition list end */
+   ; /** definition list end */
     
-    // Set a X-PJAX HTTP header.
+    /** set a X-PJAX HTTP header for all IO requests */
     Y.io.header('X-PJAX', 'true');
-    
 
     /** add view port information to global setting */
     book.viewport = Y.DOM.viewportRegion();
-    
-    /** callbacks */
+
     on_button_click = function(e) {
 
         e.preventDefault();
@@ -157,6 +160,7 @@ Y.use(
         if (!Y.Lang.isValue(slider.triggerBy)) {
             datasource.set('value', e.newVal);
         }
+        
         /** event was triggered by reference */
         else {
            slider.triggerBy = undefined;
@@ -255,7 +259,7 @@ Y.use(
         /** test if the target is not active */
         if (e.currentTarget.hasClass('inactive')) return false;
 
-        /** if this has referenceTarget, then this event was trigger by reference */
+        /** if event has referenceTarget, then event was trigger by reference */
         if (Y.Lang.isObject(e.referenceTarget, true)) {
             url = e.referenceTarget.getAttribute('data-url');
         }
@@ -302,9 +306,6 @@ Y.use(
         Y.on('available', change_page, '#' + config.id, OpenLayers, config);
 
     };
-
-    /** pjax object */    
-    pjax = new Y.Pjax({ container: '.pane.display' });
 
     /** slider object */
     slider = new Y.Slider({
@@ -391,14 +392,33 @@ Y.use(
 
         this.removeClass('hidden');
         
-        var page = 0
-          , pager_count = 5
-          , requestURI = location.href
-          , match = requestURI.match(/\/?[\d]+\/?$/); // match: / || /number/ || /1
+        var book_path = Y.DLTS.settings.book.path
         
-        if (match) {
-            Y.io.queue(requestURI.slice(0, match.index) + '/pages?page=' + page + '&pager_count=' + pager_count);
-        }
+          , current_book_page = Y.one('#slider_value').get('value')
+          
+            /** how many pages this book have */
+          , book_sequence_count = Y.one('.sequence_count').get('text')
+          
+            /** maximum width of each column */
+          , columns_max_width = 200
+          
+            /** minimum width of each column */
+          , columns_min_width = 180
+          
+            /** columns per pager page; the weird looking math is a fancy/faster way to achieve Math.floor() */
+          , pager_count = (book.viewport.width / columns_max_width)|0
+          
+            /** given the client viewport try to calculate the "optimal" width of each column */
+          , columns_width = (book.viewport.width/pager_count)|0 - 10 * pager_count          
+          
+          , book_thumbnails_current_page = Math.ceil(current_book_page / pager_count) - 1
+          
+          ;
+
+        /** @TODO: this is ugly and syntactically uglier because we need a better solution */
+        // if (columns_width > columns_max_width || columns_width < columns_min_width ) ( ( columns_width = columns_max_width ) && ( pager_count = pager_count - 1 ) );
+
+        Y.io.queue(book_path + '/pages?page=' + book_thumbnails_current_page + '&pager_count=' + pager_count);
 
     }, Y.one('.pane.thumbnails'));
 
@@ -406,7 +426,7 @@ Y.use(
     Y.on('io:success', function (id, response, arg) {
         if (arg === 'thumbnails') this.one('.thumbnails-container').set('innerHTML', response.response);
     },  Y, 'thumbnails');
-      
+
     Y.on('button:button-thumbnails:off', function(e) {
         this.addClass('hidden');
     }, Y.one('.pane.thumbnails'));
