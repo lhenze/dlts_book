@@ -408,15 +408,15 @@ Y.use(
 
             /** thumbnail page  */
           , book_thumbnails_page = Math.ceil(current_book_page / pager_count) - 1;
+          
+        /** @TODO: this is ugly and syntactically uglier because we need a better solution */
+        // if (columns_width > columns_max_width || columns_width < columns_min_width ) ( ( columns_width = columns_max_width ) && ( pager_count = pager_count - 1 ) );
 
         this.removeClass('hidden');
         
         if (!pane || pane && (current_book_page / pager_count) > 1) {
             Y.io.queue(Y.DLTS.settings.book.path + '/pages?page=' + book_thumbnails_page + '&pager_count=' + pager_count);
         }
-        
-        /** @TODO: this is ugly and syntactically uglier because we need a better solution */
-        // if (columns_width > columns_max_width || columns_width < columns_min_width ) ( ( columns_width = columns_max_width ) && ( pager_count = pager_count - 1 ) );
 
     }, Y.one('.pane.thumbnails'));
 
@@ -427,10 +427,15 @@ Y.use(
         var current_book_page = Y.one('#slider_value').get('value');
 
         if (arg === 'thumbnails') {
-
+            var node;
+            
             this.one('.thumbnails-container').set('innerHTML', response.response);
 
-        	// this.one('.sequence-number-' + current_book_page).addClass('active');
+        	node = this.one('.sequence-number-' + current_book_page);
+        	
+        	if (node) {
+        	    node.addClass('active');
+        	}
 
         }
 
