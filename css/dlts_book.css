@@ -901,6 +901,11 @@ html.page-search .pane-search-header {
   margin-top: 1em;
   display: block;
 }
+/* line 30, ../sass/partials/book/pages/_taxonomy.scss */
+.page-taxonomy-term .feed-icon {
+  display: none;
+  visibility: hidden;
+}
 
 /* line 1, ../sass/partials/book/panes/_top.scss */
 #header, .footer {
