@@ -1,5 +1,23 @@
 <?php
 
+function dlts_book_theme($existing, $type, $theme, $path) {
+  return array(
+    'dlts_book_yui3_thumbnails' => array(
+	  'template' => 'templates/dlts_book_yui3_thumbnails',
+	  'variables' => NULL,
+	),
+    'micro_search_result' => array(
+	  'template' => 'templates/dlts_book_micro_search_result',
+	  'variables' => array(
+	    'entity_id' => NULL,
+	    'link' => NULL,
+	    'snippet' => NULL,
+	    'sequence_number' => NULL, 
+	  ),
+	),
+  );
+}
+
 /** Not meant to be pretty. We know what we want we get it. */
 function dlts_book_js_alter(&$javascript) {
 
@@ -123,12 +141,17 @@ function dlts_book_css_alter(&$css) {
  * See: http://api.drupal.org/api/drupal/includes%21theme.inc/function/template_preprocess_html/7
  */
 function dlts_book_process_html(&$vars) {
+
   if (dlts_utilities_is_pjax()) {
     $vars['theme_hook_suggestions'][] = 'html__pjax';
-    return;
   }
-  $vars['script'] = dlts_utilities_get_script();
-  $vars['classes'] = 'yui3-skin-sam yui-skin-sam pane html ' . (isset($_GET['searchTerms']) ? 'search-visible' : 'search-hidden') . ' ' . $vars['classes'];  
+  
+  else {
+    $vars['script'] = dlts_utilities_get_script();
+    $vars['classes'] = 'yui3-skin-sam pane html ' . $vars['classes'];  
+
+  }
+  
 }
 
 /**
@@ -220,19 +243,17 @@ function dlts_book_preprocess_node(&$vars) {
       $vars['theme_hook_suggestions'][] = 'node__dlts_page';
       
 	  // add search box if this page are selected as searchable in Apache Solr configuration 
-	  if (in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))) {
-        $vars['search'] = module_invoke('search', 'block_view', 'search');
-	  }
+	  if (in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))) $vars['search'] = module_invoke('search', 'block_view', 'search');
 
-      $vars['browse'] = array( '#markup' => l(t('Browse collection'), 'books', array('attributes' => array('class' => array('browse-collection', 'button', 'link')))) );
+      $vars['browse'] = array('#markup' => l(t('Browse collection'), 'books', array('attributes' => array('class' => array('browse-collection', 'button', 'link')))));
       
-      $vars['bobcat'] = array( '#markup' => l(t('BobCat record'), dlts_utilities_collection_bobcat_record(), array('attributes' => array('class' => array('link')))));
+      $vars['bobcat'] = array('#markup' => l(t('BobCat record'), dlts_utilities_collection_bobcat_record(), array('attributes' => array('class' => array('link')))));
 
       break;
 
     case 'dlts_book' :
 		
-	  /** Node object */
+	  /** node object */
       $node = $vars['node'];
 
       switch ($vars['view_mode']) {
@@ -252,57 +273,53 @@ function dlts_book_preprocess_node(&$vars) {
 		  /** use book_title instead of node->title because our titles length can be longer than the length permitted by default in Drupal node->title*/
 		  $vars['book_title'] = dlts_utilities_book_get_title($node);
 		  
+		  /** link to the first page of the book; this theme does not display a full view of the done */
 		  $vars['book_first_page'] = dlts_utilities_book_get_first_page($node);
-		  
+
 		  break;
-      }    
+      }
 
       break;
 
     case 'dlts_book_page' :
     case 'dlts_book_stitched_page' :
-      
+
       /** Node object */
       $node = $vars['node'];
-	  
+
       /** Page title */
       $vars['page_title'] = $node->title;
-      
-      $vars['page_type'] = ($vars['type'] == 'dlts_book_page') ? 'single' : 'double';
-      
-      /** Prev page */
+
+      /** prev page */
       $vars['button_prevpage'] = $node->prevpage;
-      
-      /** Next page */
+
+      /** next page */
       $vars['button_nextpage'] = $node->nextpage;
-      
+	  
       /** Book page sequence number */
       $vars['book_page_sequence_number'] = dlts_utilities_book_page_get_sequence_number($node);   
 
       /** Book nid */
       $vars['book_nid'] = dlts_utilities_book_page_get_book_nid($node);
-      
+
       /** Book identifier */
       $vars['identifier'] = dlts_utilities_book_page_get_identifier($node);
-      
+
       /** Load book */
       $book = dlts_utilities_book_page_load_book($node);
-      
+
       /** Book sequence count */
       $vars['sequence_count'] = $sequence_count = dlts_utilities_book_get_sequence_count($book);
-      
-      /** Pages in view */
-      $pages_in_view = $vars['type'] == 'dlts_book_page' ? 1 : 2;
-      
+
       /** Toggle between Single and Double page button */
       $vars['button_togglepage'] = $node->togglepage;
-      
-      $vars['thumbnails'] = theme_yui3_thumbnails();
 
-      /** Use node--dlts-book-page.tpl.php for both dlts_book_page and dlts_book_stitched_page contetn types */
+      $vars['thumbnails'] = theme('dlts_book_yui3_thumbnails');
+
+      /** Use node--dlts-book-page.tpl.php for both dlts_book_page and dlts_book_stitched_page content types */
       $vars['theme_hook_suggestions'][] = (dlts_utilities_is_pjax()) ? 'node__dlts_book_pjax_page' : 'node__dlts_book_page';
-      
-      /** Add UI YUI */
+
+      /** YUI conf */
       $js_yui_files_conf = array('type' => 'file', 'scope' => 'footer', 'weight' => 5);
 
       drupal_add_js($theme_path . '/js/ui.keyboard.yui.js', $js_yui_files_conf);
@@ -317,11 +334,8 @@ function dlts_book_preprocess_node(&$vars) {
           'path' => url('books/' . $vars['identifier'], array('absolute' => TRUE )),
           'theme_path' => $absolute_theme_path,
           'identifier' => $vars['identifier'],
-          'pages' => array(),
           'sequence_count' => $sequence_count,
           'sequence_number' => $vars['book_page_sequence_number'],
-          'pages_in_view' => $pages_in_view,
-          'components' => array (),
         ),
       );
 	  
@@ -329,14 +343,8 @@ function dlts_book_preprocess_node(&$vars) {
 	  in_array('dlts_book_page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node')) ? dlts_book_add_search($vars, $js_data) : NULL;
 
       drupal_add_js($js_data, 'setting');
-
-      /** Prev page */
-      $vars['button_prevpage'] = $node->prevpage;
       
-      /** Next page */      
-      $vars['button_nextpage'] = $node->nextpage;
-      
-      /** Metadata button */
+      /** metadata button */
       $vars['button_metadata'] = _dlts_book_navbar_item(
         array(
           'title' => t('Metadata'),
@@ -346,7 +354,7 @@ function dlts_book_preprocess_node(&$vars) {
         )
       );
 
-      /** Fullscreen button */
+      /** fullscreen button */
       $vars['button_fullscreen'] = _dlts_book_navbar_item(
         array(
           'title' => t('Fullscreen'),
@@ -356,7 +364,7 @@ function dlts_book_preprocess_node(&$vars) {
         )
       );
       
-      /** Thumbnails button */
+      /** tumbnails button */
       $vars['button_thumbnails'] = _dlts_thumbnail_pager($vars);      
       
       /** Zoom in and out buttons */
@@ -455,14 +463,14 @@ function dlts_book_preprocess_field(&$vars) {
     foreach ($vars['items'] as $key => $value) {
       if (isset( $value['#markup'])) {
         preg_match('/\/(.*)\/(.*){1}_(.*).pdf{1}/', $value['#markup'], $matches);
-        if ( isset($matches) && isset( $matches[3]) ) {
-				  if ( $matches[3] == 'hi' ) {
-						$pdf_link_text = t('High-bandwidth');
-				  }
-				  else {
-					  $pdf_link_text = t('Low-bandwidth');
-				  }
-          $vars['items'][$key]['#markup'] = '<span class="field-item pdf-'. $matches[3] .'">' . l( $pdf_link_text, $value['#markup']) . '</span>';
+        if (isset($matches) && isset( $matches[3])) {
+		  if ($matches[3] == 'hi') {
+		    $pdf_link_text = t('High-bandwidth');
+          }
+          else {
+            $pdf_link_text = t('Low-bandwidth');
+          }
+          $vars['items'][$key]['#markup'] = '<span class="field-item pdf-'. $matches[3] .'">' . l($pdf_link_text, $value['#markup']) . '</span>';
         }
       }
     }
@@ -483,29 +491,13 @@ function _dlts_book_slider($variables = array( 'id' => NULL, 'sequence_number' =
 }
 
 function _dlts_thumbnail_pager($vars) {
-  if ( ($vars['type'] == 'dlts_book_page') || ($vars['type'] == 'dlts_book_stitched_page') )  {
-    $thumbnails_path = '';
-    $thumbs_num = 16;
-    $pagenid = $vars['node']->nid;
+  if (($vars['type'] == 'dlts_book_page') || ($vars['type'] == 'dlts_book_stitched_page')) {
+  	
+    /** Include utilities files */
+    module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book_page');
 
-		$book_id = field_get_items('node', $vars['node'], 'field_is_part_of');
-    $thumbnails_path = 'books/' . $book_id[0]['value'] . '/pages';
+    return '<li class="navbar-item">' . l('<span>' . t('Thumbnails View') . '</span>', 'books/' . dlts_utilities_book_page_get_identifier($vars['node']) . '/pages', array('attributes' => array('title' => t('Thumbnails'), 'id' => 'button-thumbnails', 'class' => array('button', 'thumbnails')), 'html' => TRUE)) . '</li>';
 
-    if ($vars['type'] == 'dlts_book_page') {
-      $page_num = $vars['book_page_sequence_number'];
-    }
-    else {
-      $field_sequence_number  = field_get_items('node', $vars['node'], 'field_sequence_number_left');
-      $page_num = $field_sequence_number[0]['value'];    
-    }
-
-    // 24 = count of items per view; -1 = pa
-    $pager_count = (ceil((int)$page_num / $thumbs_num) - 1);
-
-    return '<li class="navbar-item">' . l( '<span>' . t('Thumbnails View') . '</span>', $thumbnails_path, array('query' => array('page' => $pager_count, 'pnid' => $pagenid ), 'attributes' => array('title' => t('Thumbnails'), 'id' => 'button-thumbnails', 'class' => array('button', 'thumbnails')), 'html' => TRUE)) . '</li>';
-  }
-  else {
-    return NULL;
   }
 }
 
@@ -574,7 +566,7 @@ function dlts_book_dlts_book_pager_button($arguments) {
       }
       break;
         
-    default: //includes toggle button
+    default: // includes toggle button
       
       return '<li class="navbar-item">' . l('<span>' . $arguments['text'] . '<span>', $arguments['url'], $arguments) . '</li>';
       break;
@@ -584,24 +576,6 @@ function dlts_book_dlts_book_pager_button($arguments) {
 
 function dlts_book_dlts_book_pager_button_inactive($arguments) {
   return '<div class="paging-control"><span class="' . $arguments['attributes']['class'] . '" title="' . $arguments['attributes']['title'] . '">' . $arguments['attributes']['title'] . '</span></div>';
-}
-
-function dlts_book_dlts_image_formatter_thumbnail_nodelink($element) {
-
-  // Inside a view $element may contain null data. In that case, just return.
-  if (empty($element['#item']['fid'])) {
-    return '';
-  }
-
-  $node = $element['#node'];
-  $imagetag = theme('dlts_image_formatter_thumbnail', $element);
-
-  $nodePath = 'node/'. $node->nid;
-
-  if ( isset($_GET['pnid']) ) {
-    $class = 'dlts-image dlts-image-nodelink dlts-image-'. $element['#field_name'] . ( $_GET['pnid'] ==  $element['#node']->nid ? ' active' : '' );
-    return l( $imagetag, $nodePath, array('attributes' => array('class' => $class), 'html' => TRUE ) );
-  }
 }
 
 function dlts_book_preprocess_search_result(&$variables) {
@@ -634,83 +608,27 @@ function dlts_book_preprocess_search_result(&$variables) {
     $variables['services_image'] = $variables['result']['fields']['xs_services_image'];
   }
   
-  if (isset($variables['result']['fields']['bundle']) && $variables['result']['fields']['bundle'] == 'dlts_book' ) {
-        
+  if (isset($variables['result']['fields']['bundle']) && $variables['result']['fields']['bundle'] == 'dlts_book') {
     $variables['url'] = url('books/' . $variables['result']['fields']['ss_identifer'], array('absolute' => TRUE));
-
     if (isset($variables['result']['fields']['ss_identifer'])) {
       $variables['book_alias'] = l('Read book', 'books/' . $variables['result']['fields']['ss_identifer'], array('attributes' => array('class' => array('button', 'icon', 'book'))));
     }
-    
   }
   
-}
-
-function theme_mustache_search_results() {
-  $output = '
-    <div class="book-pane-options-search-result results results-{{entity_id}} results-{{bundle}}" data-url="{{link}}" data-page="{{link}}">
-      <div>
-        <table>
-          <tbody>
-            <tr>
-              <td class="book-pane-options-search-result-snippet-cell">
-                <div class="book-pane-options-search-result-snippet" role="link">
-                  <div>{{{snippet}}}</div>
-                </div>
-              </td>
-              <td class="book-pane-options-search-result-page-cell">{{its_field_sequence_number}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>';
-  return $output;
-}
-
-function theme_micro_search_result() {
-	$output = '
-    <div class="book-pane-options-search-result results results-<%= data.entity_id %>" data-url="<%= data.link %>" role="link">
-      <div>
-        <table>
-          <tbody>
-            <tr>
-              <td class="book-pane-options-search-result-snippet-cell">
-                <div class="book-pane-options-search-result-snippet">
-                  <div><%== data.snippet %></div>
-                </div>
-              </td>
-              <td class="book-pane-options-search-result-page-cell"><%= data.its_field_sequence_number %></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>';
-	return $output;
-}
-
-function theme_yui3_thumbnails() {
-  $output = '
-    <div class="yui3-g pane thumbnails hidden">
-      <div class="yui3-u-1">
-        <div class="yui3-g">
-          <div class="thumbnails-container yui3-u-1 yui3-thumbnails-loading"></div>
-        </div>
-      </div>
-    </div>';
-  return $output;
 }
 
 /** Add search pane to the book */
 function dlts_book_add_search(&$vars, &$js_data) {
 
   $placeholder = t('Find in this issue');
+
   $searchHasTerms = 0;
   
   /** book absolute-path */  
   $book_url = url('node/' . $vars['book_nid'], array('absolute' => true ));
-  
+
   $uri = drupal_parse_url(request_uri());
-      
+
   if (module_exists('dlts_solr') && user_access('search content')) {
     
     drupal_add_js( drupal_get_path('theme', 'dlts_book') . '/js/ui.search.yui.js', array('type' => 'file', 'scope' => 'footer', 'weight' => 6));
@@ -731,12 +649,12 @@ function dlts_book_add_search(&$vars, &$js_data) {
       	  'no_found' => '<div class="pane results-no-found">' . t('No results found') . '</div>',
       	),
       	'templates' => array(
-      	  'result' => theme_micro_search_result(),
+      	  'result' => theme('micro_search_result', array()),
       	),
       ),
     );
     
-    $js_data['search'] += array( 'searchTerms' => ( ($searchHasTerms) ? $placeholder : false) );
+    $js_data['search'] += array('searchTerms' => ( ($searchHasTerms) ? $placeholder : false));
         
     /** Add search button */ 
     $vars['button_search'] = _dlts_book_navbar_item(
@@ -747,7 +665,7 @@ function dlts_book_add_search(&$vars, &$js_data) {
         'fragment' => 'search',
       )
     );
-        
+
     $search = module_invoke('search', 'block_view', 'search');
     $search['content']['search_block_form']['#attributes']['value'] = '';
     $search['content']['search_block_form']['#attributes']['placeholder'] = $placeholder;
@@ -756,12 +674,8 @@ function dlts_book_add_search(&$vars, &$js_data) {
       $search['content']['#action'] = substr($uri['path'], 0, strrpos($uri['path'], '/')) . '/search'; 
     }
 
-    $vars['search_box'] = ''
-      . '<div id="pane-search" class="pane-search pane search pane-shadow'. ( $searchHasTerms ? '' : ' hidden search-hidden' ) . '">' 
-      . render($search)
-      . '<div class="pane search-container"><div id="pane-search-results-area-results" class="pane-search-content pane results-area"></div></div>'
-      . '</div>';
-    }
+    $vars['search_box'] = '<div id="pane-search" class="pane-search pane search pane-shadow'. ( $searchHasTerms ? '' : ' hidden search-hidden' ) . '">' . render($search) . '<div class="pane search-container"><div id="pane-search-results-area-results" class="pane-search-content pane results-area"></div></div></div>';
+  }
 }
 
 /*
@@ -769,11 +683,15 @@ function dlts_book_add_search(&$vars, &$js_data) {
  * See: http://api.drupal.org/api/drupal/includes--theme.inc/function/theme_html_tag/7
  */
 function dlts_book_html_tag($variables) {
+  	
   $element = $variables['element'];
-  $attributes = isset($element['#attributes']) ? drupal_attributes($element['#attributes']) : '';
+  
+  $attributes = isset($element['#attributes']) ? drupal_attributes($element['#attributes']) : NULL;
+  
   if (!isset($element['#value'])) {
     return '<' . $element['#tag'] . $attributes . ' />';
   }
+
   else {
     $output = '<' . $element['#tag'] . $attributes . '>';
     if (isset($element['#value_prefix'])) {
@@ -794,14 +712,9 @@ function dlts_book_process_views_view(&$vars) {
   $theme_path = drupal_get_path('theme', 'dlts_book');
   
   /** View */
-  $view = $vars['view'];  
+  $view = $vars['view'];
   
   if ($view->name == 'books') {
-    if (dlts_utilities_is_pjax()) {
-      $vars['theme_hook_suggestion'] = 'views_view__pjax_collection_books';
-    }
-    else {
-      drupal_add_js($theme_path . '/js/ui.items.view.js', array('type' => 'file', 'scope' => 'footer', 'weight' => 7));
-    }
+    drupal_add_js($theme_path . '/js/ui.items.view.js', array('type' => 'file', 'scope' => 'footer', 'weight' => 7));
   }
 }

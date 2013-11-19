@@ -1,0 +1,6 @@
+# Ignore configuration files that may contain sensitive information.
+
+.DS_Store
+.project
+.sass-cache
+css/*.css
