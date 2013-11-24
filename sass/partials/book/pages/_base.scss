@@ -8,23 +8,25 @@ html {
   
   height: 100%;
   width: 100%;
+  overflow: hidden;
   
-  &.node-type-dlts-book-page, &.node-type-dlts-book-stitched-page {
-    body, 
-    #page, 
+  &.node-type-dlts-book-page, 
+  &.node-type-dlts-book-stitched-page {
+    body,
+    #page,
     #main-wrapper,
-    #page-wrapper, 
-    #main, 
-    #content, 
-    #content .section, 
+    #page-wrapper,
+    #main,
+    #content,
+    #content .section,
     #content .section .region-content, 
-    #block-system-main, 
-    #block-system-main .content, 
-    .node-dlts-book-page, 
+    #block-system-main,
+    #block-system-main .content,
+    .node-dlts-book-page,
     #book-leaf {
-      overflow: hidden;
-      height: 100%;
-      width: 100%;
+      overflow: inherit;
+      height: inherit;
+      width: inherit;
     }
   }
   
@@ -97,14 +99,7 @@ body.page-node .node-page {
   background:none !important;
 }
 
-/** GB - April 10, 2013 */
-
-$lib-red:#952c2f;
-$lib-brown:#623e24;
-$teaser-color:#E0D7C9;
-$dkgrey:#333;
-
-@mixin gradient($start-color, $end-color){
+@mixin gradient($start-color, $end-color) {
   background: $start-color; /* Old browsers */
   background: -moz-linear-gradient(left, $start-color 0%, $end-color 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,$start-color), color-stop(100%,$end-color)); /* Chrome,Safari4+ */
@@ -128,27 +123,8 @@ i, em {
   }
 }
 
-.front .content.body {
-  background-color: $teaser-color;
-  color:$dkgrey;
-  padding-top: 3em;
-}
-.front .description {
-  padding-bottom:0;
-  p {
-    width:90%;
-  }
-}
-
-.front .pane.right .links a:link, .front .pane.right .links a:visited {
-  color:$dkgrey;
-  margin-right:.5em;
-  &:hover {
-    color:$lib-red;
-  }
-}
-
-html.page-search-site form .form-text, html.front form .form-text {
+html.page-search-site form .form-text,
+html.front form .form-text {
   height: 22px;
   @include box-shadow(none);
 }
@@ -173,17 +149,8 @@ html.page-search-site form .form-text, html.front form .form-text {
   padding:.25em 0;
 }
 
-.yui3-carousel-container .carousel-container .yui3-carousel-nav, #pager {
-  background-image:none;
-}
-
 #pager {
   border-top: 1px solid gray;
-}
-
-#pagemeta {
-  border-right:none;
-  @include box-shadow(none);
 }
 
 .yui3-u-1 {

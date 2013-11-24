@@ -1,6 +1,27 @@
 @import "partials/book/defaults/_variables";
 @import "partials/themeable/_variables";
 
+.front .content.body {
+  background-color: $teaser-color;
+  color:$dkgrey;
+  padding-top: 3em;
+}
+
+.front .description {
+  padding-bottom:0;
+  p {
+    width:90%;
+  }
+}
+
+.front .pane.right .links a:link, .front .pane.right .links a:visited {
+  color:$dkgrey;
+  margin-right:.5em;
+  &:hover {
+    color:$lib-red;
+  }
+}
+
 .front {
   height: auto;
   overflow-y: auto !important;
@@ -96,5 +117,5 @@
   }  
   .pane-search-header {
     padding-top: 0;
-  } 
+  }
 }

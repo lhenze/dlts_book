@@ -24,6 +24,7 @@ function dlts_book_js_alter(&$javascript) {
   $exclude = array();
   
   $site_path = str_replace('themes/dlts_book', '', drupal_get_path('theme', 'dlts_book'));
+  
   $settings = drupal_array_merge_deep_array($javascript['settings']['data']);
   
   if (!user_access('access administration pages')) {
@@ -404,53 +405,7 @@ function dlts_book_menu_local_task($variables) {
   }
 
   return '<li class="' . $link_class . (!empty($variables['element']['#active']) ? ' active' : '') . '">' . l($link_text, $link['href'], $link['localized_options']) . "</li>";
-  
-}
 
-function dlts_book_dlts_image_hires($variables) {
-  
-  $file = $variables['file'];
-  $module_path = drupal_get_path('module', 'dlts_image');
-  $fid = 'id-'. $file['fid'];
-  $fileUri = file_create_url($file['uri']);
-  drupal_add_css($module_path . '/css/dlts_image.css');
- 
-  /** Add Openlayers to the page */
-  drupal_add_js( variable_get( 'dlts_image_openlayers_source', 'sites/all/libraries/openlayers/lib/OpenLayers.js'), array('group' => JS_LIBRARY));
-
-  $openlayers_options = array(
-    'service' => variable_get('dlts_image_djatoka_service', ''),
-    'imgMetadata' => array(
-      'width' => $file['djakota_width'],
-      'height' => $file['djakota_height'],
-      'levels' => $file['djakota_levels'],
-      'dwtLevels' => $file['djakota_dwtLevels'],
-      'compositingLayerCount' => $file['djakota_compositingLayerCount']
-    ),
-  );
-  
-  $file['zoom'] = 1;
-  
-  if (isset($file['zoom'])) {
-    $openlayers_options['zoom'] = $file['zoom'];
-  }
-
-  $js_inline = '(function(O){O.DLTS.Page("'. $fid .'","'.  $fileUri .'",'. json_encode($openlayers_options) .')})(OpenLayers);';
-
-  $js_options = array(
-    'group' => JS_DEFAULT,
-    'type' => 'inline',
-    'every_page' => FALSE,
-    'weight' => 5,
-    'scope' => 'footer',
-    'cache' => TRUE,
-    'defer' => TRUE,
-  );
-  
-  drupal_add_js($js_inline, $js_options);
-
-  return '<div id="' . $fid . '" class="dlts_image_map olMap" data-uri="'. $fileUri .'" data-width="'. $file['djakota_width'] .'" data-height="'. $file['djakota_height'] .'" data-levels="'. $file['djakota_levels'] .'" data-dwtLevels="'. $file['djakota_dwtLevels'] .'" data-compositing-layer="'. $file['djakota_compositingLayerCount'] .'"></div>';
-  
 }
 
 /**
