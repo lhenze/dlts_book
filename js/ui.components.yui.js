@@ -53,6 +53,24 @@ Y.use(
     /** add view port information to global setting */
     book.viewport = Y.DOM.viewportRegion();
 
+    function resizePageMeta() {
+
+        var h = this.get('winHeight');
+        var t0 = 0;
+        if (Y.one('#admin-menu')) {
+            t0 = Y.one('#toolbar').get('offsetHeight') + Y.one('#admin-menu').get('offsetHeight') + Y.one('.tabs').get('offsetHeight') + 10;
+        }
+        var t1 = Y.one('#top').get('offsetHeight');
+        var t2 = Y.one('#navbar').get('offsetHeight');
+        var t3 = Y.one('#pager').get('offsetHeight');
+        var sidebarHeight = h - (t0 + t1 + t2 + t3);
+        Y.one('#pagemeta').setStyle('height', sidebarHeight + 'px');
+        Y.one('#pagemeta').setStyle('overflow-y', 'scroll');
+        console.log(sidebarHeight);
+    }
+    Y.on('contentready', resizePageMeta, '#pagemeta');
+    Y.on('windowresize', resizePageMeta, '#pagemeta');
+    
     on_button_click = function(e) {
 
         e.preventDefault();
