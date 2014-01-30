@@ -1,8 +1,4 @@
 #pagemeta {
-}
-
-
-#pagemeta {
   @include box-shadow(none);
   @include bv-box-shadow($metadata-box-shadow);
   border-right:none;
