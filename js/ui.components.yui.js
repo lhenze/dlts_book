@@ -1,3 +1,4 @@
+/* jshint laxcomma: true, unused: false */
 Y.use(
     'node'
   , 'event'
@@ -55,20 +56,28 @@ Y.use(
     book.viewport = Y.DOM.viewportRegion();
 
     resizePageMeta = function () {
+        
+        /** definition list start */
+        var viewportHeight = this.get('winHeight')
+          , adminBarHeight = 0
+          , topHeight = Y.one('#top').get('offsetHeight')
+          , navbarHeight = Y.one('#navbar').get('offsetHeight')
+          , pageHeight = Y.one('#pager').get('offsetHeight')
+          , nodeAdminMenu = Y.one('#admin-menu')
+          , sidebarHeight
 
-        var viewportHeight = this.get('winHeight');
-        var adminBarHeight = 0;
-        if (Y.one('#admin-menu')) {
-            adminBarHeight = Y.one('#toolbar').get('offsetHeight') + Y.one('#admin-menu').get('offsetHeight') + Y.one('.tabs').get('offsetHeight') + 10;
+          ; /** definition list end */
+
+        if (nodeAdminMenu) {
+            adminBarHeight = Y.one('#toolbar').get('offsetHeight') 
+                           + nodeAdminMenu.get('offsetHeight') 
+                           + Y.one('.tabs').get('offsetHeight') 
+                           + 10;
         }
-        var topHeight = Y.one('#top').get('offsetHeight');
-        var navbarHeight = Y.one('#navbar').get('offsetHeight');
-        var pageHeight = Y.one('#pager').get('offsetHeight');
-        var sidebarHeight = viewportHeight - (adminBarHeight + topHeight + navbarHeight + pageHeight);
-        Y.one('#pagemeta').setStyle('height', sidebarHeight + 'px');
-        Y.one('#pagemeta').setStyle('overflow-y', 'scroll');
+        sidebarHeight = viewportHeight - (adminBarHeight + topHeight + navbarHeight + pageHeight);
+        Y.one('#pagemeta').setStyles({'height' :  sidebarHeight,'overflow-y': 'scroll'});
         Y.log(sidebarHeight);
-    }
+    };
   
     on_button_click = function(e) {
 
