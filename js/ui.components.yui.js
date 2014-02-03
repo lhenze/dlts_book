@@ -75,8 +75,7 @@ Y.use(
                            + 10;
         }
         sidebarHeight = viewportHeight - (adminBarHeight + topHeight + navbarHeight + pageHeight);
-        Y.one('#pagemeta').setStyles({'height' :  sidebarHeight,'overflow-y': 'scroll'});
-        Y.log(sidebarHeight);
+        Y.one('#pagemeta').setStyles({'height' :  sidebarHeight});
     };
   
     on_button_click = function(e) {
