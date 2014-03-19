@@ -1,3 +1,4 @@
+/* jshint laxcomma: true, laxbreak: true, unused: false */
 Y.use(
     'node'
   , 'event'
@@ -30,6 +31,7 @@ Y.use(
    , pjax = new Y.Pjax({ container: '.pane.display' })
 
      /** callbacks */
+   , resizePageMeta
    , slide_value_change
    , pager_form
    , on_button_click
@@ -53,6 +55,29 @@ Y.use(
     /** add view port information to global setting */
     book.viewport = Y.DOM.viewportRegion();
 
+    resizePageMeta = function () {
+        
+        /** definition list start */
+        var viewportHeight = this.get('winHeight')
+          , adminBarHeight = 0
+          , topHeight = Y.one('#top').get('offsetHeight')
+          , navbarHeight = Y.one('#navbar').get('offsetHeight')
+          , pageHeight = Y.one('#pager').get('offsetHeight')
+          , nodeAdminMenu = Y.one('#admin-menu')
+          , sidebarHeight
+
+          ; /** definition list end */
+
+        if (nodeAdminMenu) {
+            adminBarHeight = Y.one('#toolbar').get('offsetHeight') 
+                           + nodeAdminMenu.get('offsetHeight') 
+                           + Y.one('.tabs').get('offsetHeight') 
+                           + 10;
+        }
+        sidebarHeight = viewportHeight - (adminBarHeight + topHeight + navbarHeight + pageHeight);
+        Y.one('#pagemeta').setStyles({'height' :  sidebarHeight});
+    };
+  
     on_button_click = function(e) {
 
         e.preventDefault();
@@ -216,7 +241,7 @@ Y.use(
             });
             
             Y.on('contentready', function() {
-            	
+                
                 Y.one('#page-title').setContent(config.title);
                 
                 Y.fire('openlayers:change', config);
@@ -230,7 +255,7 @@ Y.use(
     };
 
     pjax_navigate = function(e) {
-    	
+        
         var msg = e.url.replace(book.path + '/', '');
         
         if (/(^[\d]+$){1}/.test(msg)) {
@@ -284,8 +309,8 @@ Y.use(
             of the response DOM, replace the old ones */ 
         
         Y.one('.paging.previous').replace(node.one('.previous').cloneNode(true));
-        Y.one('.paging.next').replace(node.one('.next').cloneNode(true));	
-        Y.one('a.toogle').replace(node.one('.toogle').cloneNode(true));	
+        Y.one('.paging.next').replace(node.one('.next').cloneNode(true));   
+        Y.one('a.toogle').replace(node.one('.toogle').cloneNode(true)); 
         
         /** Configuration for the new book page */
         config = {
@@ -323,7 +348,9 @@ Y.use(
     slider.render('#slider');
     
     /** events listeners */
-   
+    Y.on('contentready', resizePageMeta, '#pagemeta');
+    Y.on('windowresize', resizePageMeta, '#pagemeta');
+
     slider.after('valueChange', slide_value_change, { datasource: slider_datasource, slider: slider });
 
     slider.after('slideEnd', slide_end, slider);
@@ -431,11 +458,11 @@ Y.use(
             
             this.one('.thumbnails-container').set('innerHTML', response.response);
 
-        	node = this.one('.sequence-number-' + current_book_page);
-        	
-        	if (node) {
-        	    node.addClass('active');
-        	}
+            node = this.one('.sequence-number-' + current_book_page);
+            
+            if (node) {
+                node.addClass('active');
+            }
 
         }
 
@@ -462,12 +489,12 @@ Y.use(
     
     Y.delegate('click', function(e) {
         e.halt();
-        location.href = location.href.replace(/\/$/, '') + '/edit'
+        location.href = location.href.replace(/\/$/, '') + '/edit';
     }, '.node-type-dlts-book-page', '.tabs li.edit a');
 
     Y.delegate('click', function(e) {
         e.halt();
-        location.href = location.href.replace(/\/$/, '')
+        location.href = location.href.replace(/\/$/, '');
     }, '.node-type-dlts-book-page', '.tabs li.view a');
 
 });
