@@ -178,6 +178,9 @@ function dlts_book_process_page(&$vars) {
 
 /** See: http://api.drupal.org/api/drupal/includes%21theme.inc/function/template_process_page/7 */
 function dlts_book_preprocess_page(&$vars) {
+
+  /** node object */
+  $read_order =  isset($vars['node']) ? dlts_utilities_book_page_get_read_order($vars['node']) : 0;
   
   $browser = dlts_utilities_browser_info();
 
@@ -215,6 +218,8 @@ function dlts_book_preprocess_page(&$vars) {
       'theme_path' => $absolute_theme_path,
     ),
   );
+      
+  $vars['read_order'] = ($read_order == 1) ? 'rtl' : 'ltr';  
 
   drupal_add_js($js_data, 'setting');
   
@@ -366,7 +371,22 @@ function dlts_book_preprocess_node(&$vars) {
       );
       
       /** tumbnails button */
-      $vars['button_thumbnails'] = _dlts_thumbnail_pager($vars);      
+      $vars['button_thumbnails'] = _dlts_thumbnail_pager($vars);
+      
+      $read_order = dlts_utilities_book_page_get_read_order($node);
+      
+      $vars['read_order'] = ($read_order == 1) ? 'rtl' : 'ltr';
+      
+      /** fullscreen button */
+      $vars['button_language'] = _dlts_book_navbar_item(
+        array(
+          'title' => t('Toggle language'),
+          'path' => 'node/' . $node->nid,
+          'attributes' => array('data-title' => t('Toggle language'), 'title' => t('Toggle language'), 'class' => array('button', 'language'), 'id' => array('button-language')),
+          'fragment' => 'language',
+        )
+      );
+      
       
       /** Zoom in and out buttons */
       $vars['control_panel'] = '

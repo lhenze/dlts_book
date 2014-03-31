@@ -96,42 +96,6 @@ body.page-books .view-books {
         
   }
 
-  td {
-    width:12.5%;
-    padding:.25%;
-    vertical-align:top;
-    height:100px;
-    
-    img {
-      width:100%;
-      min-width:70px;
-      max-width:200px;
-      @include bv-box-shadow($pane-box-shadow);
-    }
-    
-    span {
-      z-index:100;
-      font-size:1.1em;  
-      position:relative;
-      color:#eee;
-      letter-spacing:.05em;
-      @include bv-text-shadow(raised-text-shadow-dark-background);
-    }
-
-    .page-number {
-      bottom:32%;
-      left:0%;
-      padding:3% 6% ; 
-      margin-bottom:-68%;
-      font-weight:bold;
-      @include border-top-right-radius(10px);
-      background:rgba(0,0,0,.33);
-    }
-    
-    .page-number:hover {
-      background:rgba(0,0,0,.5);
-    }
-  }
 }
 
 .pane {
@@ -176,27 +140,49 @@ body.page-books .view-books {
         vertical-align: top;        
       }
       
-      img {
-        width:100%;
-        min-width:70px;
-        max-width:150px;
-        @include bv-box-shadow($pane-box-shadow);
-      }
-      
-      .page-number {
-        bottom:32%;
-        left:0%;
-        padding:3% 6% ; 
-        margin-bottom:-68%;
-        font-weight:bold;
-        @include border-top-right-radius(10px);
-        background:rgba(0,0,0,.33);
-      }
-    
-      .page-number:hover {
-        background:rgba(0,0,0,.5);
-      }
 
     }
   }
+}
+
+
+.view-book-thumbnails {
+
+    .views-row {
+      width: 150px;
+      margin: 5px;
+      display: inline-block;
+      float:left;
+    }
+  
+    .views-row.first {    
+      margin-left: 10px;
+    }
+
+    img {
+      width:100%;
+      min-width:70px;
+      max-width:150px;
+      @include bv-box-shadow($pane-box-shadow);
+    }
+      
+    .page-number {
+      bottom:32%;
+      left:0%;
+      padding:3% 6% ; 
+      margin-bottom:-68%;
+      font-weight:bold;
+      @include border-top-right-radius(10px);
+      background:rgba(0,0,0,.33);
+    }
+    
+    .page-number:hover {
+      background:rgba(0,0,0,.5);
+    }
+
+}
+
+.rtl .view-book-thumbnails .views-row {
+  direction: rtl;
+  float:right;
 }

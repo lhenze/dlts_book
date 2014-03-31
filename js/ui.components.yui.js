@@ -42,6 +42,7 @@ Y.use(
    , pjax_load
    , on_mousemove_over_slider_rail
    , on_mouseleave_slider_rail
+   , on_toggle_language
 
 
      /** book global settings; the object that represent the current book and settings */
@@ -383,6 +384,10 @@ Y.use(
         this.addClass('hidden');
         this.ancestor('.pane-body').addClass('pagemeta-hidden');
     }, pane_pagemeta);
+    
+    Y.on('button:button-language:toggle', function(e) {
+      Y.log('button:button-language:toggle');
+    });
 
     Y.on('button:button-fullscreen:on', function(e) {
         Y.fire('button:' + this.button.get('id') + ':off', this.pagemeta);
@@ -422,10 +427,10 @@ Y.use(
           , pane = Y.one('.view-book-thumbnails')
 
             /** maximum width of each column */
-          , columns_max_width = 200
+          , columns_max_width = 150
 
             /** minimum width of each column */
-          , columns_min_width = 180
+          , columns_min_width = 70
 
             /** columns per pager page; the weird looking math is a fancy/faster way to achieve Math.floor() */
           , pager_count = (book.viewport.width / columns_max_width)|0
@@ -437,7 +442,7 @@ Y.use(
           , book_thumbnails_page = Math.ceil(current_book_page / pager_count) - 1;
           
         /** @TODO: this is ugly and syntactically uglier because we need a better solution */
-        // if (columns_width > columns_max_width || columns_width < columns_min_width ) ( ( columns_width = columns_max_width ) && ( pager_count = pager_count - 1 ) );
+        if (columns_width > columns_max_width || columns_width < columns_min_width ) ( ( columns_width = columns_max_width ) && ( pager_count = pager_count - 1 ) );
 
         this.removeClass('hidden');
         

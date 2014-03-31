@@ -19,8 +19,8 @@
     <ul class="navbar navbar-right">
       <?php if (isset( $prevpage)) : print '<li class="navbar-item">' . $prevpage . '</li>'; endif; ?>      
       <?php if (isset( $nextpage)) : print '<li class="navbar-item">' . $nextpage . '</li>'; endif; ?>
-      <?php if (isset($button_annotations)) : print $button_annotations; endif; ?>
-      <?php if (isset($button_search)) : print $button_search; endif; ?>
+      <?php // if (isset($button_language)) : print $button_language; endif; ?>
+      <?php if (isset($button_search)) : print $button_search; endif; ?>      
     </ul>
   </div>
   <div id="main" class="pane main">

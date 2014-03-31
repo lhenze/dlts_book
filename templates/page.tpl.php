@@ -1,4 +1,4 @@
-<div id="page" class="page">
+<div id="page" class="page <?php if ($read_order) : print $read_order; endif; ?>">
   <div id="top" class="pane top yui3-g">
     <div class="yui3-u-1">
       <?php if ($messages) : ?>
