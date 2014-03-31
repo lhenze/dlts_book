@@ -182,7 +182,43 @@ body.page-books .view-books {
 
 }
 
-.rtl .view-book-thumbnails .views-row {
-  direction: rtl;
-  float:right;
+.rtl {
+
+  .thumbnails-container {
+
+    .pager-first, 
+    .pager-last {
+      display: none;
+      visibility: hidden;
+    }    
+    
+    .pager-first, 
+    .pager-previous {
+      float:right;
+    }
+    
+    .pager-last, 
+    .pager-next {
+      float:right;
+    }
+    
+    .pager-next a:before {
+      content: "\e013" !important;
+    }
+     
+    .pager-previous a:before {
+      content: "\e012" !important;
+    }    
+
+  }
+  
+  .view-book-thumbnails {
+  
+    .views-row {
+      direction: rtl;
+      float:right;
+    }
+  
+  }  
+  
 }
