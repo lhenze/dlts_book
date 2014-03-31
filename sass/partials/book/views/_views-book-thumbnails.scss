@@ -188,8 +188,6 @@ body.page-books .view-books {
 
     .pager-first, 
     .pager-last {
-      display: none;
-      visibility: hidden;
     }    
     
     .pager-first, 
@@ -209,6 +207,14 @@ body.page-books .view-books {
     .pager-previous a:before {
       content: "\e012" !important;
     }    
+
+   .pager-last a:before {
+     content: "\e010";
+   }
+   
+   .pager-first a:before {
+     content: "\e011";
+   }   
 
   }
   
