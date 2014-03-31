@@ -179,6 +179,9 @@ function dlts_book_process_page(&$vars) {
 /** See: http://api.drupal.org/api/drupal/includes%21theme.inc/function/template_process_page/7 */
 function dlts_book_preprocess_page(&$vars) {
 
+  /** Include utilities files */
+  module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book_page');
+
   /** node object */
   $read_order =  isset($vars['node']) ? dlts_utilities_book_page_get_read_order($vars['node']) : 0;
   
@@ -267,6 +270,7 @@ function dlts_book_preprocess_node(&$vars) {
         case 'metadata':
            // Remove Book title from metadata pane
           unset($vars['title']);
+          
           break;
 
 		case 'teaser' :
@@ -433,6 +437,7 @@ function dlts_book_menu_local_task($variables) {
  * We might want to move this since this is specific to The Masses
  */
 function dlts_book_preprocess_field(&$vars) {
+
   if ($vars['element']['#field_name'] == 'field_pdf_file') {
     $vars['label'] = t('Download PDF');
     foreach ($vars['items'] as $key => $value) {
@@ -450,11 +455,13 @@ function dlts_book_preprocess_field(&$vars) {
       }
     }
   }
+  
   if ($vars['element']['#field_name'] == 'field_language_code') {
     // Run the language code through dlts_book_language() to get a human readable language type from IA the language code
     // Label is changed in field--field-language-code--dlts-book.tpl.php
     $vars['items']['0']['#markup'] = dlts_book_language($vars['items']['0']['#markup'] );
   }
+  
 }
 
 function _dlts_book_navbar_item($variables = array()) {
