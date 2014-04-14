@@ -264,13 +264,19 @@ function dlts_book_preprocess_node(&$vars) {
 		
 	  /** node object */
       $node = $vars['node'];
+      
+      $vars['languages'] = '';
 
       switch ($vars['view_mode']) {
 
         case 'metadata':
            // Remove Book title from metadata pane
           unset($vars['title']);
-          
+
+          foreach (translation_path_get_translations('node/' . $node->nid) as $key => $index) {
+            $vars['languages'] .= l($key, $index, array('attributes' => array('class' => array('language', $key))));
+          }
+
           break;
 
 		case 'teaser' :
@@ -296,6 +302,7 @@ function dlts_book_preprocess_node(&$vars) {
 
       /** Node object */
       $node = $vars['node'];
+      
 
       /** Page title */
       $vars['page_title'] = $node->title;

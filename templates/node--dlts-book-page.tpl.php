@@ -24,7 +24,11 @@
     </ul>
   </div>
   <div id="main" class="pane main">
-    <div id="pagemeta" class="pane pagemeta"><?php if (isset($book_nid)) : print views_embed_view('book_description', 'block', $book_nid); endif; ?></div>
+    
+    <div id="pagemeta" class="pane pagemeta">
+      <?php if (isset($book_nid)) : print views_embed_view('book_description', 'block', $book_nid); endif; ?>
+    </div>
+    
     <div id="display" class="pane display">
       <?php if ( isset( $prevpage ) ) : print $prevpage; endif; ?>
       <?php print render($content); ?>
