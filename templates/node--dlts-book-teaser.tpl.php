@@ -1,7 +1,3 @@
-<?php
-    hide($content['comments']);
-    hide($content['links']);
-?>
 <div class="<?php print $classes ?> views-g"<?php print $attributes ?>>
   <div <?php print $content_attributes ?>>
     <div class="views-u">

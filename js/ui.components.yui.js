@@ -76,8 +76,22 @@ Y.use(
                            + 10;
         }
         sidebarHeight = viewportHeight - (adminBarHeight + topHeight + navbarHeight + pageHeight);
+        
         Y.one('#pagemeta').setStyles({'height' :  sidebarHeight});
+        
     };
+    
+    on_toggle_language = function(e) {
+    	
+        var self = this
+          , current_target = e.currentTarget
+          , data_target = current_target.get('href');
+
+        e.preventDefault();
+      
+        Y.io.queue(data_target);
+
+    }    
   
     on_button_click = function(e) {
 
@@ -306,7 +320,7 @@ Y.use(
           , node = e.content.node
           , map = node.one('.dlts_image_map');
         
-        /** At this point we assume the new toogle / next / previous buttons are part 
+        /** At this point we assume the new toggle / next / previous buttons are part 
             of the response DOM, replace the old ones */ 
         
         Y.one('.paging.previous').replace(node.one('.previous').cloneNode(true));
@@ -350,6 +364,7 @@ Y.use(
     
     /** events listeners */
     Y.on('contentready', resizePageMeta, '#pagemeta');
+
     Y.on('windowresize', resizePageMeta, '#pagemeta');
 
     slider.after('valueChange', slide_value_change, { datasource: slider_datasource, slider: slider });
@@ -372,7 +387,7 @@ Y.use(
 
     Y.one('#page').delegate('click', pjax_callback, 'a.paging, a.toogle');
     
-    /** delegate click on book pages thumbnails links */
+    /** delegate click on book pages thumbnail links */
     Y.one('#page').delegate('click', pjax_callback, '.view-book-thumbnails a');    
 
     Y.on('button:button-metadata:on', function(e) {
@@ -472,6 +487,19 @@ Y.use(
         }
 
     }, Y, 'thumbnails');
+    
+    // Subscribe to "io.success" for thumbnails page requests.
+    Y.on('io:success', function (id, response, arg) {
+        var node;
+
+        if (arg === 'language') {      
+        	      
+            this.set('innerHTML', response.response);
+            
+            //Y.one('#page-title').set('innerHTML', this.one('.field-name-field-title .field-item').get('text'));
+        }
+
+    }, pane_pagemeta, 'language');
 
     Y.on('button:button-thumbnails:off', function(e) {
         this.addClass('hidden');
@@ -501,5 +529,7 @@ Y.use(
         e.halt();
         location.href = location.href.replace(/\/$/, '');
     }, '.node-type-dlts-book-page', '.tabs li.view a');
+    
+    Y.delegate('click', on_toggle_language, 'body', '.language', pane_pagemeta);    
 
 });

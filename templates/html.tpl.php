@@ -4,8 +4,7 @@
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>  
-  <?php print $scripts; ?>
-  <?php print $script; ?>  
+  <?php print $scripts; ?>  
 </head>
 <body id="pane-body" class="pane-body" <?php print $attributes;?>>
   <div id="skip-link"><a href="#page" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a></div>

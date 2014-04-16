@@ -27,7 +27,6 @@
  * @ingroup views_templates
  */
 ?>
-<h1>PJAX</h1>
 <div class="<?php print $classes; ?>">
   <?php print render($title_prefix); ?>
   <?php if ($title): ?>

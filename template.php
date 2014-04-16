@@ -78,6 +78,7 @@ function dlts_book_js_alter(&$javascript) {
  * @TODO: Need more work
  */
 function dlts_book_css_alter(&$css) {
+
   if (!user_access('access administration pages')) {
   
   $site_path = str_replace('themes/dlts_book', '', drupal_get_path('theme', 'dlts_book'));
@@ -146,11 +147,8 @@ function dlts_book_process_html(&$vars) {
   if (dlts_utilities_is_pjax()) {
     $vars['theme_hook_suggestions'][] = 'html__pjax';
   }
-  
   else {
-    $vars['script'] = dlts_utilities_get_script();
     $vars['classes'] = 'yui3-skin-sam pane html ' . $vars['classes'];  
-
   }
   
 }
@@ -164,6 +162,7 @@ function dlts_book_process_page(&$vars) {
   if (isset($vars['node'])) {
     $vars['classes_array'][] = $vars['node']->type;
   }
+
   // we need to do something about this, not sure is the right place to have it or the best way to do this or if we need this
   if (!dlts_utilities_is_pjax()) {
     $vars['breadcrumb'] = theme_get_setting('dlts_book_toggle_breadcrumb') ? $vars['breadcrumb'] : NULL;
@@ -182,13 +181,10 @@ function dlts_book_preprocess_page(&$vars) {
   /** Include utilities files */
   module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book_page');
 
-  /** node object */
-  $read_order =  isset($vars['node']) ? dlts_utilities_book_page_get_read_order($vars['node']) : 0;
-  
   $browser = dlts_utilities_browser_info();
 
   if (dlts_utilities_is_pjax()) {  
-    $vars['theme_hook_suggestions'][] = 'page__pjax__book__page';    
+    $vars['theme_hook_suggestions'][] = 'page__pjax__book__page';
     if (isset($vars['node']) ) {
       /** Fallback to AJAX and hash browsing in IE <= 9 */
   	  if (isset($browser['msie']) && $browser['msie'] < 10 && !isset($_GET['routed'])) {
@@ -202,7 +198,11 @@ function dlts_book_preprocess_page(&$vars) {
   if (isset($browser['msie']) && $browser['msie'] < 10) {
     drupal_add_js($theme_path . '/js/modules/history.js', array('group' => JS_LIBRARY, 'weight' => -101 ));
   }
-
+  
+  // this is breaking book nodes
+  // EntityMalformedException: Missing bundle property on entity of type node. in entity_extract_ids()
+  $read_order =  isset($vars['node']) ? dlts_utilities_book_page_get_read_order($vars['node']) : 0;
+  
   /** Theme path */
   $theme_path = drupal_get_path('theme', 'dlts_book');  
   
@@ -221,8 +221,8 @@ function dlts_book_preprocess_page(&$vars) {
       'theme_path' => $absolute_theme_path,
     ),
   );
-      
-  $vars['read_order'] = ($read_order == 1) ? 'rtl' : 'ltr';  
+
+  $vars['read_order'] = ($read_order == 1) ? 'rtl' : 'ltr';
 
   drupal_add_js($js_data, 'setting');
   
@@ -264,17 +264,17 @@ function dlts_book_preprocess_node(&$vars) {
 		
 	  /** node object */
       $node = $vars['node'];
-      
-      $vars['languages'] = '';
 
       switch ($vars['view_mode']) {
 
         case 'metadata':
-           // Remove Book title from metadata pane
-          unset($vars['title']);
 
+          $vars['languages'] = '';
+
+		  $vars['theme_hook_suggestions'][] = 'node__dlts_book_metadata';
+		  
           foreach (translation_path_get_translations('node/' . $node->nid) as $key => $index) {
-            $vars['languages'] .= l($key, $index, array('attributes' => array('class' => array('language', $key))));
+            $vars['languages'] .= l( $key, url( 'books/' . dlts_utilities_book_get_identifier($node) . '/display', array('absolute' => true)), array( 'query' => array( 'lang' => $key ), 'attributes' => array( 'class' => array('language', $key, (($node->language == $key) ? 'active' : 'translation') ))));
           }
 
           break;
@@ -302,11 +302,10 @@ function dlts_book_preprocess_node(&$vars) {
 
       /** Node object */
       $node = $vars['node'];
-      
 
       /** Page title */
       $vars['page_title'] = $node->title;
-
+      
       /** prev page */
       $vars['button_prevpage'] = $node->prevpage;
 
@@ -324,6 +323,12 @@ function dlts_book_preprocess_node(&$vars) {
 
       /** Load book */
       $book = dlts_utilities_book_page_load_book($node);
+	  
+	  $vars['button_languages'] = '';
+	  
+      foreach (translation_path_get_translations('node/' . $book->nid) as $key => $index) {
+        $vars['button_languages'] .= l( $key, url( 'books/' . $vars['identifier'] . '/display', array('absolute' => true)), array( 'query' => array( 'lang' => $key ), 'attributes' => array( 'class' => array('language', $key))));
+      }	  
 
       /** Book sequence count */
       $vars['sequence_count'] = $sequence_count = dlts_utilities_book_get_sequence_count($book);
@@ -355,7 +360,7 @@ function dlts_book_preprocess_node(&$vars) {
           'sequence_number' => $vars['book_page_sequence_number'],
         ),
       );
-	  
+
 	  // add search box if this dlts_book_page are selected as searchable in Apache Solr configuration 
 	  in_array('dlts_book_page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node')) ? dlts_book_add_search($vars, $js_data) : NULL;
 
@@ -397,7 +402,6 @@ function dlts_book_preprocess_node(&$vars) {
           'fragment' => 'language',
         )
       );
-      
       
       /** Zoom in and out buttons */
       $vars['control_panel'] = '
@@ -706,4 +710,5 @@ function dlts_book_process_views_view(&$vars) {
   if ($view->name == 'books') {
     drupal_add_js($theme_path . '/js/ui.items.view.js', array('type' => 'file', 'scope' => 'footer', 'weight' => 7));
   }
+
 }
