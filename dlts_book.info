@@ -2,7 +2,7 @@ name = DLTS Book
 description = DLTS books provides a base theme for all of DLTS book publications.
 core = 7.x
 engine = phptemplate
-version = 2.0.2
+version = 2.0.5
 screenshot = screenshot.png
 
 stylesheets[all][] = css/dlts_book.css
