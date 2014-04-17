@@ -2,6 +2,12 @@
 
 function dlts_book_theme($existing, $type, $theme, $path) {
   return array(
+    'dlts_book_loading' => array(
+	  'template' => 'templates/dlts_book_loading',
+	  'variables' => array(
+	    'sequence_number' => 0,
+	  ),
+	),	  
     'dlts_book_yui3_thumbnails' => array(
 	  'template' => 'templates/dlts_book_yui3_thumbnails',
 	  'variables' => NULL,
@@ -238,6 +244,8 @@ function dlts_book_preprocess_node(&$vars) {
 
   module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book_page');
   
+  $isPJAX = dlts_utilities_is_pjax();
+  
   /** Theme absolute-path */
   $theme_path = drupal_get_path('theme', 'dlts_book');  
 
@@ -269,14 +277,18 @@ function dlts_book_preprocess_node(&$vars) {
 
         case 'metadata':
 
-          $vars['languages'] = '';
+          $languages = language_list('enabled');
 
+          $languages = $languages[1];
+          
 		  $vars['theme_hook_suggestions'][] = 'node__dlts_book_metadata';
 		  
-          foreach (translation_path_get_translations('node/' . $node->nid) as $key => $index) {
-            $vars['languages'] .= l( $key, url( 'books/' . dlts_utilities_book_get_identifier($node) . '/display', array('absolute' => true)), array( 'query' => array( 'lang' => $key ), 'attributes' => array( 'class' => array('language', $key, (($node->language == $key) ? 'active' : 'translation') ))));
-          }
-
+          $vars['lang_dir'] = ($languages[$node->language]->direction == 0) ? 'ltr' : 'rtl';
+      
+          $vars['lang_language'] = $languages[$node->language]->language;
+ 
+          $vars['lang_name'] = $languages[$node->language]->name;            
+		  
           break;
 
 		case 'teaser' :
@@ -299,10 +311,19 @@ function dlts_book_preprocess_node(&$vars) {
 
     case 'dlts_book_page' :
     case 'dlts_book_stitched_page' :
+    
+      /** Use node--dlts-book-page.tpl.php for both dlts_book_page and dlts_book_stitched_page content types */
+      $vars['theme_hook_suggestions'][] = ($isPJAX) ? 'node__dlts_book_pjax_page' : 'node__dlts_book_page';    
 
       /** Node object */
       $node = $vars['node'];
+      
+      $languages = language_list('enabled');
 
+      $languages = $languages[1];
+	  
+	  $vars['lang_dir'] = isset($languages[$node->language]) ? ($languages[$node->language]->direction == 0 ? 'ltr' : 'rtl') : 'ltr';
+	  
       /** Page title */
       $vars['page_title'] = $node->title;
       
@@ -323,12 +344,10 @@ function dlts_book_preprocess_node(&$vars) {
 
       /** Load book */
       $book = dlts_utilities_book_page_load_book($node);
-	  
-	  $vars['button_languages'] = '';
-	  
-      foreach (translation_path_get_translations('node/' . $book->nid) as $key => $index) {
-        $vars['button_languages'] .= l( $key, url( 'books/' . $vars['identifier'] . '/display', array('absolute' => true)), array( 'query' => array( 'lang' => $key ), 'attributes' => array( 'class' => array('language', $key))));
-      }	  
+      
+      if (!$isPJAX) {
+        $vars['metadata'] = node_view($book, 'metadata');
+      }
 
       /** Book sequence count */
       $vars['sequence_count'] = $sequence_count = dlts_utilities_book_get_sequence_count($book);
@@ -337,9 +356,8 @@ function dlts_book_preprocess_node(&$vars) {
       $vars['button_togglepage'] = $node->togglepage;
 
       $vars['thumbnails'] = theme('dlts_book_yui3_thumbnails');
-
-      /** Use node--dlts-book-page.tpl.php for both dlts_book_page and dlts_book_stitched_page content types */
-      $vars['theme_hook_suggestions'][] = (dlts_utilities_is_pjax()) ? 'node__dlts_book_pjax_page' : 'node__dlts_book_page';
+	  
+      $vars['loading'] = theme('dlts_book_loading', array('sequence_number' => $vars['book_page_sequence_number']));	  
 
       /** YUI conf */
       $js_yui_files_conf = array('type' => 'file', 'scope' => 'footer', 'weight' => 5);
@@ -392,16 +410,25 @@ function dlts_book_preprocess_node(&$vars) {
       $read_order = dlts_utilities_book_page_get_read_order($node);
       
       $vars['read_order'] = ($read_order == 1) ? 'rtl' : 'ltr';
-      
-      /** fullscreen button */
-      $vars['button_language'] = _dlts_book_navbar_item(
-        array(
-          'title' => t('Toggle language'),
-          'path' => 'node/' . $node->nid,
-          'attributes' => array('data-title' => t('Toggle language'), 'title' => t('Toggle language'), 'class' => array('button', 'language'), 'id' => array('button-language')),
-          'fragment' => 'language',
-        )
-      );
+	  
+	  $vars['button_language'] = '';
+	  
+      foreach (translation_path_get_translations('node/' . $book->nid) as $key => $index) {
+        $vars['button_language'] .= _dlts_book_navbar_item(
+          array(
+            'title' => $languages[$key]->native,
+            'path' => 'books/' . $vars['identifier'] . '/display',
+            'query' => array( 'lang' => $key ),
+            'attributes' => array(
+              'data-title' => t('@lang', array('@lang' => $languages[$key]->native)), 
+              'data-language' => $key,
+              'title' => t('@lang', array('@lang' => $languages[$key]->native)), 
+              'class' => array('language', $key), 
+              'id' => array('button-language-' . $key ),
+            ),
+          )
+        );
+	  }
       
       /** Zoom in and out buttons */
       $vars['control_panel'] = '
@@ -409,11 +436,11 @@ function dlts_book_preprocess_node(&$vars) {
           <div id="control-zoom-in" class="navbar-item" data-title="' . t('Zoom in') . '" title="' . t('Zoom in') . '"></div>
           <div id="control-zoom-out" class="navbar-item" data-title="' . t('Zoom out') . '" title="' . t('Zoom out') . '"></div>
         </div>';
-      
+
       $vars['pane_metadata_hidden'] = FALSE;
       
       /** YUI! 3 Slider container */
-      $vars['slider'] = _dlts_book_slider(array('id' => 'slider', 'sequence_number' => $vars['book_page_sequence_number'], 'sequence_count' => $sequence_count, 'collection_type' => $collection_type));
+      $vars['slider'] = _dlts_book_slider(array('id' => 'slider', 'lang_dir' => $vars['read_order'], 'sequence_number' => $vars['book_page_sequence_number'], 'sequence_count' => $sequence_count, 'collection_type' => $collection_type));
 
       break;
   }
@@ -476,11 +503,29 @@ function dlts_book_preprocess_field(&$vars) {
 }
 
 function _dlts_book_navbar_item($variables = array()) {
-  return '<li class="navbar-item">'. l('<span>' . $variables['title'] . '</span>', $variables['path'], array('fragment' => $variables['fragment'], 'attributes' => $variables['attributes'], 'html' => TRUE)) . '</li>';
+	
+  $parts = array(
+    'html' => TRUE
+  ); 
+  
+  if (isset($variables['fragment'])) {
+    $parts = array_merge($parts, array( 'fragment' => $variables['fragment']));
+  }
+
+  if (isset($variables['attributes'])) {
+    $parts = array_merge($parts, array('attributes' => $variables['attributes']));
+  }
+  
+  if (isset($variables['query'])) {
+    $parts = array_merge($parts, array('query' => $variables['query']));
+  }
+  
+  return '<li class="navbar-item">'. l('<span>' . $variables['title'] . '</span>', $variables['path'], $parts) . '</li>';
+  
 }
 
 function _dlts_book_slider($variables = array( 'id' => NULL, 'sequence_number' => 0, 'sequence_count' => 0 )) {
-  return '<div class="tooltip"></div><span id="'. $variables['id'] . '"></span><form><input id="slider_value" value="' . $variables['sequence_number'] . '"/></form></span> <span>/</span> <span class="sequence_count">' . $variables['sequence_count'] . '</span>';
+  return '<span id="'. $variables['id'] . '"></span><form><input id="slider_value" value="' . $variables['sequence_number'] . '"/></form></span> <span>/</span> <span class="sequence_count">' . $variables['sequence_count'] . '</span>';
 }
 
 function _dlts_thumbnail_pager($vars) {

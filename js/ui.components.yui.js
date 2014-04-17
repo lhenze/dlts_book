@@ -469,12 +469,12 @@ Y.use(
 
     // Subscribe to "io.success" for thumbnails page requests.
     Y.on('io:success', function (id, response, arg) {
+        var node;
 
         /** current book page */
         var current_book_page = Y.one('#slider_value').get('value');
 
         if (arg === 'thumbnails') {
-            var node;
             
             this.one('.thumbnails-container').set('innerHTML', response.response);
 
@@ -483,34 +483,39 @@ Y.use(
             if (node) {
                 node.addClass('active');
             }
-
         }
-
     }, Y, 'thumbnails');
-    
-    // Subscribe to "io.success" for thumbnails page requests.
+
+    // Subscribe to "io.success" for language page requests.
     Y.on('io:success', function (id, response, arg) {
-        var node;
+
+        var dir;
 
         if (arg === 'language') {      
-        	      
+        
             this.set('innerHTML', response.response);
-            
-            //Y.one('#page-title').set('innerHTML', this.one('.field-name-field-title .field-item').get('text'));
-        }
 
+            dir = this.one('.node-dlts-book').getAttribute('data-dir');
+
+            Y.one('.pane.main').set('dir', dir);
+
+            Y.one('.titlebar').set('dir', dir);
+
+            Y.one('#page-title').set('innerHTML', this.one('.field-name-field-title .field-item').get('text'));
+
+        }
     }, pane_pagemeta, 'language');
 
     Y.on('button:button-thumbnails:off', function(e) {
         this.addClass('hidden');
     }, Y.one('.pane.thumbnails'));
-    
+
     Y.once('contentready', function() {
         Y.later(1000, Y.one('.pane.load'), function() {
             this.hide();
         });
     }, '.dlts_image_map');
-    
+
     Y.delegate('click', function(e) {
         var currentTarget = e.currentTarget;
         

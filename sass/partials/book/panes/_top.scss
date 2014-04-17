@@ -22,6 +22,7 @@
 }
 
 .titlebar {
+
   margin:0;
   padding:0 .25em;
   background:$dark-background;
@@ -41,17 +42,24 @@
 	    margin: .2em;
     	line-height:1.33em;
     	font-style: normal;
-    	font-weight: normal;
-    	speak: none;
-    	-webkit-font-smoothing: antialiased;
-    	content: "\e00f";
-	  }
-	}
-	#page-title { 
-	  @include  bv-text-shadow(embossed-text-shadow-dark-background);  
+        font-weight: normal;
+        speak: none;
+        -webkit-font-smoothing: antialiased;
+        content: "\e00f";
+    }
+  }
+
+  &[dir="rtl"] {
+    .book {
+        float: right;
+     }
+  }
+	
+  #page-title { 
+    @include  bv-text-shadow(embossed-text-shadow-dark-background);  
 	  letter-spacing: .05em;
 	  color: $titlebar-color;
 	  line-height: 1.6em;
 	  font-size:1.6em;
-	}
+  }
 }
