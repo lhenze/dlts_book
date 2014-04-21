@@ -149,12 +149,8 @@ function dlts_book_css_alter(&$css) {
  * See: http://api.drupal.org/api/drupal/includes%21theme.inc/function/template_preprocess_html/7
  */
 function dlts_book_process_html(&$vars) {
-
   if (dlts_utilities_is_pjax()) {
     $vars['theme_hook_suggestions'][] = 'html__pjax';
-  }
-  else {
-    $vars['classes'] = 'yui3-skin-sam pane html ' . $vars['classes'];  
   }
   
 }
@@ -168,17 +164,19 @@ function dlts_book_process_page(&$vars) {
   if (isset($vars['node'])) {
     $vars['classes_array'][] = $vars['node']->type;
   }
+  
+  // if this is a pjax request return
+  if (dlts_utilities_is_pjax()) { return; }
 
-  // we need to do something about this, not sure is the right place to have it or the best way to do this or if we need this
-  if (!dlts_utilities_is_pjax()) {
-    $vars['breadcrumb'] = theme_get_setting('dlts_book_toggle_breadcrumb') ? $vars['breadcrumb'] : NULL;
-	if (in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))) {
-      $search = module_invoke('search', 'block_view', 'search');
-      $search['content']['search_block_form']['#attributes']['value'] = '';
-      $search['content']['search_block_form']['#attributes']['placeholder'] = t('Find in collection');
-      $vars['search'] = $search;
-	}
+  $vars['breadcrumb'] = theme_get_setting('dlts_book_toggle_breadcrumb') ? $vars['breadcrumb'] : NULL;
+  
+  if (in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))) {
+    $search = module_invoke('search', 'block_view', 'search');
+    $search['content']['search_block_form']['#attributes']['value'] = '';
+    $search['content']['search_block_form']['#attributes']['placeholder'] = t('Find in collection');
+    $vars['search'] = $search;
   }
+  
 }
 
 /** See: http://api.drupal.org/api/drupal/includes%21theme.inc/function/template_process_page/7 */
@@ -280,15 +278,60 @@ function dlts_book_preprocess_node(&$vars) {
           $languages = language_list('enabled');
 
           $languages = $languages[1];
-          
+
 		  $vars['theme_hook_suggestions'][] = 'node__dlts_book_metadata';
-		  
+
           $vars['lang_dir'] = ($languages[$node->language]->direction == 0) ? 'ltr' : 'rtl';
-      
+
           $vars['lang_language'] = $languages[$node->language]->language;
  
-          $vars['lang_name'] = $languages[$node->language]->name;            
+          $vars['lang_name'] = $languages[$node->language]->name;
 		  
+		  $translations = translation_path_get_translations('node/' . $node->nid);
+		  
+		  if (count($translations) > 1) {
+		  
+            $vars['lang_options'] = array(
+                                       '#type' => 'markup',
+                                       '#prefix' => '<select class="language">',
+                                       '#suffix' => '</select>',
+                                       '#markup' => '',
+								  );
+
+            foreach ($translations as $key => $index) {
+          	
+              $url = url(
+                'books/' . dlts_utilities_book_get_identifier($node) . '/display', 
+			    array(
+				  'absolute' => true, 
+				  'query' => array( 'lang' => $key )
+                )
+			  );
+			
+              $markup = array(
+                '#tag' => 'option',
+                '#theme' => 'html_tag',
+                '#attributes' => array(
+                  'data-title' => t('@lang', array('@lang' => $languages[$key]->native)),
+                  'data-language' => $key,
+                  'title' => t('@lang', array('@lang' => $languages[$key]->native)), 
+                  'class' => array('language', $key),
+			      'data-url' => $url,
+                  'value' => $url,
+                ),
+                '#value' => t('@lang', array('@lang' => $languages[$key]->native)),
+		      );
+			
+			  if ($vars['lang_language'] == $key) {
+			    $markup['#attributes']['selected'] = 'selected';	
+			  }
+			
+              $vars['lang_options']['#markup'] .= theme('html_tag', $markup); 
+										
+	        }
+	      }
+
+
           break;
 
 		case 'teaser' :
@@ -413,6 +456,7 @@ function dlts_book_preprocess_node(&$vars) {
 	  
 	  $vars['button_language'] = '';
 	  
+	  /**
       foreach (translation_path_get_translations('node/' . $book->nid) as $key => $index) {
         $vars['button_language'] .= _dlts_book_navbar_item(
           array(
@@ -429,6 +473,7 @@ function dlts_book_preprocess_node(&$vars) {
           )
         );
 	  }
+	  */
       
       /** Zoom in and out buttons */
       $vars['control_panel'] = '

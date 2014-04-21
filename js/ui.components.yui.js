@@ -83,15 +83,33 @@ Y.use(
     
     on_toggle_language = function(e) {
     	
-        var self = this
-          , current_target = e.currentTarget
-          , data_target = current_target.get('href');
+        var current_target = e.currentTarget
+          , data_target = current_target.get('value');
 
         e.preventDefault();
-      
-        Y.io.queue(data_target);
+        
+        Y.io(data_target, { 
+            on: {
+                complete: function(id, e) {
+            	
+                    var node = Y.one('#pagemeta')
+                      , dir;
 
-    }    
+                    node.set('innerHTML', e.response);
+
+                    dir = node.one('.node-dlts-book').getAttribute('data-dir');
+
+                    Y.one('.pane.main').set('dir', dir);
+
+                    Y.one('.titlebar').set('dir', dir);
+
+                    Y.one('#page-title').set('innerHTML', node.one('.field-name-field-title .field-item').get('text'));
+
+                } 
+            }
+        });        
+
+    }
   
     on_button_click = function(e) {
 
@@ -361,7 +379,7 @@ Y.use(
     /** render the slider and plug-ins */
     
     slider.render('#slider');
-    
+
     /** events listeners */
     Y.on('contentready', resizePageMeta, '#pagemeta');
 
@@ -400,10 +418,6 @@ Y.use(
         this.ancestor('.pane-body').addClass('pagemeta-hidden');
     }, pane_pagemeta);
     
-    Y.on('button:button-language:toggle', function(e) {
-      Y.log('button:button-language:toggle');
-    });
-
     Y.on('button:button-fullscreen:on', function(e) {
         Y.fire('button:' + this.button.get('id') + ':off', this.pagemeta);
         this.button.removeClass('on');
@@ -468,43 +482,22 @@ Y.use(
     }, Y.one('.pane.thumbnails'));
 
     // Subscribe to "io.success" for thumbnails page requests.
-    Y.on('io:success', function (id, response, arg) {
-        var node;
+    
+    Y.on('io:success', function (id, response) {
+    	
+        var node, current_book_page;
+           
+         /** current book page */
+         current_book_page = Y.one('#slider_value').get('value');
 
-        /** current book page */
-        var current_book_page = Y.one('#slider_value').get('value');
+         this.one('.thumbnails-container').set('innerHTML', response.response);
 
-        if (arg === 'thumbnails') {
+         node = this.one('.sequence-number-' + current_book_page);
             
-            this.one('.thumbnails-container').set('innerHTML', response.response);
-
-            node = this.one('.sequence-number-' + current_book_page);
-            
-            if (node) {
-                node.addClass('active');
-            }
-        }
-    }, Y, 'thumbnails');
-
-    // Subscribe to "io.success" for language page requests.
-    Y.on('io:success', function (id, response, arg) {
-
-        var dir;
-
-        if (arg === 'language') {      
-        
-            this.set('innerHTML', response.response);
-
-            dir = this.one('.node-dlts-book').getAttribute('data-dir');
-
-            Y.one('.pane.main').set('dir', dir);
-
-            Y.one('.titlebar').set('dir', dir);
-
-            Y.one('#page-title').set('innerHTML', this.one('.field-name-field-title .field-item').get('text'));
-
-        }
-    }, pane_pagemeta, 'language');
+         if (node) {
+             node.addClass('active');
+         }
+    }, Y.one('.pane.thumbnails'));
 
     Y.on('button:button-thumbnails:off', function(e) {
         this.addClass('hidden');
@@ -535,6 +528,6 @@ Y.use(
         location.href = location.href.replace(/\/$/, '');
     }, '.node-type-dlts-book-page', '.tabs li.view a');
     
-    Y.delegate('click', on_toggle_language, 'body', '.language', pane_pagemeta);    
-
+    Y.delegate('change', on_toggle_language, 'body', '.language', pane_pagemeta);
+    
 });
