@@ -12,6 +12,10 @@ function dlts_book_theme($existing, $type, $theme, $path) {
 	  'template' => 'templates/dlts_book_yui3_thumbnails',
 	  'variables' => NULL,
 	),
+    'dlts_book_yui3_multivolbooks' => array(
+	  'template' => 'templates/dlts_book_yui3_multivolbooks',
+	  'variables' => NULL,
+	),	
     'micro_search_result' => array(
 	  'template' => 'templates/dlts_book_micro_search_result',
 	  'variables' => array(
@@ -200,12 +204,22 @@ function dlts_book_preprocess_page(&$vars) {
   
   /** Enable some extra functionality (specifically PJAX) for old IE browsers */
   if (isset($browser['msie']) && $browser['msie'] < 10) {
+  	if (dlts_book_page)
     drupal_add_js($theme_path . '/js/modules/history.js', array('group' => JS_LIBRARY, 'weight' => -101 ));
   }
   
-  // this is breaking book nodes
-  // EntityMalformedException: Missing bundle property on entity of type node. in entity_extract_ids()
-  $read_order =  isset($vars['node']) ? dlts_utilities_book_page_get_read_order($vars['node']) : 0;
+  $read_order = 0;
+  
+  if (isset($vars['node'])) {
+	switch ($vars['node']->type) {
+	  case 'dlts_book_page' :
+	  case 'dlts_book' :
+      case 'dlts_book_stitched_page' :
+		$read_order = dlts_utilities_book_page_get_read_order($vars['node']);
+	    break;
+	}
+  }
+  
   
   /** Theme path */
   $theme_path = drupal_get_path('theme', 'dlts_book');  
@@ -265,16 +279,39 @@ function dlts_book_preprocess_node(&$vars) {
       $vars['bobcat'] = array('#markup' => l(t('BobCat record'), dlts_utilities_collection_bobcat_record(), array('attributes' => array('class' => array('link')))));
 
       break;
+	  
+    case 'dlts_multivol_book' :
+		
+	  /** node object */
+      $node = $vars['node'];
+	  
+      $vars['book_title'] = dlts_utilities_multivol_book_get_book_title($node);
+
+	  $vars['book_url'] = dlts_utilities_multivol_book_get_book_url($node);	  
+	  
+	  dlts_utilities_multivol_book_get_book_identifier($node);
+	  
+	  if ($isPJAX) {
+        $vars['theme_hook_suggestions'][] = 'node__dlts_book_multivolbooks';
+      }
+
+	  break;
 
     case 'dlts_book' :
 		
 	  /** node object */
       $node = $vars['node'];
-
+	  
       switch ($vars['view_mode']) {
+      	
+		case 'multivolbook':
+          
+          $vars['theme_hook_suggestions'][] = 'node__dlts_book_multivolbooks_pjax';
+
+		  break;
 
         case 'metadata':
-
+			
           $languages = language_list('enabled');
 
           $languages = $languages[1];
@@ -286,9 +323,9 @@ function dlts_book_preprocess_node(&$vars) {
           $vars['lang_language'] = $languages[$node->language]->language;
  
           $vars['lang_name'] = $languages[$node->language]->name;
-		  
+
 		  $translations = translation_path_get_translations('node/' . $node->nid);
-		  
+
 		  if (count($translations) > 1) {
 		  
             $vars['lang_options'] = array(
@@ -331,7 +368,6 @@ function dlts_book_preprocess_node(&$vars) {
 	        }
 	      }
 
-
           break;
 
 		case 'teaser' :
@@ -354,7 +390,7 @@ function dlts_book_preprocess_node(&$vars) {
 
     case 'dlts_book_page' :
     case 'dlts_book_stitched_page' :
-    
+
       /** Use node--dlts-book-page.tpl.php for both dlts_book_page and dlts_book_stitched_page content types */
       $vars['theme_hook_suggestions'][] = ($isPJAX) ? 'node__dlts_book_pjax_page' : 'node__dlts_book_page';    
 
@@ -387,9 +423,27 @@ function dlts_book_preprocess_node(&$vars) {
 
       /** Load book */
       $book = dlts_utilities_book_page_load_book($node);
-      
+
       if (!$isPJAX) {
+      	
         $vars['metadata'] = node_view($book, 'metadata');
+
+		$multivol_book = dlts_utilities_book_get_multivol_book($book);
+
+		if ($multivol_book) {
+
+          $vars['button_multibook'] = _dlts_book_navbar_item(
+            array(
+              'title' => t('View Related Titles'),
+              'path' => 'multivolume/' . dlts_utilities_multivol_book_get_multivol_nid($multivol_book),
+              'attributes' => array('data-title' => t('View Related Titles'), 'title' => t('Show/hide Related Titles'), 'class' => array('button', 'multibook'), 'id' => array('button-multibook')),
+            )
+          );
+		  
+		  $vars['multivolbooks'] = theme('dlts_book_yui3_multivolbooks');
+
+		}
+		  
       }
 
       /** Book sequence count */
@@ -456,25 +510,6 @@ function dlts_book_preprocess_node(&$vars) {
 	  
 	  $vars['button_language'] = '';
 	  
-	  /**
-      foreach (translation_path_get_translations('node/' . $book->nid) as $key => $index) {
-        $vars['button_language'] .= _dlts_book_navbar_item(
-          array(
-            'title' => $languages[$key]->native,
-            'path' => 'books/' . $vars['identifier'] . '/display',
-            'query' => array( 'lang' => $key ),
-            'attributes' => array(
-              'data-title' => t('@lang', array('@lang' => $languages[$key]->native)), 
-              'data-language' => $key,
-              'title' => t('@lang', array('@lang' => $languages[$key]->native)), 
-              'class' => array('language', $key), 
-              'id' => array('button-language-' . $key ),
-            ),
-          )
-        );
-	  }
-	  */
-      
       /** Zoom in and out buttons */
       $vars['control_panel'] = '
         <div id="control-zoom">

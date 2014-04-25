@@ -1,4 +1,4 @@
-<div class="node pjax" data-type="<?php print $page_type ?>" data-identifier="<?php print $identifier ?>" data-sequence-count="<?php print $sequence_count ?>" data-sequence="<?php print $book_page_sequence_number ?>" data-title="<?php print $page_title ?>">
+<div class="node pjax" data-identifier="<?php print $identifier ?>" data-sequence-count="<?php print $sequence_count ?>" data-sequence="<?php print $book_page_sequence_number ?>" data-title="<?php print $page_title ?>">
 <?php
 
   // if preview page

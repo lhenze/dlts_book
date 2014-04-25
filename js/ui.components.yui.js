@@ -21,9 +21,11 @@ Y.use(
     slider_datasource = Y.one('#slider_value')
   , pane_pagemeta = Y.one('.pane.pagemeta')
   , pane_top = Y.one('#top')
+  , pane_tooltip = Y.one('#tooltip')
   
      /** widgets */
    , slider
+   , tooltip
    
      /* utilities */
    
@@ -43,10 +45,14 @@ Y.use(
    , on_mousemove_over_slider_rail
    , on_mouseleave_slider_rail
    , on_toggle_language
-
+   , on_mousemove_tooltip
+   , on_mouseleave_tooltip
 
      /** book global settings; the object that represent the current book and settings */
    , book = Y.DLTS.settings.book
+   
+   /** others */
+   , waitingToShow = false
    
    ; /** definition list end */
     
@@ -75,6 +81,7 @@ Y.use(
                            + Y.one('.tabs').get('offsetHeight') 
                            + 10;
         }
+
         sidebarHeight = viewportHeight - (adminBarHeight + topHeight + navbarHeight + pageHeight);
         
         Y.one('#pagemeta').setStyles({'height' :  sidebarHeight});
@@ -364,6 +371,47 @@ Y.use(
         Y.on('available', change_page, '#' + config.id, OpenLayers, config);
 
     };
+    
+    on_mousemove_tooltip = function (e) {
+    	
+        var i
+          , currentTarget = e.currentTarget
+          , target_title = currentTarget.getAttribute('data-title') 
+          
+        Y.log(target_title);
+
+        if (tooltip.get('visible') === false) {
+            // while it's still hidden, move the tooltip adjacent to the cursor
+            Y.one('#tooltip').setStyle('opacity', '0');
+            tooltip.move([(e.pageX + 10), (e.pageY + 20)]);
+        }
+        
+        if (waitingToShow === false) {
+            // wait half a second, then show tooltip
+            setTimeout(function(){
+                Y.one('#tooltip').setStyle('opacity', '1');
+                tooltip.show();
+            }, 500);
+        
+            // while waiting to show tooltip, don't let other
+            // mousemoves try to show tooltip too.
+            waitingToShow = true;
+            
+            tooltip.setStdModContent('body', target_title);
+
+        }
+    }
+    
+    // handler that hides the tooltip
+    on_mouseleave_tooltip = function (e) {
+        
+        // this check prevents hiding the tooltip 
+        // when the cursor moves over the tooltip itself
+        if ((e.relatedTarget) && (e.relatedTarget.hasClass('yui3-widget-bd') === false)) {
+            tooltip.hide();
+            waitingToShow = false;            
+        }
+    }
 
     /** slider object */
     slider = new Y.Slider({
@@ -375,6 +423,21 @@ Y.use(
         length: (book.viewport.width - 150) + 'px',
         thumbUrl: Y.DLTS.settings.book.theme_path + 'js/img/thumb-x.png'
     });
+    
+    /** tooltip object */
+    tooltip = new Y.Overlay({
+        srcNode: "#tooltip",
+        visible: false,
+        zIndex: 9999999999
+    })
+    
+    tooltip.plug(Y.Plugin.WidgetAnim);
+
+    tooltip.anim.get('animHide').set('duration', 0.01);
+    
+    tooltip.anim.get('animShow').set('duration', 0.3);
+    
+    tooltip.render();    
 
     /** render the slider and plug-ins */
     
@@ -406,8 +469,8 @@ Y.use(
     Y.one('#page').delegate('click', pjax_callback, 'a.paging, a.toogle');
     
     /** delegate click on book pages thumbnail links */
-    Y.one('#page').delegate('click', pjax_callback, '.view-book-thumbnails a');    
-
+    Y.one('#page').delegate('click', pjax_callback, '.view-book-thumbnails a');   
+    
     Y.on('button:button-metadata:on', function(e) {
         this.removeClass('hidden');
         this.ancestor('.pane-body').removeClass('pagemeta-hidden');
@@ -448,6 +511,35 @@ Y.use(
         datasource: slider_datasource,
         slider: slider
     });
+    
+    Y.on('button:button-multibook:off', function(e) {
+      
+      var self = this; 
+      
+      self.addClass('hidden');
+      
+    }, Y.one('#multivolbooks'));
+    
+    Y.on('button:button-multibook:on', function(e) {
+    	
+        var self = this 
+          , current_target = e.currentTarget
+          , data_target = current_target.get('href');
+          
+        Y.io(data_target, { 
+            on: {
+                complete: function(id, e) {
+            	
+                    self.one('.multivolbooks-container').set('innerHTML', e.response);
+                    
+                    self.removeClass('hidden');
+
+                } 
+            }
+        });   
+      
+      
+    }, Y.one('#multivolbooks'));
 
     Y.on('button:button-thumbnails:on', function(e) {
 
@@ -528,6 +620,27 @@ Y.use(
         location.href = location.href.replace(/\/$/, '');
     }, '.node-type-dlts-book-page', '.tabs li.view a');
     
+    Y.delegate('click', function(e) {
+
+        e.halt();
+        
+        var current_target = e.currentTarget
+          , data_target = current_target.getAttribute('data-url');
+          
+        location.href = data_target;
+        
+    }, 'body', '.multivolbooks .node-dlts-multivol-book');
+    
     Y.delegate('change', on_toggle_language, 'body', '.language', pane_pagemeta);
     
+    // https://yuilibrary.com/yui/docs/overlay/overlay-tooltip.html
+
+    Y.delegate('mousemove', on_mousemove_tooltip, 'body', '.multivolbooks .node-dlts-multivol-book');
+    
+    Y.delegate('mouseleave', on_mouseleave_tooltip, 'body', '.multivolbooks .node-dlts-multivol-book');
+
+    if (pane_tooltip) {
+        pane_tooltip.on('mouseleave', on_mouseleave_tooltip);
+    }
+
 });
