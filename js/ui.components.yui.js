@@ -45,6 +45,7 @@ Y.use(
    , on_mousemove_over_slider_rail
    , on_mouseleave_slider_rail
    , on_toggle_language
+   , on_toggle_multivol
    , on_mousemove_tooltip
    , on_mouseleave_tooltip
 
@@ -117,7 +118,24 @@ Y.use(
         });        
 
     }
-  
+
+    on_toggle_multivol = function(e) {
+    	
+        var current_target = e.currentTarget
+          , data_target = current_target.get('value')
+          , url_array = data_target.split('::');
+          
+        e.preventDefault();
+        
+        if (url_array[1]) {
+            location.href = url_array[1];
+        }
+        else {
+            location.href = data_target;
+        }
+        return false;
+    }
+
     on_button_click = function(e) {
 
         e.preventDefault();
@@ -375,11 +393,10 @@ Y.use(
     on_mousemove_tooltip = function (e) {
     	
         var i
+          , self = this
           , currentTarget = e.currentTarget
-          , target_title = currentTarget.getAttribute('data-title') 
-          
-        Y.log(target_title);
-
+          , target_title = self.one('.field-name-field-title .field-item').get('text')
+           
         if (tooltip.get('visible') === false) {
             // while it's still hidden, move the tooltip adjacent to the cursor
             Y.one('#tooltip').setStyle('opacity', '0');
@@ -526,19 +543,25 @@ Y.use(
           , current_target = e.currentTarget
           , data_target = current_target.get('href');
           
-        Y.io(data_target, { 
-            on: {
-                complete: function(id, e) {
-            	
-                    self.one('.multivolbooks-container').set('innerHTML', e.response);
-                    
-                    self.removeClass('hidden');
+        if (self.hasClass('rendered')) {
+       	    self.removeClass('hidden') 
+        }
+        else {
+            Y.io(data_target, { 
+                on: {
+                    complete: function(id, e) {
 
-                } 
-            }
-        });   
-      
-      
+                        self.addClass('rendered');
+
+                        self.one('.multivolbooks-container').set('innerHTML', e.response);
+
+                        self.removeClass('hidden');
+
+                    }
+                }
+            });
+        }   
+
     }, Y.one('#multivolbooks'));
 
     Y.on('button:button-thumbnails:on', function(e) {
@@ -628,19 +651,15 @@ Y.use(
           , data_target = current_target.getAttribute('data-url');
           
         location.href = data_target;
-        
-    }, 'body', '.multivolbooks .node-dlts-multivol-book');
+
+    }, 'body', '.multivolbooks .multibook-item');
     
     Y.delegate('change', on_toggle_language, 'body', '.language', pane_pagemeta);
     
-    // https://yuilibrary.com/yui/docs/overlay/overlay-tooltip.html
-
-    Y.delegate('mousemove', on_mousemove_tooltip, 'body', '.multivolbooks .node-dlts-multivol-book');
+    Y.delegate('change', on_toggle_multivol, 'body', '.ctools-jump-menu-select', pane_pagemeta);
     
-    Y.delegate('mouseleave', on_mouseleave_tooltip, 'body', '.multivolbooks .node-dlts-multivol-book');
-
-    if (pane_tooltip) {
-        pane_tooltip.on('mouseleave', on_mouseleave_tooltip);
-    }
-
+    Y.delegate('mousemove', on_mousemove_tooltip, 'body', '.multivolbooks .multibook-item');
+    
+    Y.delegate('mouseleave', on_mouseleave_tooltip, 'body', '.multivolbooks .multibook-item');
+    
 });

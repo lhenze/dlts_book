@@ -12,6 +12,16 @@
       cursor: pointer;
     }
     
+    .yui3-u-1 {
+      
+      &.header {
+        width: 100%;
+        height: 40px;
+        background-color: #e5e5e5;
+      }
+      
+    }
+    
     .view-set-of-multi-volume-by-identifier {
   
       .pane.thumbnails {
@@ -57,4 +67,12 @@
 
     }    
   }
+
+  .view-set-of-multi-volume-by-identifier {
+    .ctools-jump-menu-button {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
 }

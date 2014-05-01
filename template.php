@@ -2,20 +2,29 @@
 
 function dlts_book_theme($existing, $type, $theme, $path) {
   return array(
+    
     'dlts_book_loading' => array(
 	  'template' => 'templates/dlts_book_loading',
 	  'variables' => array(
 	    'sequence_number' => 0,
 	  ),
-	),	  
+	),
+	
     'dlts_book_yui3_thumbnails' => array(
 	  'template' => 'templates/dlts_book_yui3_thumbnails',
 	  'variables' => NULL,
 	),
+    
     'dlts_book_yui3_multivolbooks' => array(
 	  'template' => 'templates/dlts_book_yui3_multivolbooks',
 	  'variables' => NULL,
 	),	
+	
+    'dlts_book_control_panel' => array(
+	  'template' => 'templates/dlts_book_control_panel',
+	  'variables' => NULL,
+	),	
+
     'micro_search_result' => array(
 	  'template' => 'templates/dlts_book_micro_search_result',
 	  'variables' => array(
@@ -25,6 +34,7 @@ function dlts_book_theme($existing, $type, $theme, $path) {
 	    'sequence_number' => NULL, 
 	  ),
 	),
+
   );
 }
 
@@ -185,11 +195,13 @@ function dlts_book_process_page(&$vars) {
 
 /** See: http://api.drupal.org/api/drupal/includes%21theme.inc/function/template_process_page/7 */
 function dlts_book_preprocess_page(&$vars) {
-
+	
   /** Include utilities files */
   module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book_page');
 
   $browser = dlts_utilities_browser_info();
+  
+  $read_order = 0;
 
   if (dlts_utilities_is_pjax()) {  
     $vars['theme_hook_suggestions'][] = 'page__pjax__book__page';
@@ -204,22 +216,34 @@ function dlts_book_preprocess_page(&$vars) {
   
   /** Enable some extra functionality (specifically PJAX) for old IE browsers */
   if (isset($browser['msie']) && $browser['msie'] < 10) {
-  	if (dlts_book_page)
-    drupal_add_js($theme_path . '/js/modules/history.js', array('group' => JS_LIBRARY, 'weight' => -101 ));
+    if (dlts_book_page) {
+      drupal_add_js($theme_path . '/js/modules/history.js', array('group' => JS_LIBRARY, 'weight' => -101 ));	
+    }
   }
-  
-  $read_order = 0;
   
   if (isset($vars['node'])) {
-	switch ($vars['node']->type) {
-	  case 'dlts_book_page' :
-	  case 'dlts_book' :
-      case 'dlts_book_stitched_page' :
-		$read_order = dlts_utilities_book_page_get_read_order($vars['node']);
-	    break;
-	}
-  }
+    switch ($vars['node']->type) {
+
+      case 'dlts_book_page' :
+		  
+		// $vars['title'] = $vars['node']->title;
   
+        // dpm($vars);
+		
+		$read_order = dlts_utilities_book_page_get_read_order($vars['node']);
+
+	    break;
+      
+      case 'dlts_book' :
+	    $read_order = dlts_utilities_book_page_get_read_order($vars['node']);
+	    break;
+
+      case 'dlts_book_stitched_page' :
+		$read_order = dlts_utilities_book_page_get_read_order($vars['node']);  
+		break;
+	
+    }
+  }
   
   /** Theme path */
   $theme_path = drupal_get_path('theme', 'dlts_book');  
@@ -233,16 +257,11 @@ function dlts_book_preprocess_page(&$vars) {
   /** Add YUI Library from YUI Open CDN; should we add this as a setting in the theme form? */
   drupal_add_js('http://yui.yahooapis.com/3.13.0/build/yui/yui-min.js', 'external', array('group' => JS_LIBRARY, 'weight' => -100 ));
 
-  /** Take a close look and see if we need this. This used to be part of 1.x (aof1 Jul 23, 2013) */ 
-  $js_data = array(
-    'book' => array(
-      'theme_path' => $absolute_theme_path,
-    ),
-  );
-
   $vars['read_order'] = ($read_order == 1) ? 'rtl' : 'ltr';
 
-  drupal_add_js($js_data, 'setting');
+  /** Take a close look and see if we need this. This used to be part of 1.x (aof1 Jul 23, 2013) */ 
+  // $js_data = array('book' => array('theme_path' => $absolute_theme_path,),);
+  // drupal_add_js($js_data, 'setting');
   
 }
 
@@ -250,6 +269,9 @@ function dlts_book_preprocess_page(&$vars) {
  * See: http://api.drupal.org/api/drupal/modules%21node%21node.module/function/template_preprocess_node/7
  */
 function dlts_book_preprocess_node(&$vars) {
+	
+  drupal_set_title('fire');
+	
 	
   /** Include utilities files */
   module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book');
@@ -271,8 +293,8 @@ function dlts_book_preprocess_node(&$vars) {
       /** Use node--dlts-book-page.tpl.php for both dlts_book_page and dlts_book_stitched_page content types */
       $vars['theme_hook_suggestions'][] = 'node__dlts_page';
       
-	  // add search box if this page are selected as searchable in Apache Solr configuration 
-	  if (in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))) $vars['search'] = module_invoke('search', 'block_view', 'search');
+      // add search box if this page are selected as searchable in Apache Solr configuration 
+      if (in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))) $vars['search'] = module_invoke('search', 'block_view', 'search');
 
       $vars['browse'] = array('#markup' => l(t('Browse collection'), 'books', array('attributes' => array('class' => array('browse-collection', 'button', 'link')))));
       
@@ -303,19 +325,48 @@ function dlts_book_preprocess_node(&$vars) {
       $node = $vars['node'];
 	  
       switch ($vars['view_mode']) {
-      	
-		case 'multivolbook':
-          
-          $vars['theme_hook_suggestions'][] = 'node__dlts_book_multivolbooks_pjax';
+
+      	/**
+		 * dlts_book does not have a full view; take user to  the first book page 
+		 */      	
+		case 'full':		
+
+			drupal_goto('books/' . dlts_utilities_book_get_identifier($node) , array(), 301);
 
 		  break;
 
+		case 'multivolbook':
+          
+          $vars['theme_hook_suggestions'][] = 'node__dlts_book_multivolbooks_pjax';
+			
+		  $multivol_book = dlts_utilities_book_get_multivol_book($node);
+		  
+		  $vars['book_title'] = '';
+		  
+		  $vars['book_url'] = url('node/' . $node->nid, array('absolute' => true));
+
+	      break;
+
         case 'metadata':
 			
+		  $multivol_book = dlts_utilities_book_get_multivol_book($node);
+			
+		  $langcode = field_language('node', $node, 'field_title');
+
+		  if ($multivol_book) {
+
+		    $vars['select_multivolbook'] = views_embed_view('set_of_multi_volume_by_identifier','block_1', dlts_utilities_multivol_book_get_multivol_nid($multivol_book) );
+			
+			$vars['node']->field_title[$langcode]['value'] = 'a';
+			
+			$vars['node']->field_title[$langcode]['safe_value'] = 'b';
+	      
+          }
+		  
           $languages = language_list('enabled');
 
           $languages = $languages[1];
-
+		  
 		  $vars['theme_hook_suggestions'][] = 'node__dlts_book_metadata';
 
           $vars['lang_dir'] = ($languages[$node->language]->direction == 0) ? 'ltr' : 'rtl';
@@ -325,7 +376,7 @@ function dlts_book_preprocess_node(&$vars) {
           $vars['lang_name'] = $languages[$node->language]->name;
 
 		  $translations = translation_path_get_translations('node/' . $node->nid);
-
+		  
 		  if (count($translations) > 1) {
 		  
             $vars['lang_options'] = array(
@@ -344,7 +395,7 @@ function dlts_book_preprocess_node(&$vars) {
 				  'query' => array( 'lang' => $key )
                 )
 			  );
-			
+
               $markup = array(
                 '#tag' => 'option',
                 '#theme' => 'html_tag',
@@ -390,13 +441,15 @@ function dlts_book_preprocess_node(&$vars) {
 
     case 'dlts_book_page' :
     case 'dlts_book_stitched_page' :
-
+		
+      // print $vars['node']->title; 
+		
       /** Use node--dlts-book-page.tpl.php for both dlts_book_page and dlts_book_stitched_page content types */
       $vars['theme_hook_suggestions'][] = ($isPJAX) ? 'node__dlts_book_pjax_page' : 'node__dlts_book_page';    
 
       /** Node object */
       $node = $vars['node'];
-      
+	  
       $languages = language_list('enabled');
 
       $languages = $languages[1];
@@ -405,7 +458,7 @@ function dlts_book_preprocess_node(&$vars) {
 	  
       /** Page title */
       $vars['page_title'] = $node->title;
-      
+	  
       /** prev page */
       $vars['button_prevpage'] = $node->prevpage;
 
@@ -429,9 +482,8 @@ function dlts_book_preprocess_node(&$vars) {
         $vars['metadata'] = node_view($book, 'metadata');
 
 		$multivol_book = dlts_utilities_book_get_multivol_book($book);
-
+		
 		if ($multivol_book) {
-
           $vars['button_multibook'] = _dlts_book_navbar_item(
             array(
               'title' => t('View Related Titles'),
@@ -439,13 +491,11 @@ function dlts_book_preprocess_node(&$vars) {
               'attributes' => array('data-title' => t('View Related Titles'), 'title' => t('Show/hide Related Titles'), 'class' => array('button', 'multibook'), 'id' => array('button-multibook')),
             )
           );
-		  
 		  $vars['multivolbooks'] = theme('dlts_book_yui3_multivolbooks');
-
 		}
 		  
       }
-
+	  
       /** Book sequence count */
       $vars['sequence_count'] = $sequence_count = dlts_utilities_book_get_sequence_count($book);
 
@@ -511,11 +561,7 @@ function dlts_book_preprocess_node(&$vars) {
 	  $vars['button_language'] = '';
 	  
       /** Zoom in and out buttons */
-      $vars['control_panel'] = '
-        <div id="control-zoom">
-          <div id="control-zoom-in" class="navbar-item" data-title="' . t('Zoom in') . '" title="' . t('Zoom in') . '"></div>
-          <div id="control-zoom-out" class="navbar-item" data-title="' . t('Zoom out') . '" title="' . t('Zoom out') . '"></div>
-        </div>';
+      $vars['control_panel'] = theme('dlts_book_control_panel'); 
 
       $vars['pane_metadata_hidden'] = FALSE;
       
@@ -524,6 +570,7 @@ function dlts_book_preprocess_node(&$vars) {
 
       break;
   }
+
 }
 
 function dlts_book_menu_local_task($variables) {
@@ -835,5 +882,40 @@ function dlts_book_process_views_view(&$vars) {
   if ($view->name == 'books') {
     drupal_add_js($theme_path . '/js/ui.items.view.js', array('type' => 'file', 'scope' => 'footer', 'weight' => 7));
   }
+
+}
+
+
+function dlts_book_field__field_title($variables) {
+	
+  $output = '';
+  	
+  $multivol_book = dlts_utilities_book_get_multivol_book($variables['element']['#object']);
+  
+  if ($multivol_book) {
+
+    $volume = dlts_utilities_field_get_first_item('node', $multivol_book, 'field_volume_number');
+  
+    $variables['items'][0]['#markup'] = $multivol_book->title . ' ' . t('Vol. @number', array('@number' => $volume['value']) );
+
+  }
+
+  // Render the label, if it's not hidden.
+  if (!$variables['label_hidden']) {
+    $output .= '<div class="field-label"' . $variables['title_attributes'] . '>' . $variables['label'] . ':&nbsp;</div>';
+  }
+
+  // Render the items.
+  $output .= '<div class="field-items"' . $variables['content_attributes'] . '>';
+  foreach ($variables['items'] as $delta => $item) {
+    $classes = 'field-item ' . ($delta % 2 ? 'odd' : 'even');
+    $output .= '<div class="' . $classes . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</div>';
+  }
+  $output .= '</div>';
+
+  // Render the top-level DIV.
+  $output = '<div class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $output . '</div>';
+
+  return $output;  
 
 }

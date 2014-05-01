@@ -1,5 +1,4 @@
 <?php if ($page) : ?>
-  <div class="tooltip"></div>
   <div id="navbar" class="pane navbar">
     <?php if ($button_togglepage || $button_thumbnails || $button_fullscreen || $button_metadata || $button_multibook) : ?>
       <ul class="navbar navbar-left">
