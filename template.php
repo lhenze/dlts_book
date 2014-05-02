@@ -9,17 +9,17 @@ function dlts_book_theme($existing, $type, $theme, $path) {
 	    'sequence_number' => 0,
 	  ),
 	),
-	
+
     'dlts_book_yui3_thumbnails' => array(
 	  'template' => 'templates/dlts_book_yui3_thumbnails',
 	  'variables' => NULL,
 	),
-    
+
     'dlts_book_yui3_multivolbooks' => array(
 	  'template' => 'templates/dlts_book_yui3_multivolbooks',
 	  'variables' => NULL,
 	),	
-	
+
     'dlts_book_control_panel' => array(
 	  'template' => 'templates/dlts_book_control_panel',
 	  'variables' => NULL,
@@ -202,7 +202,10 @@ function dlts_book_preprocess_page(&$vars) {
   $browser = dlts_utilities_browser_info();
   
   $read_order = 0;
-
+  
+  /** Theme path */
+  $theme_path = drupal_get_path('theme', 'dlts_book');  
+  
   if (dlts_utilities_is_pjax()) {  
     $vars['theme_hook_suggestions'][] = 'page__pjax__book__page';
     if (isset($vars['node']) ) {
@@ -226,10 +229,6 @@ function dlts_book_preprocess_page(&$vars) {
 
       case 'dlts_book_page' :
 		  
-		// $vars['title'] = $vars['node']->title;
-  
-        // dpm($vars);
-		
 		$read_order = dlts_utilities_book_page_get_read_order($vars['node']);
 
 	    break;
@@ -245,23 +244,16 @@ function dlts_book_preprocess_page(&$vars) {
     }
   }
   
-  /** Theme path */
-  $theme_path = drupal_get_path('theme', 'dlts_book');  
-  
-  /** Theme absolute-path */
-  $absolute_theme_path = url($theme_path . '/', array('absolute' => TRUE));
-  
   /** This is something we probably want to have in the setting and make sure is part of the book feature */
   $vars['logo'] = NULL;
   
   /** Add YUI Library from YUI Open CDN; should we add this as a setting in the theme form? */
   drupal_add_js('http://yui.yahooapis.com/3.13.0/build/yui/yui-min.js', 'external', array('group' => JS_LIBRARY, 'weight' => -100 ));
+  
+  // there seem to be a problem with the slider with this version, the thumbnail won't move
+  // drupal_add_js('http://yui.yahooapis.com/3.16.0/build/yui/yui-min.js', 'external', array('group' => JS_LIBRARY, 'weight' => -100 ));  
 
   $vars['read_order'] = ($read_order == 1) ? 'rtl' : 'ltr';
-
-  /** Take a close look and see if we need this. This used to be part of 1.x (aof1 Jul 23, 2013) */ 
-  // $js_data = array('book' => array('theme_path' => $absolute_theme_path,),);
-  // drupal_add_js($js_data, 'setting');
   
 }
 
@@ -269,23 +261,20 @@ function dlts_book_preprocess_page(&$vars) {
  * See: http://api.drupal.org/api/drupal/modules%21node%21node.module/function/template_preprocess_node/7
  */
 function dlts_book_preprocess_node(&$vars) {
-	
-  drupal_set_title('fire');
-	
-	
+
   /** Include utilities files */
   module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book');
 
   module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book_page');
-  
+
   $isPJAX = dlts_utilities_is_pjax();
-  
+
   /** Theme absolute-path */
   $theme_path = drupal_get_path('theme', 'dlts_book');  
 
   /** Theme absolute-path */
   $absolute_theme_path = url($theme_path . '/', array('absolute' => TRUE));
-  
+
   switch ($vars['type']) {
 
     case 'page' :
@@ -297,11 +286,11 @@ function dlts_book_preprocess_node(&$vars) {
       if (in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))) $vars['search'] = module_invoke('search', 'block_view', 'search');
 
       $vars['browse'] = array('#markup' => l(t('Browse collection'), 'books', array('attributes' => array('class' => array('browse-collection', 'button', 'link')))));
-      
+
       $vars['bobcat'] = array('#markup' => l(t('BobCat record'), dlts_utilities_collection_bobcat_record(), array('attributes' => array('class' => array('link')))));
 
       break;
-	  
+
     case 'dlts_multivol_book' :
 		
 	  /** node object */
@@ -512,24 +501,12 @@ function dlts_book_preprocess_node(&$vars) {
       drupal_add_js($theme_path . '/js/ui.keyboard.yui.js', $js_yui_files_conf);
 	  
       drupal_add_js($theme_path . '/js/ui.components.yui.js', $js_yui_files_conf);
-      
+	  
       /** Collection type */
       $collection_type = dlts_utilities_collection_type();
 
-      $js_data = array(
-        'book' => array(
-          'path' => url('books/' . $vars['identifier'], array('absolute' => TRUE )),
-          'theme_path' => $absolute_theme_path,
-          'identifier' => $vars['identifier'],
-          'sequence_count' => $sequence_count,
-          'sequence_number' => $vars['book_page_sequence_number'],
-        ),
-      );
-
 	  // add search box if this dlts_book_page are selected as searchable in Apache Solr configuration 
 	  in_array('dlts_book_page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node')) ? dlts_book_add_search($vars, $js_data) : NULL;
-
-      drupal_add_js($js_data, 'setting');
       
       /** metadata button */
       $vars['button_metadata'] = _dlts_book_navbar_item(
@@ -567,6 +544,19 @@ function dlts_book_preprocess_node(&$vars) {
       
       /** YUI! 3 Slider container */
       $vars['slider'] = _dlts_book_slider(array('id' => 'slider', 'lang_dir' => $vars['read_order'], 'sequence_number' => $vars['book_page_sequence_number'], 'sequence_count' => $sequence_count, 'collection_type' => $collection_type));
+
+      $js_data = array(
+        'book' => array(
+          'path' => url('books/' . $vars['identifier'], array('absolute' => TRUE )),
+          'dir' => $vars['read_order'],
+          'theme_path' => $absolute_theme_path,
+          'identifier' => $vars['identifier'],
+          'sequence_count' => $sequence_count,
+          'sequence_number' => $vars['book_page_sequence_number'],
+        ),
+      );
+      
+      drupal_add_js($js_data, 'setting');
 
       break;
   }
