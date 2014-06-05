@@ -184,7 +184,11 @@ function dlts_book_process_page(&$vars) {
 
   $vars['breadcrumb'] = theme_get_setting('dlts_book_toggle_breadcrumb') ? $vars['breadcrumb'] : NULL;
   
-  if (in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))) {
+  if (
+    module_exists('apachesolr') 
+    &&
+    in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))
+  ) {
     $search = module_invoke('search', 'block_view', 'search');
     $search['content']['search_block_form']['#attributes']['value'] = '';
     $search['content']['search_block_form']['#attributes']['placeholder'] = t('Find in collection');
@@ -283,7 +287,13 @@ function dlts_book_preprocess_node(&$vars) {
       $vars['theme_hook_suggestions'][] = 'node__dlts_page';
       
       // add search box if this page are selected as searchable in Apache Solr configuration 
-      if (in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))) $vars['search'] = module_invoke('search', 'block_view', 'search');
+      if (
+        module_exists('apachesolr')
+        &&
+        in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))
+      ) {
+        $vars['search'] = module_invoke('search', 'block_view', 'search');    
+      }
 
       $vars['browse'] = array('#markup' => l(t('Browse collection'), 'books', array('attributes' => array('class' => array('browse-collection', 'button', 'link')))));
 
@@ -505,9 +515,15 @@ function dlts_book_preprocess_node(&$vars) {
       /** Collection type */
       $collection_type = dlts_utilities_collection_type();
 
-	  // add search box if this dlts_book_page are selected as searchable in Apache Solr configuration 
-	  in_array('dlts_book_page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node')) ? dlts_book_add_search($vars, $js_data) : NULL;
-      
+      // add search box if this dlts_book_page are selected as searchable in Apache Solr configuration 
+      if (
+        module_exists('apachesolr')
+        &&
+        in_array('page', apachesolr_get_index_bundles(apachesolr_default_environment(), 'node'))
+      ) {
+        dlts_book_add_search($vars, $js_data);
+      }
+ 
       /** metadata button */
       $vars['button_metadata'] = _dlts_book_navbar_item(
         array(
@@ -874,7 +890,6 @@ function dlts_book_process_views_view(&$vars) {
   }
 
 }
-
 
 function dlts_book_field__field_title($variables) {
 	
