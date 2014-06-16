@@ -18,10 +18,14 @@
         margin-left: .7em;
         margin-right: .7em;
         margin-bottom: 2em;
+        .field .field-label {
+            font-weight: bold;
+            color: #333;
+        }
         .lang-options {
-           border-bottom: 1px solid #ccc;
-           padding-bottom: .5em;
-           margin-bottom: .5em;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: .5em;
+            margin-bottom: .5em;
         }
         .field-name-field-representative-image {
             img {
@@ -34,7 +38,7 @@
         }
         .field-label {
             display: inline;
-            white-space:nowrap;
+            white-space: nowrap;
         }
         .field-items {
             display: inline;
@@ -44,7 +48,7 @@
             display: inline;
         }
         .field-name-field-title {
-          margin-top: .5em;
+            margin-top: .5em;
             .field-item {
                 font-size: 1.2em;
             }
@@ -62,9 +66,9 @@
             }
         }
         .field-type-link-field {
-             margin-top: .5em;
-              border-top: 1px solid #ccc;
-           padding-top: .5em;
+            margin-top: .5em;
+            border-top: 1px solid #ccc;
+            padding-top: .5em;
         }
     }
 }

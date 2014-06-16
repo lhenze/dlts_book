@@ -1,78 +1,68 @@
 .pane {
-  &.multivolbooks {
-    
-    display: block;
-    width: 100%;
-    background: #666666;
-    position: fixed;
-    bottom: 0;
-    z-index: 999999;
-    
-    &:hover, &:active {
-      cursor: pointer;
-    }
-    
-    .yui3-u-1 {
-      
-      &.header {
-        width: 100%;
-        height: 40px;
-        background-color: #e5e5e5;
-      }
-      
-    }
-    
-    .view-set-of-multi-volume-by-identifier {
-  
-      .pane.thumbnails {
+    &.multivolbooks {
         display: block;
         width: 100%;
         background: #666666;
         position: fixed;
         bottom: 0;
         z-index: 999999;
-      }
-
-      .views-row {
-        width: 150px;
-        margin: 5px;
-        display: inline-block;
-        float:left;
-      }
-  
-      .views-row.first {    
-        margin-left: 10px;
-      }
-
-      img {
-        width:100%;
-        min-width:70px;
-        max-width:150px;
-        @include bv-box-shadow($pane-box-shadow);
-      }
-      
-      .field-name-field-volume-number {
-        bottom:32%;
-        left:0%;
-        padding:3% 6% ; 
-        margin-bottom:-68%;
-        font-weight:bold;
-        @include border-top-right-radius(10px);
-        background:rgba(0,0,0,.33);
-      }
-
-      .field-name-field-volume-number:hover {
-        background:rgba(0,0,0,.5);
-      }
-
-    }    
-  }
-
-  .view-set-of-multi-volume-by-identifier {
-    .ctools-jump-menu-button {
-      display: none;
-      visibility: hidden;
+        &:hover, &:active {
+            cursor: pointer;
+        }
+        .yui3-u-1 {
+            &.header {
+                width: 100%;
+                height: 40px;
+                background-color: #e5e5e5;
+            }
+        }
+        .view-set-of-multi-volume-by-identifier {
+            .pane.thumbnails {
+                display: block;
+                width: 100%;
+                background: #666666;
+                position: fixed;
+                bottom: 0;
+                z-index: 999999;
+            }
+            .views-row {
+                width: 150px;
+                margin: 5px;
+                display: inline-block;
+                float: left;
+            }
+            .views-row.first {
+                margin-left: 10px;
+            }
+            img {
+                width: 100%;
+                min-width: 70px;
+                max-width: 150px;
+                @include bv-box-shadow($pane-box-shadow);
+            }
+            .field-name-field-volume-number {
+                bottom: 32%;
+                left: 0%;
+                padding: 3% 6%;
+                margin-bottom: -68%;
+                font-weight: bold;
+                @include border-top-right-radius(10px);
+                background: rgba(0, 0, 0, 0.33);
+            }
+            .field-name-field-volume-number:hover {
+                background: rgba(0, 0, 0, 0.5);
+            }
+        }
     }
-  }
-
+    .view-set-of-multi-volume-by-identifier {
+        .ctools-jump-menu-button {
+            display: none;
+            visibility: hidden;
+        }
+        select {
+            max-width: 100%;
+        }
+        margin-top: .5em;
+        padding-top: .5em;
+    }
 }
