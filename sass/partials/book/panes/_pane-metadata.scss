@@ -15,12 +15,11 @@
     .node-dlts-book {
         padding: 0;
         margin-top: .5em;
-        margin-left: .7em;
+        margin-left: .6rem;
         margin-right: .7em;
         margin-bottom: 2em;
         .field .field-label {
             font-weight: bold;
-            color: #333;
         }
         .lang-options {
             border-bottom: 1px solid #ccc;
@@ -47,8 +46,10 @@
         .field-item {
             display: inline;
         }
-        .field-name-field-title {
-            margin-top: .5em;
+        #node_dlts_book_metadata_group_descriptive_metadata .field-name-field-title {
+            // use more specificity because title appears elsewhere
+            margin-top: 1.1em;
+            margin-bottom: .4em;
             .field-item {
                 font-size: 1.2em;
             }
@@ -81,7 +82,7 @@
     .pane.pagemeta {
         float: right;
         border-left: none;
-        border-left: 1px solid rgba(0, 0, 0, 0.5);
+        border-left: 1px solid #ccc;
         direction: rtl;
     }
 }
@@ -90,7 +91,7 @@
     .pane.pagemeta {
         float: left;
         border-right: none;
-        border-right: 1px solid rgba(0, 0, 0, 0.5);
+        border-right: 1px solid #ccc;
         direction: ltr;
     }
 }
