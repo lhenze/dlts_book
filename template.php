@@ -232,17 +232,27 @@ function dlts_book_preprocess_page(&$vars) {
     switch ($vars['node']->type) {
 
       case 'dlts_book_page' :
-      
-    $read_order = dlts_utilities_book_page_get_read_order($vars['node']);
+      case 'dlts_book_stitched_page' :
+    		  
+		$node = $vars['node'];
+		  
+        /** Include utilities files */
+
+        module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book');
+
+        module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book_page');
+  
+        $vars['book_title'] = dlts_utilities_book_get_title( dlts_utilities_book_page_load_book($node));
+		
+		$read_order = dlts_utilities_book_page_get_read_order($node);
 
       break;
       
       case 'dlts_book' :
-      $read_order = dlts_utilities_book_page_get_read_order($vars['node']);
+	    // this looks like a bug
+        $read_order = dlts_utilities_book_page_get_read_order($vars['node']);
       break;
 
-      case 'dlts_book_stitched_page' :
-    $read_order = dlts_utilities_book_page_get_read_order($vars['node']);  
     break;
   
     }
