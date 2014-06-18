@@ -485,6 +485,8 @@ function dlts_book_preprocess_node(&$vars) {
 
       /** Load book */
       $book = dlts_utilities_book_page_load_book($node);
+	  
+	  $vars['book_title'] = dlts_utilities_book_get_title($book);
 
       if (!$isPJAX) {
         
