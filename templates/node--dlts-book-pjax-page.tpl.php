@@ -10,12 +10,12 @@
   
   // if next page
   if (isset($button_nextpage)) {
-	print $$button_nextpage;
+	print $button_nextpage;
   }
   
   // if toggle between 1 or 2 pages view
   if (isset($button_togglepage)) {
-	print $$button_togglepage;
+	print $button_togglepage;
   }  
 
 ?>
