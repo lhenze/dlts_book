@@ -2,120 +2,116 @@
 @import "partials/themeable/_variables";
 
 .front .content.body {
-  background-color: $teaser-color;
-  color:$dkgrey;
-  padding-top: 3em;
+    background-color: $teaser-color;
+    color: $dkgrey;
+    padding-top: 3em;
 }
 
 .front .description {
-  padding-bottom:0;
-  p {
-    width:90%;
-  }
+    padding-bottom: 0;
+    p {
+        width: 90%;
+    }
 }
 
 .front .pane.right .links a:link, .front .pane.right .links a:visited {
-  color:$dkgrey;
-  margin-right:.5em;
-  &:hover {
-    color:$lib-red;
-  }
+    color: $dkgrey;
+    margin-right: .5em;
+    &:hover {
+        color: $lib-red;
+    }
 }
 
 .front {
-  height: auto;
-  overflow-y: auto !important;
-  .pane {
-    &.top {
-      z-index: 999999;
-      width: 100%;
+    height: auto;
+    overflow-y: auto !important;
+    .pane {
+        &.top {
+            z-index: 999999;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        &.right {
+            .search {
+                margin-left: 1em;
+                .title {
+                    display: none;
+                    visibility: hidden;
+                }
+            }
+            .links {
+                margin: 1em;
+                font-size: small;
+                a:link, a:visited {
+                    color: #ffffff;
+                    text-decoration: underline;
+                }
+                a:active, a:hover, a:focus {
+                    color: #d82b13;
+                }
+            }
+        }
     }
-    
-  
-    &.right {
-      .search {
-        margin-left: 1em;
+    .content {
+        &.body {
+            padding: 30px 0;
+            background-color: #515151;
+            color: #fff;
+            z-index: 999999;
+            .description .field-items {
+                margin-left: 1em;
+                p {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    .items {
+        .title,
+        .pane-books {
+            margin-left: 1em;
+        }
+    }
+    .body-head {
+        display: block;
+        background-color: #fff;
+        width: 100%;
         .title {
-          display: none;
-          visibility: hidden;
+            width: 100%;
         }
-      }
-      .links {
-        margin: 1em;
-        font-size: small;
-        a:link, a:visited {
-          color: #ffffff;
-          text-decoration: underline;
+    }
+    .loading {
+        width: 100%;
+        height: 100%;
+    }
+    .items {
+        position: relative;
+        .title, .pane-books {
+            margin-left: 1em;
         }
-        a:active, a:hover, a:focus {
-          color: #d82b13;
+    }
+    .content {
+        &.body {
+            background-color: #515151;
+            color: #fff;
+            z-index: 99999;
+            .description .field-items {
+                margin-left: 1em;
+                p {
+                    margin-bottom: 0;
+                }
+            }
         }
-      }
     }
-  }
-
-  .content {
-    &.body {
-      padding: 30px 0;
-      background-color: #515151;
-      color: #fff;
-      z-index: 999999;
-      
-      .description .field-items {
-        margin-left: 1em;
-        p {
-          margin-bottom: 0;  
+    .description {
+        padding-bottom: 30px;
+    }
+    .items {
+        .title, .pane-books {
+            margin-left: 1em;
         }
-      }      
     }
-  }
-
-  .items {
-    .title, 
-    .pane-books {
-      margin-left: 1em;
+    .pane-search-header {
+        padding-top: 0;
     }
-  }
-  .body-head {
-    display: block;
-    background-color: #fff;
-    width: 100%;   
-    .title {
-      width: 100%;
-    }    
-  }  
-  .loading {
-    width: 100%;
-    height: 100%;
-  }  
-  .items {
-    position: relative;
-    .title, .pane-books {
-      margin-left: 1em;
-    }        
-  }  
-  .content {
-    &.body { 
-      background-color: #515151;
-      color: #fff;
-      z-index: 99999;
-      .description .field-items {
-        margin-left: 1em;
-        p {
-          margin-bottom: 0;  
-        }
-      }      
-    }
-  }  
-  .description {
-    padding-bottom: 30px;
-  }  
-  .items {
-    .title, .pane-books {
-      margin-left: 1em;
-    }
-  }  
-  .pane-search-header {
-    padding-top: 0;
-  }
 }

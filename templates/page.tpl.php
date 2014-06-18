@@ -7,7 +7,7 @@
       <?php if ($title) : ?>
         <?php print render($title_prefix); ?>
         <div id="titlebar" class="titlebar">
-          <span class="icon book"></span><h1 class="title" id="page-title"><?php print $title; ?></h1>
+          <h1 class="title" id="page-title"><?php print $title; ?></h1>
         </div>
         <?php print render($title_suffix); ?>
       <?php endif; ?>

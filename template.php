@@ -4,36 +4,36 @@ function dlts_book_theme($existing, $type, $theme, $path) {
   return array(
     
     'dlts_book_loading' => array(
-	  'template' => 'templates/dlts_book_loading',
-	  'variables' => array(
-	    'sequence_number' => 0,
-	  ),
-	),
+    'template' => 'templates/dlts_book_loading',
+    'variables' => array(
+      'sequence_number' => 0,
+    ),
+  ),
 
     'dlts_book_yui3_thumbnails' => array(
-	  'template' => 'templates/dlts_book_yui3_thumbnails',
-	  'variables' => NULL,
-	),
+    'template' => 'templates/dlts_book_yui3_thumbnails',
+    'variables' => NULL,
+  ),
 
     'dlts_book_yui3_multivolbooks' => array(
-	  'template' => 'templates/dlts_book_yui3_multivolbooks',
-	  'variables' => NULL,
-	),	
+    'template' => 'templates/dlts_book_yui3_multivolbooks',
+    'variables' => NULL,
+  ),  
 
     'dlts_book_control_panel' => array(
-	  'template' => 'templates/dlts_book_control_panel',
-	  'variables' => NULL,
-	),	
+    'template' => 'templates/dlts_book_control_panel',
+    'variables' => NULL,
+  ),  
 
     'micro_search_result' => array(
-	  'template' => 'templates/dlts_book_micro_search_result',
-	  'variables' => array(
-	    'entity_id' => NULL,
-	    'link' => NULL,
-	    'snippet' => NULL,
-	    'sequence_number' => NULL, 
-	  ),
-	),
+    'template' => 'templates/dlts_book_micro_search_result',
+    'variables' => array(
+      'entity_id' => NULL,
+      'link' => NULL,
+      'snippet' => NULL,
+      'sequence_number' => NULL, 
+    ),
+  ),
 
   );
 }
@@ -199,7 +199,7 @@ function dlts_book_process_page(&$vars) {
 
 /** See: http://api.drupal.org/api/drupal/includes%21theme.inc/function/template_process_page/7 */
 function dlts_book_preprocess_page(&$vars) {
-	
+  
   /** Include utilities files */
   module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book_page');
 
@@ -214,7 +214,7 @@ function dlts_book_preprocess_page(&$vars) {
     $vars['theme_hook_suggestions'][] = 'page__pjax__book__page';
     if (isset($vars['node']) ) {
       /** Fallback to AJAX and hash browsing in IE <= 9 */
-  	  if (isset($browser['msie']) && $browser['msie'] < 10 && !isset($_GET['routed'])) {
+      if (isset($browser['msie']) && $browser['msie'] < 10 && !isset($_GET['routed'])) {
         drupal_goto(str_replace('1#/' . dlts_utilities_collection() . '/', '', $_GET['pjax']), array('query'=>array('pjax' => 1, 'routed' => 1 )), 301);
       }
       return;
@@ -224,7 +224,7 @@ function dlts_book_preprocess_page(&$vars) {
   /** Enable some extra functionality (specifically PJAX) for old IE browsers */
   if (isset($browser['msie']) && $browser['msie'] < 10) {
     if (dlts_book_page) {
-      drupal_add_js($theme_path . '/js/modules/history.js', array('group' => JS_LIBRARY, 'weight' => -101 ));	
+      drupal_add_js($theme_path . '/js/modules/history.js', array('group' => JS_LIBRARY, 'weight' => -101 )); 
     }
   }
   
@@ -232,19 +232,19 @@ function dlts_book_preprocess_page(&$vars) {
     switch ($vars['node']->type) {
 
       case 'dlts_book_page' :
-		  
-		$read_order = dlts_utilities_book_page_get_read_order($vars['node']);
+      
+    $read_order = dlts_utilities_book_page_get_read_order($vars['node']);
 
-	    break;
+      break;
       
       case 'dlts_book' :
-	    $read_order = dlts_utilities_book_page_get_read_order($vars['node']);
-	    break;
+      $read_order = dlts_utilities_book_page_get_read_order($vars['node']);
+      break;
 
       case 'dlts_book_stitched_page' :
-		$read_order = dlts_utilities_book_page_get_read_order($vars['node']);  
-		break;
-	
+    $read_order = dlts_utilities_book_page_get_read_order($vars['node']);  
+    break;
+  
     }
   }
   
@@ -302,71 +302,71 @@ function dlts_book_preprocess_node(&$vars) {
       break;
 
     case 'dlts_multivol_book' :
-		
-	  /** node object */
+    
+    /** node object */
       $node = $vars['node'];
-	  
+    
       $vars['book_title'] = dlts_utilities_multivol_book_get_book_title($node);
 
-	  $vars['book_url'] = dlts_utilities_multivol_book_get_book_url($node);	  
-	  
-	  dlts_utilities_multivol_book_get_book_identifier($node);
-	  
-	  if ($isPJAX) {
+    $vars['book_url'] = dlts_utilities_multivol_book_get_book_url($node);   
+    
+    dlts_utilities_multivol_book_get_book_identifier($node);
+    
+    if ($isPJAX) {
         $vars['theme_hook_suggestions'][] = 'node__dlts_book_multivolbooks';
       }
 
-	  break;
+    break;
 
     case 'dlts_book' :
-		
-	  /** node object */
+    
+    /** node object */
       $node = $vars['node'];
-	  
+    
       switch ($vars['view_mode']) {
 
-      	/**
-		 * dlts_book does not have a full view; take user to  the first book page 
-		 */      	
-		case 'full':		
+        /**
+     * dlts_book does not have a full view; take user to  the first book page 
+     */       
+    case 'full':    
 
-			drupal_goto('books/' . dlts_utilities_book_get_identifier($node) , array(), 301);
+      drupal_goto('books/' . dlts_utilities_book_get_identifier($node) , array(), 301);
 
-		  break;
+      break;
 
-		case 'multivolbook':
+    case 'multivolbook':
           
           $vars['theme_hook_suggestions'][] = 'node__dlts_book_multivolbooks_pjax';
-			
-		  $multivol_book = dlts_utilities_book_get_multivol_book($node);
-		  
-		  $vars['book_title'] = '';
-		  
-		  $vars['book_url'] = url('node/' . $node->nid, array('absolute' => true));
+      
+      $multivol_book = dlts_utilities_book_get_multivol_book($node);
+      
+      $vars['book_title'] = '';
+      
+      $vars['book_url'] = url('node/' . $node->nid, array('absolute' => true));
 
-	      break;
+        break;
 
         case 'metadata':
-			
-		  $multivol_book = dlts_utilities_book_get_multivol_book($node);
-			
-		  $langcode = field_language('node', $node, 'field_title');
+      
+      $multivol_book = dlts_utilities_book_get_multivol_book($node);
+      
+      $langcode = field_language('node', $node, 'field_title');
 
-		  if ($multivol_book) {
+      if ($multivol_book) {
 
-		    $vars['select_multivolbook'] = views_embed_view('set_of_multi_volume_by_identifier','block_1', dlts_utilities_multivol_book_get_multivol_nid($multivol_book) );
-			
-			$vars['node']->field_title[$langcode]['value'] = 'a';
-			
-			$vars['node']->field_title[$langcode]['safe_value'] = 'b';
-	      
+        $vars['select_multivolbook'] = views_embed_view('set_of_multi_volume_by_identifier','block_1', dlts_utilities_multivol_book_get_multivol_nid($multivol_book) );
+      
+      $vars['node']->field_title[$langcode]['value'] = 'a';
+      
+      $vars['node']->field_title[$langcode]['safe_value'] = 'b';
+        
           }
-		  
+      
           $languages = language_list('enabled');
 
           $languages = $languages[1];
-		  
-		  $vars['theme_hook_suggestions'][] = 'node__dlts_book_metadata';
+      
+      $vars['theme_hook_suggestions'][] = 'node__dlts_book_metadata';
 
           $vars['lang_dir'] = ($languages[$node->language]->direction == 0) ? 'ltr' : 'rtl';
 
@@ -374,26 +374,26 @@ function dlts_book_preprocess_node(&$vars) {
  
           $vars['lang_name'] = $languages[$node->language]->name;
 
-		  $translations = translation_path_get_translations('node/' . $node->nid);
-		  
-		  if (count($translations) > 1) {
-		  
+      $translations = translation_path_get_translations('node/' . $node->nid);
+      
+      if (count($translations) > 1) {
+      
             $vars['lang_options'] = array(
                                        '#type' => 'markup',
                                        '#prefix' => '<select class="language">',
                                        '#suffix' => '</select>',
                                        '#markup' => '',
-								  );
+                  );
 
             foreach ($translations as $key => $index) {
-          	
+            
               $url = url(
                 'books/' . dlts_utilities_book_get_identifier($node) . '/display', 
-			    array(
-				  'absolute' => true, 
-				  'query' => array( 'lang' => $key )
+          array(
+          'absolute' => true, 
+          'query' => array( 'lang' => $key )
                 )
-			  );
+        );
 
               $markup = array(
                 '#tag' => 'option',
@@ -403,67 +403,67 @@ function dlts_book_preprocess_node(&$vars) {
                   'data-language' => $key,
                   'title' => t('@lang', array('@lang' => $languages[$key]->native)), 
                   'class' => array('language', $key),
-			      'data-url' => $url,
+            'data-url' => $url,
                   'value' => $url,
                 ),
                 '#value' => t('@lang', array('@lang' => $languages[$key]->native)),
-		      );
-			
-			  if ($vars['lang_language'] == $key) {
-			    $markup['#attributes']['selected'] = 'selected';	
-			  }
-			
+          );
+      
+        if ($vars['lang_language'] == $key) {
+          $markup['#attributes']['selected'] = 'selected';  
+        }
+      
               $vars['lang_options']['#markup'] .= theme('html_tag', $markup); 
-										
-	        }
-	      }
+                    
+          }
+        }
 
           break;
 
-		case 'teaser' :
+    case 'teaser' :
 
-		  $vars['theme_hook_suggestions'][] = 'node__dlts_book_teaser';
-		  
+      $vars['theme_hook_suggestions'][] = 'node__dlts_book_teaser';
+      
           // this is here because not all the times the the book have a representative image and we need to assume the first page of the book i the cover
           $vars['representative_image'] = dlts_utilities_book_get_representative_image($node);
-		  
-		  /** use book_title instead of node->title because our titles length can be longer than the length permitted by default in Drupal node->title*/
-		  $vars['book_title'] = dlts_utilities_book_get_title($node);
-		  
-		  /** link to the first page of the book; this theme does not display a full view of the done */
-		  $vars['book_first_page'] = dlts_utilities_book_get_first_page($node);
+      
+      /** use book_title instead of node->title because our titles length can be longer than the length permitted by default in Drupal node->title*/
+      $vars['book_title'] = dlts_utilities_book_get_title($node);
+      
+      /** link to the first page of the book; this theme does not display a full view of the done */
+      $vars['book_first_page'] = dlts_utilities_book_get_first_page($node);
 
-		  break;
+      break;
       }
 
       break;
 
     case 'dlts_book_page' :
     case 'dlts_book_stitched_page' :
-		
+    
       // print $vars['node']->title; 
-		
+    
       /** Use node--dlts-book-page.tpl.php for both dlts_book_page and dlts_book_stitched_page content types */
       $vars['theme_hook_suggestions'][] = ($isPJAX) ? 'node__dlts_book_pjax_page' : 'node__dlts_book_page';    
 
       /** Node object */
       $node = $vars['node'];
-	  
+    
       $languages = language_list('enabled');
 
       $languages = $languages[1];
-	  
-	  $vars['lang_dir'] = isset($languages[$node->language]) ? ($languages[$node->language]->direction == 0 ? 'ltr' : 'rtl') : 'ltr';
-	  
+    
+    $vars['lang_dir'] = isset($languages[$node->language]) ? ($languages[$node->language]->direction == 0 ? 'ltr' : 'rtl') : 'ltr';
+    
       /** Page title */
       $vars['page_title'] = $node->title;
-	  
+    
       /** prev page */
       $vars['button_prevpage'] = $node->prevpage;
 
       /** next page */
       $vars['button_nextpage'] = $node->nextpage;
-	  
+    
       /** Book page sequence number */
       $vars['book_page_sequence_number'] = dlts_utilities_book_page_get_sequence_number($node);   
 
@@ -477,12 +477,12 @@ function dlts_book_preprocess_node(&$vars) {
       $book = dlts_utilities_book_page_load_book($node);
 
       if (!$isPJAX) {
-      	
+        
         $vars['metadata'] = node_view($book, 'metadata');
 
-		$multivol_book = dlts_utilities_book_get_multivol_book($book);
-		
-		if ($multivol_book) {
+    $multivol_book = dlts_utilities_book_get_multivol_book($book);
+    
+    if ($multivol_book) {
           $vars['button_multibook'] = _dlts_book_navbar_item(
             array(
               'title' => t('View Related Titles'),
@@ -490,11 +490,11 @@ function dlts_book_preprocess_node(&$vars) {
               'attributes' => array('data-title' => t('View Related Titles'), 'title' => t('Show/hide Related Titles'), 'class' => array('button', 'multibook'), 'id' => array('button-multibook')),
             )
           );
-		  $vars['multivolbooks'] = theme('dlts_book_yui3_multivolbooks');
-		}
-		  
+      $vars['multivolbooks'] = theme('dlts_book_yui3_multivolbooks');
+    }
+      
       }
-	  
+    
       /** Book sequence count */
       $vars['sequence_count'] = $sequence_count = dlts_utilities_book_get_sequence_count($book);
 
@@ -502,16 +502,16 @@ function dlts_book_preprocess_node(&$vars) {
       $vars['button_togglepage'] = $node->togglepage;
 
       $vars['thumbnails'] = theme('dlts_book_yui3_thumbnails');
-	  
-      $vars['loading'] = theme('dlts_book_loading', array('sequence_number' => $vars['book_page_sequence_number']));	  
+    
+      $vars['loading'] = theme('dlts_book_loading', array('sequence_number' => $vars['book_page_sequence_number']));    
 
       /** YUI conf */
       $js_yui_files_conf = array('type' => 'file', 'scope' => 'footer', 'weight' => 5);
 
       drupal_add_js($theme_path . '/js/ui.keyboard.yui.js', $js_yui_files_conf);
-	  
+    
       drupal_add_js($theme_path . '/js/ui.components.yui.js', $js_yui_files_conf);
-	  
+    
       /** Collection type */
       $collection_type = dlts_utilities_collection_type();
 
@@ -550,9 +550,9 @@ function dlts_book_preprocess_node(&$vars) {
       $read_order = dlts_utilities_book_page_get_read_order($node);
       
       $vars['read_order'] = ($read_order == 1) ? 'rtl' : 'ltr';
-	  
-	  $vars['button_language'] = '';
-	  
+    
+    $vars['button_language'] = '';
+    
       /** Zoom in and out buttons */
       $vars['control_panel'] = theme('dlts_book_control_panel'); 
 
@@ -594,7 +594,7 @@ function dlts_book_menu_local_task($variables) {
     if (empty($link['localized_options']['html'])) {
       $link['title'] = check_plain($link['title']);
     }
-	
+  
     $link['localized_options']['html'] = TRUE;
     $link_text = t('!local-task-title!active', array('!local-task-title' => $link['title'], '!active' => $active));
   }
@@ -615,8 +615,8 @@ function dlts_book_preprocess_field(&$vars) {
       if (isset( $value['#markup'])) {
         preg_match('/\/(.*)\/(.*){1}_(.*).pdf{1}/', $value['#markup'], $matches);
         if (isset($matches) && isset( $matches[3])) {
-		  if ($matches[3] == 'hi') {
-		    $pdf_link_text = t('High-bandwidth');
+      if ($matches[3] == 'hi') {
+        $pdf_link_text = t('High-bandwidth');
           }
           else {
             $pdf_link_text = t('Low-bandwidth');
@@ -636,7 +636,7 @@ function dlts_book_preprocess_field(&$vars) {
 }
 
 function _dlts_book_navbar_item($variables = array()) {
-	
+  
   $parts = array(
     'html' => TRUE
   ); 
@@ -658,12 +658,12 @@ function _dlts_book_navbar_item($variables = array()) {
 }
 
 function _dlts_book_slider($variables = array( 'id' => NULL, 'sequence_number' => 0, 'sequence_count' => 0 )) {
-  return '<span id="'. $variables['id'] . '"></span><form><input id="slider_value" value="' . $variables['sequence_number'] . '"/></form></span> <span>/</span> <span class="sequence_count">' . $variables['sequence_count'] . '</span>';
+  return '<span id="'. $variables['id'] . '"></span><form><input id="slider_value" value="' . $variables['sequence_number'] . '"/></form><span>/</span> <span class="sequence_count">' . $variables['sequence_count'] . '</span>';
 }
 
 function _dlts_thumbnail_pager($vars) {
   if (($vars['type'] == 'dlts_book_page') || ($vars['type'] == 'dlts_book_stitched_page')) {
-  	
+    
     /** Include utilities files */
     module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book_page');
 
@@ -709,12 +709,12 @@ function dlts_book_dlts_book_pager_button($arguments) {
   
   switch ($arguments['id']) {
     case 'next-page':
-	case 'last-page':
+  case 'last-page':
       if ($pjax) {
-        return '<span class="pjax button ' . $status . ' ' . $arguments['id'] . '">' . l( '<span>' .$arguments['text'] . '</span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array('next', 'paging', $status)), 'html' => TRUE)) . '</span>';		      
+        return '<span class="pjax button ' . $status . ' ' . $arguments['id'] . '">' . l( '<span>' .$arguments['text'] . '</span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array('next', 'paging', $status)), 'html' => TRUE)) . '</span>';         
       }
       else {
-        return l( '<span>' . $arguments['text'] . '<span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array('paging', 'next', $status)), 'html' => TRUE));
+        return l( '<span>' . $arguments['text'] . '</span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array('paging', 'next', $status)), 'html' => TRUE));
       }
     break;
 
@@ -724,7 +724,7 @@ function dlts_book_dlts_book_pager_button($arguments) {
         return '<span class="pjax button ' . $status . ' ' . $arguments['id'] . '">' . l( '<span>' .  $arguments['text'] . '<span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array('previous', 'paging', $status)), 'html' => TRUE)) . '</span>';        
       }
       else {
-        return l( '<span>' . $arguments['text'] . '<span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array('paging', 'previous', $status)), 'html' => TRUE));
+        return l( '<span>' . $arguments['text'] . '</span>', $arguments['url'], array('attributes' => array('data-title' => $arguments['text'], 'title' => $arguments['text'], 'class' => array('paging', 'previous', $status)), 'html' => TRUE));
       }
       break;
 
@@ -815,13 +815,13 @@ function dlts_book_add_search(&$vars, &$js_data) {
       'search' => array(
         'books' => FALSE,
         'pages' => $vars['identifier'] .'/services/search',
-      	'messages' => array(
-      	  'found' => '<div class="pane results-found">' . t('Showing all')  . ' <em><%= data.message %></em> ' . t('results') . '</div>',
-      	  'no_found' => '<div class="pane results-no-found">' . t('No results found') . '</div>',
-      	),
-      	'templates' => array(
-      	  'result' => theme('micro_search_result', array()),
-      	),
+        'messages' => array(
+          'found' => '<div class="pane results-found">' . t('Showing all')  . ' <em><%= data.message %></em> ' . t('results') . '</div>',
+          'no_found' => '<div class="pane results-no-found">' . t('No results found') . '</div>',
+        ),
+        'templates' => array(
+          'result' => theme('micro_search_result', array()),
+        ),
       ),
     );
     
@@ -831,7 +831,7 @@ function dlts_book_add_search(&$vars, &$js_data) {
     $vars['button_search'] = _dlts_book_navbar_item(
       array(
         'title' => t('Search'),
-      	'path' => 'node/' . $vars['node']->nid,
+        'path' => 'node/' . $vars['node']->nid,
         'attributes' => array('title' => t('Search'), 'class' => array('button', 'search', (($searchHasTerms) ? ' on' : '') ), 'id' => array('button-search')),
         'fragment' => 'search',
       )
@@ -854,7 +854,7 @@ function dlts_book_add_search(&$vars, &$js_data) {
  * See: http://api.drupal.org/api/drupal/includes--theme.inc/function/theme_html_tag/7
  */
 function dlts_book_html_tag($variables) {
-  	
+    
   $element = $variables['element'];
   
   $attributes = isset($element['#attributes']) ? drupal_attributes($element['#attributes']) : NULL;
@@ -892,9 +892,9 @@ function dlts_book_process_views_view(&$vars) {
 }
 
 function dlts_book_field__field_title($variables) {
-	
+  
   $output = '';
-  	
+    
   $multivol_book = dlts_utilities_book_get_multivol_book($variables['element']['#object']);
   
   if ($multivol_book) {

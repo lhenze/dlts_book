@@ -99,16 +99,6 @@ body.page-node .node-page {
   background:none !important;
 }
 
-@mixin gradient($start-color, $end-color) {
-  background: $start-color; /* Old browsers */
-  background: -moz-linear-gradient(left, $start-color 0%, $end-color 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%,$start-color), color-stop(100%,$end-color)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, $start-color 0%,$end-color 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left, $start-color 0%,$end-color 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, $start-color 0%,$end-color 100%); /* IE10+ */
-  background: linear-gradient(to right, $start-color 0%,$end-color 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start-color', endColorstr='$end-color',GradientType=1 ); /* IE6-9 */
-}
 
 i, em {
   font-style: italic;
@@ -139,15 +129,7 @@ html.front form .form-text {
   }
 }
 
-.titlebar {
-  background-image:none;
-  @include gradient(darken($lib-red,20%),darken($lib-brown,10%));
-}
 
-.pane .navbar {
-  background-image:none;
-  padding:.25em 0;
-}
 
 #pager {
   border-top: 1px solid gray;
