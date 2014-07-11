@@ -253,6 +253,10 @@ function dlts_book_preprocess_page(&$vars) {
   
   /** Add YUI Library from YUI Open CDN; should we add this as a setting in the theme form? */
   drupal_add_js('http://yui.yahooapis.com/3.13.0/build/yui/yui-min.js', 'external', array('group' => JS_LIBRARY, 'weight' => -100 ));
+
+  drupal_add_js($theme_path . '/js/crossframe.js', array('type' => 'file', 'scope' => 'footer', 'weight' => -100));
+
+  drupal_add_js($theme_path . '/js/ui.crossframe.js', array('type' => 'file', 'scope' => 'footer', 'weight' => -100));
   
   // there seem to be a problem with the slider with this version, the thumbnail won't move
   // drupal_add_js('http://yui.yahooapis.com/3.16.0/build/yui/yui-min.js', 'external', array('group' => JS_LIBRARY, 'weight' => -100 ));  
