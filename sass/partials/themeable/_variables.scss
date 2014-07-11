@@ -2,6 +2,7 @@
 $light-background: #e5e5e5;
 $dark-background: #666666;
 $link-color: #6e1d1d;
+$special-titlebar-color: $lib-red;
 
 // Default values! change only if you need to
 $navbar-overlay: $light-background;
@@ -19,7 +20,3 @@ $titlebar-overlay: $dark-background;
 $loading-animation-start-color: $navbar-icon-color;
 $loading-animation-end-color: $page-background;
 
-$lib-red:#952c2f;
-$lib-brown:#623e24;
-$teaser-color:#E0D7C9;
-$dkgrey:#333;
