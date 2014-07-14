@@ -843,7 +843,6 @@ Y.use(
     slider_datasource = Y.one('#slider_value')
   , pane_pagemeta = Y.one('.pane.pagemeta')
   , pane_top = Y.one('#top')
-  // , pane_tooltip = Y.one('#tooltip')
   
      /** widgets */
   , slider
@@ -864,18 +863,11 @@ Y.use(
    , pjax_navigate
    , pjax_callback
    , pjax_load
-   , on_mousemove_over_slider_rail
-   , on_mouseleave_slider_rail
    , on_toggle_language
    , on_toggle_multivol
-   // , on_mousemove_tooltip
-   // , on_mouseleave_tooltip
 
      /** book global settings; the object that represent the current book and settings */
    , book = Y.DLTS.settings.book
-   
-   /** others */
-   // , waitingToShow = false
    
    ; /** definition list end */
     
@@ -918,8 +910,10 @@ Y.use(
 
         e.preventDefault();
         
-        Y.io(data_target, { 
+        Y.io(data_target, {
+
             on: {
+
                 complete: function(id, e) {
             	
                     var node = Y.one('#pagemeta')
@@ -937,9 +931,10 @@ Y.use(
 
                 } 
             }
+
         });        
 
-    }
+    };
 
     on_toggle_multivol = function(e) {
     	
@@ -956,7 +951,7 @@ Y.use(
             location.href = data_target;
         }
         return false;
-    }
+    };
 
     on_button_click = function(e) {
 
@@ -1189,7 +1184,9 @@ Y.use(
             of the response DOM, replace the old ones */ 
         
         Y.one('.paging.previous').replace(node.one('.previous').cloneNode(true));
-        Y.one('.paging.next').replace(node.one('.next').cloneNode(true));   
+        
+        Y.one('.paging.next').replace(node.one('.next').cloneNode(true));
+           
         Y.one('a.toogle').replace(node.one('.toogle').cloneNode(true)); 
         
         /** Configuration for the new book page */
@@ -1211,48 +1208,6 @@ Y.use(
         Y.on('available', change_page, '#' + config.id, OpenLayers, config);
 
     };
-    
-    /**
-    on_mousemove_tooltip = function (e) {
-    	
-        var i
-          , self = this
-          , currentTarget = e.currentTarget
-          , target_title = self.one('.field-name-field-title .field-item').get('text')
-           
-        if (tooltip.get('visible') === false) {
-            // while it's still hidden, move the tooltip adjacent to the cursor
-            Y.one('#tooltip').setStyle('opacity', '0');
-            tooltip.move([(e.pageX + 10), (e.pageY + 20)]);
-        }
-        
-        if (waitingToShow === false) {
-            // wait half a second, then show tooltip
-            setTimeout(function(){
-                Y.one('#tooltip').setStyle('opacity', '1');
-                tooltip.show();
-            }, 500);
-        
-            // while waiting to show tooltip, don't let other
-            // mousemoves try to show tooltip too.
-            waitingToShow = true;
-            
-            tooltip.setStdModContent('body', target_title);
-
-        }
-    }
-    
-    // handler that hides the tooltip
-    on_mouseleave_tooltip = function (e) {
-        
-        // this check prevents hiding the tooltip 
-        // when the cursor moves over the tooltip itself
-        if ((e.relatedTarget) && (e.relatedTarget.hasClass('yui3-widget-bd') === false)) {
-            tooltip.hide();
-            waitingToShow = false;            
-        }
-    }
-    */
 
     /** slider object */
     slider = new Y.Slider({
@@ -1262,31 +1217,12 @@ Y.use(
         clickableRail: false,
         max: parseInt(book.sequence_count, 10),
         value: parseInt(book.sequence_number, 10),
-        length: (book.viewport.width - 150) + 'px',
-        // thumbUrl: Y.DLTS.settings.book.theme_path + 'js/img/thumb-x.png'
+        length: (book.viewport.width - 150) + 'px'
     });
 
     /** render the slider and plug-ins */
     
     slider.render('#slider');
-
-    /** tooltip object */
-   /**
-    tooltip = new Y.Overlay({
-        srcNode: "#tooltip",
-        visible: false,
-        zIndex: 9999999999
-    })
-    
-    tooltip.plug(Y.Plugin.WidgetAnim);
-
-    tooltip.anim.get('animHide').set('duration', 0.01);
-    
-    tooltip.anim.get('animShow').set('duration', 0.3);
-    
-    tooltip.render();  
-    
-    */  
 
     /** events listeners */
     Y.on('contentready', resizePageMeta, '#pagemeta');
@@ -1372,7 +1308,7 @@ Y.use(
           , data_target = current_target.get('href');
           
         if (self.hasClass('rendered')) {
-       	    self.removeClass('hidden') 
+       	    self.removeClass('hidden');
         }
         else {
             Y.io(data_target, { 
@@ -1485,9 +1421,5 @@ Y.use(
     Y.delegate('change', on_toggle_language, 'body', '.language', pane_pagemeta);
     
     Y.delegate('change', on_toggle_multivol, 'body', '.ctools-jump-menu-select', pane_pagemeta);
-    
-    // Y.delegate('mousemove', on_mousemove_tooltip, 'body', '.multivolbooks .multibook-item');
-    
-    // Y.delegate('mouseleave', on_mouseleave_tooltip, 'body', '.multivolbooks .multibook-item');
     
 });

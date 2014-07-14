@@ -4,42 +4,60 @@ Y.use(
   , 'event-custom'
   , 'crossframe'
   , function(Y) {
-    
-    'use strict';
-    
-    // https://github.com/josephj/yui3-crossframe
-    
-    Y.on('button:button-metadata:on', function(e) {
-        Y.CrossFrame.postMessage("parent", "hello", {});
-    });
-    
-    Y.on('button:button-metadata:off', function(e) {
-        Y.CrossFrame.postMessage("parent", "hello", {});
-    });    
-    
-    Y.on('openlayers:next', function(e) {
-        Y.CrossFrame.postMessage("parent", "next", {});
-    }, Y.one('.paging.next'));
-    
-    Y.on('openlayers:previous', function(e) {
-        Y.CrossFrame.postMessage("parent", "previous", {});
-    }, Y.one('.paging.previous'));   
-        
-    Y.Global.on("crossframe:css", function (e, data, callback) { 
 
+    'use strict';
+
+    Y.on('button:button-metadata:on', function(e) {
+        Y.CrossFrame.postMessage("parent", JSON.stringify({
+            fire: 'button:button-metadata:on',
+            data: {}
+          })
+        );
+    });
+
+    Y.on('button:button-metadata:off', function(e) {
+        Y.CrossFrame.postMessage("parent", JSON.stringify({
+            fire: 'button:button-metadata:off',
+            data: {}
+          })
+        );
+    });
+
+    Y.on('button:button-fullscreen:on', function(e) {
+        Y.CrossFrame.postMessage("parent", JSON.stringify({
+            fire: 'button:button-fullscreen:on',
+            data: {}
+          })
+        );
+    });
+
+    Y.on('button:button-fullscreen:off', function(e) {
+        Y.CrossFrame.postMessage("parent", JSON.stringify({
+            fire: 'button:button-fullscreen:off',
+            data: {}
+          })
+        );
+    });
+
+    Y.on('openlayers:change', function(e) {
+        Y.CrossFrame.postMessage("parent", JSON.stringify({
+            fire: 'openlayers:change',
+            data: { 
+              sequence: e.sequence,
+              title: e.title
+            }
+          })
+        );
+    });
+
+    Y.Global.on('crossframe:css', function (e, data, callback) { 
         Y.Get.css(data.message, function (err) {
-        
             if (err) {
                 Y.log('Error loading CSS: ' + err[0].error, 'error');
                 return;
             }
-            
-            callback({"info": "some information from receiver. (" + parseInt(new Date().getTime()) + ")"})
-            
-            Y.log('file.css loaded successfully!');
-            
+            callback( {"info": "some information from receiver. (" + parseInt(new Date().getTime()) + ")"} );
         });      
-    
     });
-    
+
 });
