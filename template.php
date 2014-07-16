@@ -339,12 +339,12 @@ function dlts_book_preprocess_node(&$vars) {
     
       switch ($vars['view_mode']) {
 
-        /**
+    /**
      * dlts_book does not have a full view; take user to  the first book page 
      */       
     case 'full':    
 
-      drupal_goto('books/' . dlts_utilities_book_get_identifier($node) , array(), 301);
+      drupal_goto('books/' . dlts_utilities_book_get_identifier($node) . '/1' , array(), 301);
 
       break;
 
