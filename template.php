@@ -251,6 +251,7 @@ function dlts_book_preprocess_page(&$vars) {
       case 'dlts_book' :
 	    // this looks like a bug
         $read_order = dlts_utilities_book_page_get_read_order($vars['node']);
+        
       break;
 
     break;
@@ -350,7 +351,7 @@ function dlts_book_preprocess_node(&$vars) {
 
     case 'multivolbook':
           
-          $vars['theme_hook_suggestions'][] = 'node__dlts_book_multivolbooks_pjax';
+      $vars['theme_hook_suggestions'][] = 'node__dlts_book_multivolbooks_pjax';
       
       $multivol_book = dlts_utilities_book_get_multivol_book($node);
       
@@ -360,7 +361,7 @@ function dlts_book_preprocess_node(&$vars) {
 
         break;
 
-        case 'metadata':
+    case 'metadata':
       
       $multivol_book = dlts_utilities_book_get_multivol_book($node);
       
@@ -370,23 +371,25 @@ function dlts_book_preprocess_node(&$vars) {
 
         $vars['select_multivolbook'] = views_embed_view('set_of_multi_volume_by_identifier','block_1', dlts_utilities_multivol_book_get_multivol_nid($multivol_book) );
       
-      $vars['node']->field_title[$langcode]['value'] = 'a';
+        $vars['node']->field_title[$langcode]['value'] = 'a';
       
-      $vars['node']->field_title[$langcode]['safe_value'] = 'b';
+        $vars['node']->field_title[$langcode]['safe_value'] = 'b';
         
-          }
+      }
       
-          $languages = language_list('enabled');
+      $vars['rights'] = dlts_utilities_book_get_rights($node);
+      
+      $languages = language_list('enabled');
 
-          $languages = $languages[1];
+      $languages = $languages[1];
       
       $vars['theme_hook_suggestions'][] = 'node__dlts_book_metadata';
 
-          $vars['lang_dir'] = ($languages[$node->language]->direction == 0) ? 'ltr' : 'rtl';
+      $vars['lang_dir'] = (!isset($languages[$node->language]->direction) || isset($languages[$node->language]->direction) && $languages[$node->language]->direction == 0) ? 'ltr' : 'rtl';
 
-          $vars['lang_language'] = $languages[$node->language]->language;
+      $vars['lang_language'] = isset($languages[$node->language]->language) ? $languages[$node->language]->language : 'en';
  
-          $vars['lang_name'] = $languages[$node->language]->name;
+      $vars['lang_name'] = isset($languages[$node->language]->name) ? $languages[$node->language]->name : 'English';
 
       $translations = translation_path_get_translations('node/' . $node->nid);
       
@@ -625,6 +628,26 @@ function dlts_book_menu_local_task($variables) {
  */
 function dlts_book_preprocess_field(&$vars) {
 
+  $language = 'en';
+  
+  $query_parameters = drupal_get_query_parameters();
+  
+  if (isset($query_parameters['lang'])) {
+    $language = filter_xss($query_parameters['lang']);
+  }
+  
+  // Sadly, translations for field labels was removed from Drupal 7.1, even
+  // though the string translations are stored in the database, Drupal core
+  // does not render them translated. Thus, we are forced to either install
+  // i18n_fields module, or the less performance intensive solution: pass the
+  // labels through the t() function in a preprocess function.
+  //
+  // See http://drupal.org/node/1169798, http://drupal.org/node/1157426,
+  // and http://drupal.org/node/1157512 for more information.
+  if (!empty($vars['label'])) {
+    $vars['label'] = locale($vars['label'], $vars['element']['#field_name'] . ':' . $vars['element']['#bundle'] . ':label', $language);
+  }
+  
   if ($vars['element']['#field_name'] == 'field_pdf_file') {
     $vars['label'] = t('Download PDF');
     foreach ($vars['items'] as $key => $value) {
