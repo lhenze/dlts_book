@@ -335,65 +335,63 @@ function dlts_book_preprocess_node(&$vars) {
 
     case 'dlts_book' :
     
-    /** node object */
+      /** node object */
       $node = $vars['node'];
     
       switch ($vars['view_mode']) {
 
-    /**
-     * dlts_book does not have a full view; take user to  the first book page 
-     */       
-    case 'full':    
+      /**
+       * dlts_book does not have a full view; take user to  the first book page 
+       */       
+      case 'full':    
 
-      drupal_goto('books/' . dlts_utilities_book_get_identifier($node) . '/1' , array(), 301);
-
-      break;
-
-    case 'multivolbook':
-          
-      $vars['theme_hook_suggestions'][] = 'node__dlts_book_multivolbooks_pjax';
-      
-      $multivol_book = dlts_utilities_book_get_multivol_book($node);
-      
-      $vars['book_title'] = '';
-      
-      $vars['book_url'] = url('node/' . $node->nid, array('absolute' => true));
+        drupal_goto('books/' . dlts_utilities_book_get_identifier($node) . '/1' , array(), 301);
 
         break;
 
-    case 'metadata':
+      case 'multivolbook':
+          
+        $vars['theme_hook_suggestions'][] = 'node__dlts_book_multivolbooks_pjax';
       
-      $multivol_book = dlts_utilities_book_get_multivol_book($node);
+        $multivol_book = dlts_utilities_book_get_multivol_book($node);
       
-      $langcode = field_language('node', $node, 'field_title');
+        $vars['book_title'] = '';
+      
+        $vars['book_url'] = url('node/' . $node->nid, array('absolute' => true));
 
-      if ($multivol_book) {
+        break;
 
-        $vars['select_multivolbook'] = views_embed_view('set_of_multi_volume_by_identifier','block_1', dlts_utilities_multivol_book_get_multivol_nid($multivol_book) );
+      case 'metadata':
       
-        $vars['node']->field_title[$langcode]['value'] = 'a';
+        // dpm($node);
       
-        $vars['node']->field_title[$langcode]['safe_value'] = 'b';
+        $multivol_book = dlts_utilities_book_get_multivol_book($node);
+      
+        $langcode = field_language('node', $node, 'field_title');
+
+        if ($multivol_book) {
+
+          $vars['select_multivolbook'] = views_embed_view('set_of_multi_volume_by_identifier','block_1', dlts_utilities_multivol_book_get_multivol_nid($multivol_book) );
         
-      }
+        }
       
-      $vars['rights'] = dlts_utilities_book_get_rights($node);
+        $vars['rights'] = dlts_utilities_book_get_rights($node);
+
+        $languages = language_list('enabled');
+
+        $languages = $languages[1];
       
-      $languages = language_list('enabled');
+        $vars['theme_hook_suggestions'][] = 'node__dlts_book_metadata';
 
-      $languages = $languages[1];
-      
-      $vars['theme_hook_suggestions'][] = 'node__dlts_book_metadata';
+        $vars['lang_dir'] = (!isset($languages[$node->language]->direction) || isset($languages[$node->language]->direction) && $languages[$node->language]->direction == 0) ? 'ltr' : 'rtl';
 
-      $vars['lang_dir'] = (!isset($languages[$node->language]->direction) || isset($languages[$node->language]->direction) && $languages[$node->language]->direction == 0) ? 'ltr' : 'rtl';
-
-      $vars['lang_language'] = isset($languages[$node->language]->language) ? $languages[$node->language]->language : 'en';
+        $vars['lang_language'] = isset($languages[$node->language]->language) ? $languages[$node->language]->language : 'en';
  
-      $vars['lang_name'] = isset($languages[$node->language]->name) ? $languages[$node->language]->name : 'English';
-
-      $translations = translation_path_get_translations('node/' . $node->nid);
+        $vars['lang_name'] = isset($languages[$node->language]->name) ? $languages[$node->language]->name : 'English';
+        
+        $translations = translation_path_get_translations('node/' . $node->nid);
       
-      if (count($translations) > 1) {
+        if (count($translations) > 1) {
       
             $vars['lang_options'] = array(
                                        '#type' => 'markup',
@@ -410,7 +408,7 @@ function dlts_book_preprocess_node(&$vars) {
           'absolute' => true, 
           'query' => array( 'lang' => $key )
                 )
-        );
+          );
 
               $markup = array(
                 '#tag' => 'option',

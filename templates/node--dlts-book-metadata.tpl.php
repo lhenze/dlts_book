@@ -10,6 +10,10 @@
     </div>
   <?php endif; ?>
   
+   <?php if (isset($series)) : ?>
+      <?php print $series; ?>
+  <?php endif; ?>
+  
    <?php if (isset($rights)) : ?>
     <div class="field field-name-field-rights field-type-text field-label-inline clearfix">
       <?php print $rights; ?>
