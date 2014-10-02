@@ -13,8 +13,6 @@ Y.use(
 
     'use strict';
     
-    Y.log ('estamos aqui')
-    
     /** definition list start */
     var 
 
