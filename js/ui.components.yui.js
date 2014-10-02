@@ -346,8 +346,6 @@ Y.use(
             url = this.get('href');
         }
         
-        Y.log ( url ) 
-        
         /** request URL */
         pjax.navigate(url);
 
