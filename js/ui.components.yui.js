@@ -13,6 +13,8 @@ Y.use(
 
     'use strict';
     
+    Y.log ('estamos aqui')
+    
     /** definition list start */
     var 
 
@@ -327,10 +329,10 @@ Y.use(
     };
     
     /** pjax callback can be call by clicking a pjax enable link or by reference with data-url */  
-    pjax_callback = function(e) {
+    pjax_callback = function( e ) {
     
         var url;
-
+        
         e.preventDefault();
       
         /** test if the target is not active */
@@ -345,7 +347,9 @@ Y.use(
         else {
             url = this.get('href');
         }
-      
+        
+        Y.log ( url ) 
+        
         /** request URL */
         pjax.navigate(url);
 
@@ -427,7 +431,62 @@ Y.use(
     Y.one('#page').delegate('click', pjax_callback, 'a.paging, a.toogle');
     
     /** delegate click on book pages thumbnail links */
-    Y.one('#page').delegate('click', pjax_callback, '.view-book-thumbnails a');   
+    // Y.one('#page').delegate('click', pjax_callback, '.view-book-thumbnails a');   
+    
+    // remove content
+    function onThumbnailsPageComplete ( id, response, args ) {
+        Y.one('.thumbnails-container').empty();
+    }
+        
+    // add loading effect
+    function onThumbnailsPageStart ( e ) {
+        Y.one('.thumbnails-container').addClass('io-loading');
+    }
+
+    // remove loading effect        
+    function onThumbnailsPageEnd ( e ) {
+        Y.one('.thumbnails-container').removeClass('io-loading');
+    }
+
+    function onThumbnailsPageSuccess ( id, response, args ) {
+         Y.one('.thumbnails-container').set('innerHTML', response.response );
+    }
+        
+    function onThumbnailsPageFailure ( e ) {
+        Y.log ( 'failure' );
+    }
+
+    Y.one('body').delegate('click', function ( e ) {
+
+        var url;
+        
+        e.preventDefault();
+      
+        /** test if the target is not active */
+        if (e.currentTarget.hasClass('inactive')) return false;
+
+        /** if event has referenceTarget, then event was trigger by reference */
+        if (Y.Lang.isObject(e.referenceTarget, true)) {
+            url = e.referenceTarget.getAttribute('data-url');
+        }
+
+        /** trigger by a pjax enable link */
+        else {
+            url = this.get('href');
+        }
+        
+        /** request new page */
+        Y.io ( url, {
+            on: {
+                start : onThumbnailsPageStart
+              , end : onThumbnailsPageEnd         
+              , complete : onThumbnailsPageComplete
+              , success : onThumbnailsPageSuccess
+              , failure : onThumbnailsPageFailure
+            }
+        });
+
+    }, '#thumbnails .pager a');       
     
     Y.on('button:button-metadata:on', function(e) {
         this.removeClass('hidden');
