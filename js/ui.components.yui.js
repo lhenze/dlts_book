@@ -327,7 +327,7 @@ Y.use(
     };
     
     /** pjax callback can be call by clicking a pjax enable link or by reference with data-url */  
-    pjax_callback = function( e ) {
+    pjax_callback = function(e) {
     
         var url;
         
@@ -427,7 +427,7 @@ Y.use(
     Y.one('#page').delegate('click', pjax_callback, 'a.paging, a.toogle');
     
     /** delegate click on book pages thumbnail links */
-    // Y.one('#page').delegate('click', pjax_callback, '.view-book-thumbnails a');   
+    Y.one('#page').delegate('click', pjax_callback, '.view-book-thumbnails a');   
     
     // remove content
     function onThumbnailsPageComplete ( id, response, args ) {
@@ -569,7 +569,7 @@ Y.use(
             , book_thumbnails_page = Math.ceil(current_book_page / pager_count) - 1
             /** View URL */
             , target = Y.DLTS.settings.book.path + '/pages?page=' + book_thumbnails_page + '&pager_count=' + pager_count;
-          
+
         this.removeClass('hidden');
         
         if (!pane || pane && (current_book_page / pager_count) > 1) {
