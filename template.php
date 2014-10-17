@@ -647,18 +647,20 @@ function dlts_book_preprocess_field(&$vars) {
   }
 
   if ($vars['element']['#field_name'] == 'field_pdf_file') {
-    $vars['label'] = t('Download PDF');
+    $vars['label'] = t('PDF');
     foreach ($vars['items'] as $key => $value) {
       if (isset( $value['#markup'])) {
         preg_match('/\/(.*)\/(.*){1}_(.*).pdf{1}/', $value['#markup'], $matches);
         if (isset($matches) && isset( $matches[3])) {
       if ($matches[3] == 'hi') {
-        $pdf_link_text = t('High-bandwidth');
+        $pdf_link_text = t('High resolution');
           }
           else {
-            $pdf_link_text = t('Low-bandwidth');
+            $pdf_link_text = t('Low resolution');
           }
-          $vars['items'][$key]['#markup'] = '<span class="field-item pdf-'. $matches[3] .'">' . l($pdf_link_text, $value['#markup']) . '</span>';
+
+          $vars['items'][$key]['#markup'] = '<span class="field-item pdf-'. $matches[3] .'">' . l( $pdf_link_text, $value['#markup'], array('attributes' => array('target' => '_blank'))) . '</span>';
+
         }
       }
     }

@@ -327,7 +327,7 @@ Y.use(
     };
     
     /** pjax callback can be call by clicking a pjax enable link or by reference with data-url */  
-    pjax_callback = function( e ) {
+    pjax_callback = function(e) {
     
         var url;
         
@@ -427,7 +427,7 @@ Y.use(
     Y.one('#page').delegate('click', pjax_callback, 'a.paging, a.toogle');
     
     /** delegate click on book pages thumbnail links */
-    // Y.one('#page').delegate('click', pjax_callback, '.view-book-thumbnails a');   
+    Y.one('#page').delegate('click', pjax_callback, '.view-book-thumbnails a');   
     
     // remove content
     function onThumbnailsPageComplete ( id, response, args ) {
@@ -563,22 +563,12 @@ Y.use(
     Y.on('button:button-thumbnails:on', function(e) {
     	
         var current_book_page = Y.one('#slider_value').get('value')
-          , pane = Y.one('.view-book-thumbnails')
-            /** maximum width of each column */
-          , columns_max_width = 150
-            /** minimum width of each column */
-          , columns_min_width = 70
-            /** columns per pager page; the weird looking math is a fancy/faster way to achieve Math.floor() */
-          , pager_count = (book.viewport.width / columns_max_width)|0
-            /** given the client viewport try to calculate the "optimal" width of each column */
-          , columns_width = (book.viewport.width/pager_count)|0 - 10 * pager_count
+            , pane = Y.one('.view-book-thumbnails')
+            , pager_count = 10
             /** thumbnail page  */
-          , book_thumbnails_page = Math.ceil(current_book_page / pager_count) - 1
+            , book_thumbnails_page = Math.ceil(current_book_page / pager_count) - 1
             /** View URL */
-          , target = Y.DLTS.settings.book.path + '/pages?page=' + book_thumbnails_page + '&pager_count=' + pager_count;
-          
-        /** @TODO: this is ugly and syntactically uglier because we need a better solution */
-        if (columns_width > columns_max_width || columns_width < columns_min_width ) ( ( columns_width = columns_max_width ) && ( pager_count = pager_count - 1 ) );
+            , target = Y.DLTS.settings.book.path + '/pages?page=' + book_thumbnails_page + '&pager_count=' + pager_count;
 
         this.removeClass('hidden');
         
@@ -598,7 +588,6 @@ Y.use(
     // Subscribe to "io.success" for thumbnails page requests.
     
     function onThumbnailsOnSuccess (id, response) {
-    	
         var node 
           , current_book_page
           , block;
