@@ -375,8 +375,8 @@ function dlts_book_preprocess_node(&$vars) {
 
         }
 
-        $vars['rights'] = dlts_utilities_book_get_rights($node);
-
+        $vars['rights'] = (function_exists('dlts_utilities_book_get_rights')) ? dlts_utilities_book_get_rights($node) : '' ;
+   
         $languages = language_list('enabled');
 
         $languages = $languages[1];
@@ -850,6 +850,11 @@ function dlts_book_add_search(&$vars, &$js_data) {
     }
 
     /** Add search block information to DLTS namespace */
+    if (!is_array($js_data)) {
+        $js_data = array();
+    }
+
+
     $js_data += array(
       'search' => array(
         'books' => FALSE,

@@ -1,230 +1,196 @@
 body.page-books .view-books {
-  height: 100%;
-  margin: 0 auto;
-  
-  table.views-view-grid {
-    width: 100%;
-    overflow-y: scroll;
-    border: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  td:hover {
-    cursor: pointer;
-  }
-  
-  .view-content {
     height: 100%;
-    margin-bottom: -44px;
-    overflow-y: hidden;
-  }
-  
-  ul.pager {
-    width: 100%;
-    margin-bottom: 0;
-    position: absolute;
-    bottom: 0;
-    z-index: 9999;
-    background-color: $light-background;
-  }
-  
-  .pager li {
-    margin: 0;
-  }
-  
+    margin: 0 auto;
+    table.views-view-grid {
+        width: 100%;
+        overflow-y: scroll;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+    td:hover {
+        cursor: pointer;
+    }
+    .view-content {
+        height: 100%;
+        margin-bottom: -44px;
+        overflow-y: hidden;
+    }
+    ul.pager {
+        width: 100%;
+        margin-bottom: 0;
+        position: absolute;
+        bottom: 0;
+        z-index: 9999;
+        background-color: $light-background;
+    }
+    .pager li {
+        margin: 0;
+    }
 }
 
 .view-book-thumbnails .views-view-grid.cols-8, .view-books .views-view-grid.cols-8, .pane-page-body {
-  
-  font-family: $pager-fonts;
-  width: 100%;
-  
-  .center {
-    text-align: center;
-  }
-  
-  .buttons {
-    padding: 0%;
-    .button {
-      text-align: center;
+    font-family: $pager-fonts;
+    width: 100%;
+    .center {
+        text-align: center;
     }
-  }
-  
-  .vol-info {
-    text-align: left;
-  }
-  
-  .thumb-group {
-  
-    margin-bottom: 1.5em;
-    
-    .thumb-item {
-        height: 100%;
+    .buttons {
+        padding: 0%;
+        .button {
+            text-align: center;
+        }
     }
-  
-    img {
-      min-width:70px;
-      max-width:200px;
-      @include bv-box-shadow($pane-box-shadow);
-    }
-    
-    span {
-      font-size:1em;  
-      position:relative;
-      letter-spacing:.05em;
-    }
-    
     .vol-info {
-      padding: 0;
-      display:block;
+        text-align: left;
     }
-    
-    .page-number {    
-      bottom:32%;
-      left:0%;
-      padding:3% 6% ; 
-      margin-bottom:-68%;
-      font-weight:bold;
-      @include border-top-right-radius(10px);
-      background:rgba(0,0,0,.33);
+    .thumb-group {
+        margin-bottom: 1.5em;
+        .thumb-item {
+            height: 100%;
+        }
+        img {
+            min-width: 70px;
+            max-width: 200px;
+            @include bv-box-shadow($pane-box-shadow);
+        }
+        span {
+            font-size: 1em;
+            position: relative;
+            letter-spacing: .05em;
+        }
+        .vol-info {
+            padding: 0;
+            display: block;
+        }
+        .page-number {
+            bottom: 32%;
+            left: 0%;
+            padding: 3% 6%;
+            margin-bottom: -68%;
+            font-weight: bold;
+            @include border-top-right-radius(10px);
+            background: rgba(0, 0, 0, 0.33);
+        }
+        .page-number:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
     }
-    
-    .page-number:hover {
-      background:rgba(0,0,0,.5);    
-    }
-        
-  }
-
 }
 
 .pane {
-  &.thumbnails {
-    display: block;
-    width: 100%;
-    background: $dark-background;
-    position: fixed;
-    bottom: 0;
-    z-index: 999999;
-    .thumbnails-container {
-      
-      #book-navbar {
+    &.thumbnails {
+        display: block;
         width: 100%;
-        height: 40px;
-        background-color: $light-background;
-        
-        .item-list {
-          float: right;
-          margin-right: 1em;
-          
-          .pager-ellipsis {
-            display: none;
-            visibility: hidden;
-          }
-          
-          .pager-item {
-            display: none;
-            visibility: hidden;
-          }
-          
-          .pager-current {
-            display: none;
-            visibility: hidden;
-          }
-          
+        background: $dark-background;
+        position: fixed;
+        bottom: 0;
+        z-index: 999999;
+        .thumbnails-container {
+            #book-navbar {
+                width: 100%;
+                height: 40px;
+                background-color: $light-background;
+                .item-list {
+                    float: right;
+                    margin-right: 1em;
+                    .pager-ellipsis {
+                        display: none;
+                        visibility: hidden;
+                    }
+                    .pager-item {
+                        display: none;
+                        visibility: hidden;
+                    }
+                    .pager-current {
+                        display: none;
+                        visibility: hidden;
+                    }
+                }
+            }
+            li {
+                vertical-align: top;
+            }
         }
-        
-      }
-      
-      li {
-        vertical-align: top;        
-      }
-      
-
     }
-  }
 }
 
-
 .view-book-thumbnails {
-
     .views-row {
-      width: 150px;
-      margin: 5px;
-      display: inline-block;
-      float:left;
+        display: block;
+        position: relative;
+        float: left;
+        width: 8%;
+        height: auto;
+        margin: .5%;
+        &:first-child {
+            margin: .5% .5% .5% 5.5%;
+        }
+        &:last-child {
+            margin: .5% 5.5% .5% .5%;
+        }
     }
-  
-    .views-row.first {    
-      margin-left: 10px;
+    a {
+        display: block;
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        &:hover {
+            box-shadow: 0px 0px 0px 3px white;
+            + .page-number {
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+            }
+        }
     }
-
-    img {
-      width:100%;
-      min-width:70px;
-      max-width:150px;
-      @include bv-box-shadow($pane-box-shadow);
-    }
-      
     .page-number {
-      bottom:32%;
-      left:0%;
-      padding:3% 6% ; 
-      margin-bottom:-68%;
-      font-weight:bold;
-      @include border-top-right-radius(10px);
-      background:rgba(0,0,0,.33);
+        padding: 3% 6%;
+        font-weight: bold;
+        background: rgba(0, 0, 0, 0.33);
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: 0;
     }
-    
-    .page-number:hover {
-      background:rgba(0,0,0,.5);
-    }
-
 }
 
 .rtl {
-
-  .thumbnails-container {
-
-    .pager-first, 
-    .pager-last {
-    }    
-    
-    .pager-first, 
-    .pager-previous {
-      float:right;
+    .thumbnails-container {
+        .pager-first,
+        .pager-last {}
+        .pager-first,
+        .pager-previous {
+            float: right;
+        }
+        .pager-last,
+        .pager-next {
+            float: right;
+        }
+        .pager-next a:before {
+            content: "\e013" !important;
+        }
+        .pager-previous a:before {
+            content: "\e012" !important;
+        }
+        .pager-last a:before {
+            content: "\e010";
+        }
+        .pager-first a:before {
+            content: "\e011";
+        }
     }
-    
-    .pager-last, 
-    .pager-next {
-      float:right;
+    .view-book-thumbnails {
+        .views-row {
+            direction: rtl;
+            float: right;
+            &:first-child {
+                margin: .5% 5.5% .5% .5%;
+            }
+            &:last-child {
+                margin: .5% .5% .5% 5.5%;
+            }
+        }
     }
-    
-    .pager-next a:before {
-      content: "\e013" !important;
-    }
-     
-    .pager-previous a:before {
-      content: "\e012" !important;
-    }    
-
-   .pager-last a:before {
-     content: "\e010";
-   }
-   
-   .pager-first a:before {
-     content: "\e011";
-   }   
-
-  }
-  
-  .view-book-thumbnails {
-  
-    .views-row {
-      direction: rtl;
-      float:right;
-    }
-  
-  }  
-  
 }
