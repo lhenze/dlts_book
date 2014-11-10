@@ -4,3 +4,7 @@
 .project
 .sass-cache
 css/*.css
+
+# Ignore Eclipse files
+.buildpath
+.settings/

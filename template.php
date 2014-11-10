@@ -375,8 +375,8 @@ function dlts_book_preprocess_node(&$vars) {
 
         }
 
-        $vars['rights'] = (function_exists('dlts_utilities_book_get_rights')) ? dlts_utilities_book_get_rights($node) : '' ;
-   
+        // $vars['rights'] = (function_exists('dlts_utilities_book_get_rights')) ? dlts_utilities_book_get_rights($node) : '' ;
+
         $languages = language_list('enabled');
 
         $languages = $languages[1];
