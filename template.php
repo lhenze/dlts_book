@@ -241,8 +241,15 @@ function dlts_book_preprocess_page(&$vars) {
         module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book');
 
         module_load_include('inc', 'dlts_utilities', 'inc/dlts_utilities.book_page');
+        
+        $book = dlts_utilities_book_page_load_book($node);
+        
+        if ( $book->status == 0 && !user_is_logged_in()) {
+          drupal_set_message(t('We\'re sorry, but you are not authorized to view this page.'), 'warning');
+          drupal_goto('user', array('query' => array('destination' => drupal_get_path_alias('node/' . $node->nid ))));
+        }
 
-        $vars['book_title'] = dlts_utilities_book_get_title( dlts_utilities_book_page_load_book($node));
+        $vars['book_title'] = dlts_utilities_book_get_title( $book );
 
 		$read_order = dlts_utilities_book_page_get_read_order($node);
 
