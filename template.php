@@ -575,7 +575,7 @@ function dlts_book_preprocess_node(&$vars) {
 
       $vars['read_order'] = ($read_order == 1) ? 'rtl' : 'ltr';
 
-    $vars['button_language'] = '';
+      $vars['button_language'] = '';
 
       /** Zoom in and out buttons */
       $vars['control_panel'] = theme('dlts_book_control_panel');
@@ -879,14 +879,14 @@ function dlts_book_add_search(&$vars, &$js_data) {
     $js_data['search'] += array('searchTerms' => ( ($searchHasTerms) ? $placeholder : false));
 
     /** Add search button */
-    $vars['button_search'] = _dlts_book_navbar_item(
-      array(
-        'title' => t('Search'),
-        'path' => 'node/' . $vars['node']->nid,
-        'attributes' => array('title' => t('Search'), 'class' => array('button', 'search', (($searchHasTerms) ? ' on' : '') ), 'id' => array('button-search')),
-        'fragment' => 'search',
-      )
-    );
+    // $vars['button_search'] = _dlts_book_navbar_item(
+    //   array(
+    //     'title' => t('Search'),
+    //     'path' => 'node/' . $vars['node']->nid,
+    //     'attributes' => array('title' => t('Search'), 'class' => array('button', 'search', (($searchHasTerms) ? ' on' : '') ), 'id' => array('button-search')),
+    //     'fragment' => 'search',
+    //   )
+    // );
 
     $search = module_invoke('search', 'block_view', 'search');
     $search['content']['search_block_form']['#attributes']['value'] = '';

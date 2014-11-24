@@ -1,44 +1,45 @@
+$break-small: 600px;
+$break-medium: 700px;
+$break-large: 1200px;
 
-.navbar-spacer {
-    display: block;
-    float: left;
-    height: 44px;
-    background: none;
-    width: 100px;
-    // &.navbar-spacer-1 {
-    //     width: 100% / $navbar-columns * $navbar-spacer-1;
-    // }
-    // &.navbar-spacer-2 {
-    //     width: 100% / $navbar-columns * $navbar-spacer-2;
-    // }
+.pane.navbar#navbar {
+    //display: table;
+    width: 100%;
 }
 
-
-ul.navbar.navbar-left, .navbar.navbar-middle, ul.navbar.navbar-right  {
-    width: auto;
-    overflow: hidden;
-    float: left;
-    display: block;
-    margin-bottom: 0;
+.navbar-left, .navbar-middle, .navbar-right, .navbar-arrows, .navbar-fullscreen {
+   width: auto;
+   overflow: hidden;
+    // margin-bottom: 0;
     height: 46px;
-
+   // display: table-cell;
 }
- 
+
+.navbar.navbar-left, .navbar.navbar-middle, .navbar.navbar-right, .navbar-arrows {
+    //display: table-cell;
+}
+.navbar-left, .navbar-middle, .navbar-arrows {
+    //width:auto;
+    padding-right:7%;
+    float: left;
+}
+.navbar-fullscreen {
+ // width: 50%;
+  float: right;
+    }
+
+.navbar-fullscreen .navbar-item {
+    float: right;
+    margin: 0 0.5em 0 0;
+}
 
 .navbar-item {
     //width: 100% / $navbar-columns;
     min-width: 50px;
     display: block;
     float: left;
-    margin: 0 .5em;
+    margin: 0 0 0 .5em;
     font-size: 2.3em;
-    &#control-zoom-in, &#control-zoom-out {
-        display: block;
-        margin-top: 0;
-    }
-    &#control-zoom-out {
-        float: right;
-    }
     a,
     span,
     .olControlDLTSZoomInItemInactive,
@@ -57,11 +58,12 @@ ul.navbar.navbar-left, .navbar.navbar-middle, ul.navbar.navbar-right  {
         @include transition-property((border, box-shadow));
         @include transition-duration(300ms);
         @include transition-timing-function(ease-in);
-        &:hover {
+        &:hover, &:focus {
             border: 1px #999 solid;
             opacity: $active-opacity;
             cursor: pointer;
             @include bv-box-shadow($navbar-box-shadow);
+            text-decoration: none;
         }
         &.on {
             border: 1px #999 solid;
@@ -156,5 +158,23 @@ ul.navbar.navbar-left, .navbar.navbar-middle, ul.navbar.navbar-right  {
     // multivol
     .button.multibook {
         display: none;
+    }
+}
+
+@media screen and (max-width: $break-medium) {
+    .navbar-left, .navbar-middle, .navbar-arrows {
+        padding: 0;
+    }
+    .navbar-fullscreen .navbar-item, .navbar-item {
+        margin: 0 .2em;
+    }
+  
+}
+@media screen and (max-width: $break-small) {
+    .navbar-fullscreen .navbar-item, .navbar-item {
+        margin: 0 .2em;
+    }
+     .navbar-middle,   .navbar-arrows {
+        display:none;
     }
 }
