@@ -3,30 +3,23 @@ $break-medium: 700px;
 $break-large: 1200px;
 
 .pane.navbar#navbar {
-    //display: table;
     width: 100%;
 }
 
 .navbar-left, .navbar-middle, .navbar-right, .navbar-arrows, .navbar-fullscreen {
-   width: auto;
-   overflow: hidden;
-    // margin-bottom: 0;
+    width: auto;
+    overflow: hidden;
     height: 46px;
-   // display: table-cell;
 }
 
-.navbar.navbar-left, .navbar.navbar-middle, .navbar.navbar-right, .navbar-arrows {
-    //display: table-cell;
-}
 .navbar-left, .navbar-middle, .navbar-arrows {
-    //width:auto;
-    padding-right:7%;
+    padding-right: 7%;
     float: left;
 }
+
 .navbar-fullscreen {
- // width: 50%;
-  float: right;
-    }
+    float: right;
+}
 
 .navbar-fullscreen .navbar-item {
     float: right;
@@ -168,13 +161,13 @@ $break-large: 1200px;
     .navbar-fullscreen .navbar-item, .navbar-item {
         margin: 0 .2em;
     }
-  
 }
+
 @media screen and (max-width: $break-small) {
     .navbar-fullscreen .navbar-item, .navbar-item {
         margin: 0 .2em;
     }
-     .navbar-middle,   .navbar-arrows {
-        display:none;
+    .navbar-middle, .navbar-arrows {
+        display: none;
     }
 }
