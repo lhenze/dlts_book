@@ -476,8 +476,12 @@ Y.use(
     });
 
     Y.on('button:button-fullscreen:off', function(e) {
-      this.removeClass('hidden');
-    }, pane_top);
+      this.button.blur();
+      this.top.removeClass('hidden');
+    }, {
+      top: pane_top,
+      button: Y.one('a.fullscreen')
+    });
 
     Y.on('openlayers:change', function(config) {
 
