@@ -51,18 +51,25 @@ $break-large: 1200px;
         @include transition-property((border, box-shadow));
         @include transition-duration(300ms);
         @include transition-timing-function(ease-in);
-        &:hover, &:focus {
+        &:focus, &:visited {
+            text-decoration: none;
+            color: $navbar-icon-color;
+            opacity: $normal-opacity;
+        }
+        &:hover {
             border: 1px #999 solid;
             opacity: $active-opacity;
             cursor: pointer;
             @include bv-box-shadow($navbar-box-shadow);
             text-decoration: none;
+            color: $navbar-on-color;
         }
         &.on {
             border: 1px #999 solid;
             opacity: $active-opacity;
             cursor: pointer;
             @include bv-box-shadow($navbar-box-shadow-on);
+            color: $navbar-on-color;
         }
         &:before {
             @include bv-font-faced($icon-font-name);
