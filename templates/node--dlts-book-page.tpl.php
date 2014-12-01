@@ -3,24 +3,27 @@
     <?php if ($button_togglepage || $button_thumbnails || $button_fullscreen || $button_metadata || $button_multibook) : ?>
       <ul class="navbar navbar-left">
         <?php if (isset( $button_metadata)) : print $button_metadata; endif; ?>
-        <?php if (isset( $button_fullscreen)) : print $button_fullscreen; endif; ?>
         <?php if (isset( $button_togglepage)) : print $button_togglepage; endif; ?>
         <?php if (isset( $button_thumbnails)) : print $button_thumbnails; endif; ?>
         <?php if (isset( $button_multibook)) : print $button_multibook; endif; ?>
       </ul>
     <?php endif; ?>
-    <div class="navbar navbar-spacer navbar-spacer-1"></div>
+ 
     <div class="navbar navbar-middle">
       <?php if ($control_panel): ?>
         <?php print $control_panel; ?>
       <?php endif; ?>
     </div>
-    <div class="navbar navbar-spacer navbar-spacer-2"></div>
-    <ul class="navbar navbar-right">
+
+    <ul class="navbar  navbar-arrows">
       <?php if (isset($prevpage)) : print '<li class="navbar-item">' . $prevpage . '</li>'; endif; ?>      
       <?php if (isset($nextpage)) : print '<li class="navbar-item">' . $nextpage . '</li>'; endif; ?>
       <?php if (isset($button_language)) : print $button_language; endif; ?>
-      <?php if (isset($button_search)) : print $button_search; endif; ?>      
+      <?php if (isset($button_search)) : print $button_search; endif; ?> 
+    </ul>
+  
+    <ul class="navbar-fullscreen" >
+      <?php if (isset( $button_fullscreen)) : print $button_fullscreen; endif; ?>     
     </ul>
   </div>
   
