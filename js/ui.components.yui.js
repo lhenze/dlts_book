@@ -585,11 +585,12 @@ Y.use(
       this.addClass('hidden');
     }, Y.one('.pane.thumbnails'));
 
-    Y.once('contentready', function() {
-      Y.later(1000, Y.one('.pane.load'), function() {
-        this.hide();
-      });
-    }, '.dlts_image_map');
+    function openLayersTilesLoading ( ) {
+      if ( Y.one('body').hasClass( 'openlayers-loading' ) ) Y.later( 500, Y.one('.pane.load'), openLayersTilesLoading );
+      else Y.one('.pane.load').hide();
+    }
+
+    Y.once('contentready', openLayersTilesLoading, '.dlts_image_map');
 
     Y.delegate('click', function(e) {
       var currentTarget = e.currentTarget;
