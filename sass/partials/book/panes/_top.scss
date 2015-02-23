@@ -1,6 +1,6 @@
 #header, .footer {
     padding: .5em 1em;
-    @include embossed-gradient($navbar-overlay, $navbar-end-background-mix, $navbar-start-background-mix);
+    background-color: $navbar-overlay;
     h1, h2 {
         font-size: 1.2em;
         text-transform: uppercase;
@@ -25,7 +25,7 @@
     margin: 0;
     padding: 0;
     background-image: none;
-   // @include gradient(darken($special-titlebar-color, 15%), darken($special-titlebar-color, 23%));
+    // @include gradient(darken($special-titlebar-color, 15%), darken($special-titlebar-color, 23%));
     background-color: darken($special-titlebar-color, 15%);
     height: auto;
     overflow: hidden;

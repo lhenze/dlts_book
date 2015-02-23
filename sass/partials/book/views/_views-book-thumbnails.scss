@@ -90,7 +90,8 @@ body.page-books .view-books {
             #book-navbar {
                 width: 100%;
                 height: 40px;
-                background-color: $light-background;
+                background-color: $dkgrey;
+                border-top: 1px solid darken($dkgrey, 7%);
                 .item-list {
                     float: right;
                     margin-right: 1em;
@@ -111,6 +112,9 @@ body.page-books .view-books {
             li {
                 vertical-align: top;
             }
+        }
+        a:active, a:hover {
+            color: #6fbef3;
         }
     }
 }

@@ -21,7 +21,7 @@ $book-fonts: "Helvetica Neue", Arial, Helvetica, sans-serif;
 $pager-fonts: "Helvetica Neue", Arial, Helvetica, sans-serif; 
 $code-fonts: 'DejaVu Sans Mono', Monaco, Consolas, monospace;
 
-// Icon fonts
+// Icon fonts`
 $icon-font-name: 'book-viewer';
 $icon-font-ttf: 'book-viewer.ttf';
 $icon-font-woff: 'book-viewer.woff';
@@ -36,7 +36,7 @@ $link-color:#cc341f;
 $light-background: #D3D3D3; // default light gray
 $dark-background: #A9A9A9; // default dark gray
 
-$navbar-icon-color: #444444;
+$navbar-icon-color: #ffffff;
 $paging-icon-color: $navbar-icon-color;
 
 $page-background: lighten($light-background, 15%); // default light gray
