@@ -25,7 +25,7 @@ Y.use(
     })
 
     /** callbacks */
-    , resizePageMeta, slide_value_change, pager_form, on_button_click, slide_end, change_page, pjax_navigate, pjax_callback, pjax_load, on_toggle_language, on_toggle_multivol
+    , showHideTitleBar, resizePageMeta, slide_value_change, pager_form, on_button_click, slide_end, change_page, pjax_navigate, pjax_callback, pjax_load, on_toggle_language, on_toggle_multivol
 
     /** book global settings; the object that represent the current book and settings */
     , book = Y.DLTS.settings.book
@@ -37,6 +37,18 @@ Y.use(
 
     /** add view port information to global setting */
     book.viewport = Y.DOM.viewportRegion();
+    showHideTitleBar = function() {
+      /* Title bar is hidden by default using an inline style (to prevent flash of unstyled content)
+      When the book is loaded outside of any site context, the titlebar is returned ... otherwise not. */
+      var nodeTitleBar = Y.one('#titlebar');
+      if (window.self === window.top) {
+        // Y.log("This is not in an iframe"); 
+        nodeTitleBar.removeAttribute('style');
+      } else {
+        // Y.log("This IS in an iframe");
+        nodeTitleBar.remove(true);
+      }
+    };
 
     resizePageMeta = function() {
 
@@ -371,6 +383,9 @@ Y.use(
     slider.render('#slider');
 
     /** events listeners */
+
+    Y.on('domready', showHideTitleBar, '#pagemeta');
+    
     Y.on('contentready', resizePageMeta, '#pagemeta');
 
     Y.on('windowresize', resizePageMeta, '#pagemeta');

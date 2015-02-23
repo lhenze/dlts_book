@@ -6,7 +6,7 @@
       <?php endif; ?>
       <?php if ($title) : ?>
         <?php print render($title_prefix); ?>
-        <div id="titlebar" class="titlebar">
+        <div id="titlebar" class="titlebar" style="display:none">
           <h1 class="title" id="page-title"><?php if (isset($book_title)) : print $book_title; else : print $title; endif; ?></h1>
         </div>
         <?php print render($title_suffix); ?>
