@@ -33,6 +33,7 @@ $break-large: 1200px;
     margin: 0 0 0 .5em;
     font-size: 2.3em;
     a,
+    a.active,
     span,
     .olControlDLTSZoomInItemInactive,
     .olControlDLTSZoomOutItemInactive {
@@ -84,7 +85,7 @@ $break-large: 1200px;
     }
     .inactive, .zoom_in_max, .zoom_out_max {
         opacity: $dimmed-opacity;
-         @include box-shadow(none !important);
+        @include box-shadow(none !important);
         cursor: default !important;
         &:hover {
             opacity: $dimmed-opacity !important;

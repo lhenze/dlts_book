@@ -61,24 +61,28 @@
       overflow: hidden;
       &:before {
         content: "\e013";
+        color: $thumbnail-nav-link-color;
       }
     }
     &.pager-next a {
       overflow: hidden;
       &:before {
         content: "\e012";
+        color: $thumbnail-nav-link-color;
       }
     }
     &.pager-first a {
       overflow: hidden;
       &:before {
         content: "\e010";
+        color: $thumbnail-nav-link-color;
       }
     }
     &.pager-last a {
       overflow: hidden;
       &:before {
         content: "\e011";
+        color: $thumbnail-nav-link-color;
       }
     }
   }

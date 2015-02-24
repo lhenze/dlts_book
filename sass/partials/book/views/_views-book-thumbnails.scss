@@ -113,8 +113,8 @@ body.page-books .view-books {
                 vertical-align: top;
             }
         }
-        a:active, a:hover {
-            color: #6fbef3;
+        a:active, a:hover, a:visited {
+            color: $thumbnail-nav-link-color;
         }
     }
 }

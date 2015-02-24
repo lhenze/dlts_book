@@ -8,7 +8,8 @@
     $halfwidth: -($loading-segments-total-width / 2);
     margin-left: $halfwidth + (240 / 2);
     p {
-        color: $loading-animation-start-color;
+        color: #333;
+        padding-top:10px;
         @include bv-text-shadow(icon-embossed-text-shadow);
     }
 }

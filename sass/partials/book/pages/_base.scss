@@ -4,13 +4,15 @@ html, body, input {
   font-family: $book-fonts;
 }
 
+a {
+  @include set-link-colors($link-color);
+}
+
 html {
-  
   height: 100%;
   width: 100%;
   overflow: hidden;
-  
-  &.node-type-dlts-book-page, 
+  &.node-type-dlts-book-page,
   &.node-type-dlts-book-stitched-page {
     body,
     #page,
@@ -19,7 +21,7 @@ html {
     #main,
     #content,
     #content .section,
-    #content .section .region-content, 
+    #content .section .region-content,
     #block-system-main,
     #block-system-main .content,
     .node-dlts-book-page,
@@ -29,20 +31,15 @@ html {
       width: inherit;
     }
   }
-  
   .wrapper {
     margin: 0 auto;
     padding: 0;
   }
-
   body {
-    a {
-      @include set-link-colors($link-color);
-    }
     &.page-node {
       .content {
         position: relative;
-        color:#000;
+        color: #000;
         margin: 15px 10px 15px 0;
         z-index: 1;
       }
@@ -60,7 +57,7 @@ html {
 
 .element-invisible {
   display: none;
-  visibility: hidden; 
+  visibility: hidden;
 }
 
 .button.link {
@@ -74,8 +71,8 @@ html {
   text-align: center;
   white-space: nowrap;
   background: #EFEFEF;
-  background: -moz-linear-gradient(top,whiteSmoke 0,#EFEFEF 50%,#E5E5E5 51%,#DFDFDF 100%);
-  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,whiteSmoke),color-stop(50%,#EFEFEF),color-stop(51%,#E5E5E5),color-stop(100%,#DFDFDF));
+  background: -moz-linear-gradient(top, whiteSmoke 0, #EFEFEF 50%, #E5E5E5 51%, #DFDFDF 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, whiteSmoke), color-stop(50%, #EFEFEF), color-stop(51%, #E5E5E5), color-stop(100%, #DFDFDF));
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='whiteSmoke',endColorstr='#DFDFDF',GradientType=0);
   &.bobcat-record,
   &.browse-collection,
@@ -84,32 +81,31 @@ html {
     display: block;
     font-size: 22px;
     padding: 9px 0 10px;
-    background: -moz-linear-gradient(top,#F7F7F7 0,#DFDFDF 100%);
-    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#F7F7F7),color-stop(100%,#DFDFDF));
+    background: -moz-linear-gradient(top, #F7F7F7 0, #DFDFDF 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F7F7F7), color-stop(100%, #DFDFDF));
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F7F7F7',endColorstr='#DFDFDF',GradientType=0);
   }
 }
 
 body.page-node .node-page {
-  margin-left:0;
+  margin-left: 0;
 }
 
 .thumb-image {
-  visibility:hidden;
-  background:none !important;
+  visibility: hidden;
+  background: none !important;
 }
-
 
 i, em {
   font-style: italic;
 }
 
 #header {
-  padding:1em 1em .5em 1em;
-  @include gradient($lib-red,$lib-brown);
+  padding: 1em 1em .5em 1em;
+  @include gradient($lib-red, $lib-brown);
   a {
-    color:white;
-    font-size:1.2em;
+    color: white;
+    font-size: 1.2em;
   }
 }
 
@@ -120,16 +116,15 @@ html.front form .form-text {
 }
 
 .branding {
-  a{
-    text-decoration:none;
+  a {
+    text-decoration: none;
     &:hover {
-      opacity:0.8;
-      filter:alpha(opacity=80); /* For IE8 and earlier */
+      opacity: 0.8;
+      filter: alpha(opacity = 80);
+      /* For IE8 and earlier */
     }
   }
 }
-
-
 
 #pager {
   border-top: 1px solid gray;
@@ -137,10 +132,10 @@ html.front form .form-text {
 
 .yui3-u-1 {
   .field-name-body {
-    width:50%;
-    margin:2em 1em;
-    border-left:3px solid $teaser-color;
-    padding-left:1em;
+    width: 50%;
+    margin: 2em 1em;
+    border-left: 3px solid $teaser-color;
+    padding-left: 1em;
   }
 }
 
